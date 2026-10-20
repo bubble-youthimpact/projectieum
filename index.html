@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<base href="./">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="ieum-mode" content="path">
 <meta name="description" content="Project IEUM — simple, verified information and support services for foreign residents in Jeju: housing, healthcare, work and administration.">
 <link rel="icon" type="image/svg+xml" href="assets/logo-illustration.svg">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
@@ -349,8 +351,9 @@ main#app{flex:1 0 auto;outline:none}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 .langdd{position:relative}
-.langbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--solid);cursor:pointer;font:600 .85rem var(--f-body);color:var(--ink);white-space:nowrap;box-shadow:0 1px 2px rgb(2 60 110 / .06)}
-.langbtn svg{color:var(--ink);width:19px;height:19px}
+.langbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 14px 0 11px;border-radius:999px;border:1px solid var(--line);background:var(--solid);cursor:pointer;font:600 .85rem var(--f-body);color:var(--ink);white-space:nowrap;box-shadow:0 1px 2px rgb(2 60 110 / .06)}
+.langbtn svg{color:var(--ink);width:17px;height:17px}
+#langcur{font-weight:600;font-size:.82rem;letter-spacing:.02em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .langbtn:hover{border-color:var(--sea);color:var(--sea)}
 .langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:70;display:grid}
@@ -488,7 +491,7 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
     <nav class="menu" aria-label="Main" id="menu"></nav>
     <div class="actions">
       <div class="langdd" id="langdd">
-        <button class="langbtn" id="langbtn" aria-expanded="false" aria-haspopup="true" aria-label="Change language"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="langcur" class="sr">EN</span></button>
+        <button class="langbtn" id="langbtn" aria-expanded="false" aria-haspopup="true" aria-label="Change language"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="langcur">EN</span></button>
         <div class="langmenu" id="langmenu" hidden>
           <button data-lang="ko" aria-pressed="false">한국어</button>
           <button data-lang="en" aria-pressed="true">English</button>
@@ -694,6 +697,7 @@ work:{type:'hub', cat:'work', title:'Work & administration', kicker:'Work & admi
 
 support:{type:'services', title:'Find support', kicker:'Find support', h1:'Where can I get more support?', lede:'Every verified organisation, phone number and office in one place. Filter by topic, need, language and location. For help in your language, start with Danuri (1577-1366).'},
 about:{type:'about', title:'About IEUM'},
+notfound:{type:'notfound', title:'Page not found'},
 };
 
 const MSGS={"housing.problem.deposit-not-returned": [["안녕하세요. 계약이 [날짜]에 끝났습니다.\n보증금은 언제 돌려받을 수 있을까요? 답변 부탁드립니다.", "Hello. My contract ended on [date].\nWhen can I get my deposit back? Please let me know."]], "housing.problem.unexpected-charge": [["안녕하세요. 이번에 요청하신 [금액]원은 어떤 비용인가요?\n항목별 내역도 보내주실 수 있을까요?", "Hello. What is the [amount] won you asked for?\nCould you also send a breakdown of each item?"]], "housing.problem.payment-difference": [["안녕하세요. 계약서에는 [항목]이 [금액]원으로 되어 있는데,\n이번에는 [금액]원으로 요청하셨습니다. 금액이 달라진 이유를 알려주실 수 있을까요?", "Hello. My contract says [item] is [amount] won,\nbut you asked for [amount] won. Could you explain why it changed?"]], "housing.problem.cannot-pay-rent": [["안녕하세요. 이번 달 월세를 제때 내기 어려울 것 같습니다.\n납부 일정을 상의드릴 수 있을까요?", "Hello. I may not be able to pay this month’s rent on time.\nCould we talk about the payment schedule?"]], "housing.problem.deposit-deduction": [["안녕하세요. 보증금에서 공제된 금액과 각 항목의 이유를 알려주실 수 있을까요?\n관련 영수증이나 사진이 있으면 함께 보내주세요.", "Hello. Could you tell me each amount taken from my deposit and why?\nPlease send any related receipts or photos."]], "housing.dispute.asked-to-leave": [["안녕하세요. 집을 비워 달라고 하신 이유와 정확한 날짜를\n문자나 서면으로 알려주실 수 있을까요?", "Hello. Could you tell me in writing why you want me to move out,\nand the exact date?"]], "housing.dispute.repairs": [["안녕하세요. 집에 [문제]가 있습니다. [날짜]부터 생긴 문제이고 사진을 함께 보내드립니다.\n언제 수리가 가능한지 알려주세요.", "Hello. There is a problem with [issue] in the home. It started on [date]; photos attached.\nPlease let me know when it can be repaired."]], "housing.dispute.privacy": [["안녕하세요. 집에 들어오셔야 할 때는\n미리 연락 주시고 제 동의를 받아 주시면 감사하겠습니다.", "Hello. If you need to enter the home,\nplease contact me in advance and ask for my agreement."]], "housing.dispute.damage": [["안녕하세요. 말씀하신 파손이 정확히 어떤 부분인지,\n제가 무엇을 해야 하는지 알려주실 수 있을까요? 사진이나 견적서가 있으면 보내주세요.", "Hello. Could you tell me exactly what damage you mean\nand what you are asking me to do? Please send any photos or estimates."]]};
@@ -1139,6 +1143,11 @@ function drawServices(){
     : `<div class="placeholder"><h3>${em.t}</h3><p>${em.d}</p>${em.link?`<div style="max-width:420px">${linkItem(em.link)}</div>`:''}</div>`;
 }
 
+R.notfound = (r,p) => `<div class="wrap"><div class="hero" style="padding-top:56px"><div class="kicker mono">Error 404</div><h1>We can’t find that page.</h1>
+  <p class="lede">The address may be wrong, or the page may have moved. Start again from one of these:</p></div>
+  <div class="situations" style="max-width:760px">${[['housing',I.house,'Housing','Finding a home, contracts, deposits and landlords'],['health',I.heart,'Healthcare','Medical care, insurance, costs and language support'],['work',I.case,'Work & admin','Wages, labour issues and paperwork'],['support',I.phone,'Find support','Phone numbers and offices of verified organisations']].map(([k,ic,t,d])=>`<a class="sit" href="#${k}"><span class="flag">${ic}</span><div><h3>${t}</h3><p>${d}</p></div><span class="meta">→</span></a>`).join('')}</div>
+  <p style="margin:28px 0 40px"><a class="btn btn-primary" href="#home">Go to the home page ${I.arrow}</a></p></div>`;
+
 R.soon = (r,p) => `<div class="wrap c-${p.cat}">${hero(r,{...p,h1:p.title,lede:p.sub})}
   <div class="placeholder"><span class="soon">Guide in progress</span><h2 style="margin-top:12px">This guide is being written</h2>
   <p>In the meantime, a verified organisation can help you in your language.</p>
@@ -1176,7 +1185,7 @@ function buildChrome(){
 }
 function closeMenus(){ document.querySelectorAll('.mi[data-open]').forEach(m=>{m.removeAttribute('data-open');m.querySelector('button')?.setAttribute('aria-expanded','false')});
   closeDrawer(); }
-function openDrawer(){ const r=(location.hash||'#home').slice(1); const m=$('#mnav'); m.hidden=false; document.documentElement.classList.add('locked'); $('#burger').setAttribute('aria-expanded','true');
+function openDrawer(){ const r=curRoute(); const m=$('#mnav'); m.hidden=false; document.documentElement.classList.add('locked'); $('#burger').setAttribute('aria-expanded','true');
   m.querySelectorAll('.dlist nav a').forEach(a=>a.toggleAttribute('aria-current', r===a.dataset.k || (r!=='home'&&(r.split('.')[0]===a.dataset.k || catOf(r)===a.dataset.k))));
   m.querySelector('.pclose').focus(); }
 function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; m.hidden=true; document.documentElement.classList.remove('locked'); $('#burger').setAttribute('aria-expanded','false'); if(was&&document.activeElement&&m.contains(document.activeElement)) $('#burger').focus(); }
@@ -1185,12 +1194,27 @@ function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; 
 const ALIAS={'housing.support':{topic:'housing'},'health.support':{topic:'health'},'support.interpretation':{need:'interpretation'},'support.care':{topic:'health',need:'care'},
   'support.cost':{topic:'health',need:'cost'},'support.legal':{topic:'housing',need:'legal'},'support.welfare':{topic:'housing',need:'welfare'},'housing.contract.help':{topic:'housing',need:'contract'}};
 let PRESET=null;
+/* ---------- router: clean paths on the real site, # fallback in previews ---------- */
+const PATHMODE=!!document.querySelector('meta[name="ieum-mode"][content="path"]');
+const BASE=PATHMODE?new URL(document.baseURI).pathname:'';
+try{ if(PATHMODE) localStorage.setItem('ieum-base',BASE); }catch(e){}
+function href(r){ if(!PATHMODE) return '#'+r; return r==='home'?BASE:BASE+r.split('.').join('/')+'/'; }
+function curRoute(){
+  if(!PATHMODE) return (location.hash||'#home').slice(1)||'home';
+  let p=decodeURIComponent(location.pathname);
+  if(p.startsWith(BASE)) p=p.slice(BASE.length); else p=p.replace(/^\//,'');
+  p=p.replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'');
+  return p?p.split('/').join('.'):'home';
+}
+function go(r,replace){ if(PATHMODE){ history[replace?'replaceState':'pushState'](null,'',href(r)); render(); scrollTo(0,0);} else { replace?location.replace('#'+r):(location.hash=r); } }
+function fixLinks(root){ if(!PATHMODE) return; root.querySelectorAll('a[href^="#"]').forEach(a=>{const r=a.getAttribute('href').slice(1); if(P[r]||ALIAS[r]) a.setAttribute('href',href(r));}); }
+if(PATHMODE && location.hash.length>1 && (P[location.hash.slice(1)]||ALIAS[location.hash.slice(1)])) history.replaceState(null,'',href(location.hash.slice(1)));
 /* ---------- router ---------- */
 const state={lang: store.get('lang')||'en'};
 function render(){
-  let r=(location.hash||'#home').slice(1);
-  if(ALIAS[r]){PRESET=ALIAS[r]; location.replace('#support'); return;}
-  if(!P[r]) r='home';
+  let r=curRoute();
+  if(ALIAS[r]){PRESET=ALIAS[r]; go('support',true); return;}
+  if(!P[r]) r=PATHMODE?'notfound':'home';
   const p=P[r];
   $('#app').innerHTML=`<div class="fade">${R[p.type](r,p)}</div>`;
   $('#sos').innerHTML = catOf(r)==='health' ? `<div class="sos"><div class="wrap"><strong>Need urgent medical help?</strong><span>If you think you need urgent medical help, call 119.</span><a href="tel:119">${I.phone} Call 119</a></div></div>` : p.urgent ? `<div class="sos"><div class="wrap"><strong>In immediate danger?</strong><span>Call police on 112, or 119 for emergency or medical help.</span><a href="tel:112">${I.phone} Call 112</a></div></div>`:'';
@@ -1198,11 +1222,12 @@ function render(){
   closeMenus();
   document.title = r==='home'?'Project IEUM':`${p.title} · Project IEUM`;
   if(p.type==='services') drawServices();
+  fixLinks(document);
   syncLang();
 }
 function syncLang(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
-  const lab={ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[state.lang]; const lc=$('#langcur'); if(lc) lc.textContent=lab; document.querySelectorAll('.dlcur').forEach(x=>x.textContent=lab);
+  const lab={ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[state.lang]; const lc=$('#langcur'); if(lc) lc.textContent={ko:'KO',en:'EN',zh:'中文',vi:'VI'}[state.lang]; if(lc) lc.parentElement.setAttribute('aria-label','Language: '+lab); document.querySelectorAll('.dlcur').forEach(x=>x.textContent=lab);
   const msg={ko:'한국어 번역을 준비하고 있습니다. 지금은 영어로 표시됩니다.',zh:'中文翻译正在准备中，目前以英文显示。',vi:'Bản tiếng Việt đang được chuẩn bị. Hiện đang hiển thị tiếng Anh.'}[state.lang];
   $('#langnote').hidden=!msg; if(msg) $('#langnotetext').textContent=msg;
 }
@@ -1231,7 +1256,7 @@ document.addEventListener('click',e=>{
     box.innerHTML = fb.dataset.fb==='yes' ? `<b>Thanks — glad it helped.</b>` : `<b>Thanks for telling us.</b><p class="msg">We’ll use this to improve the guide. If you still need help now, <a href="#support">talk to a support organisation</a>.</p>`;}
 });
 document.addEventListener('change',e=>{
-  if(e.target.matches('.checks input')){const r=(location.hash||'#home').slice(1);
+  if(e.target.matches('.checks input')){const r=curRoute();
     const done=[...document.querySelectorAll('.checks input')].filter(x=>x.checked).map(x=>+x.dataset.i);
     store.set('chk:'+r,done); const pr=$('#prog'); if(pr) pr.textContent=`${done.length}/${document.querySelectorAll('.checks input').length} ready`;}
   if(e.target.matches('#f-lang,#f-need,#f-loc')) drawServices();
@@ -1240,8 +1265,18 @@ function selectEl(el){const r=document.createRange(); r.selectNodeContents(el); 
 function readLog(){return [...document.querySelectorAll('table.log tbody tr')].map((tr,i)=>({d:$('#log-d-'+i).value,w:$('#log-w-'+i).value,e:$('#log-e-'+i).value,t:$('#log-t-'+i).value}));}
 document.addEventListener('input',e=>{if(e.target.closest('table.log')) store.set('log:landlord',readLog());});
 addEventListener("keydown",e=>{if(e.key==="Escape"){document.querySelector(".full")?.remove();closeMenus();}});
-addEventListener("hashchange",()=>{render(); scrollTo(0,0); $('#app').focus({preventScroll:true});});
+addEventListener("hashchange",()=>{ if(PATHMODE){ const h=location.hash.slice(1); if(P[h]||ALIAS[h]) go(h,true); return; } render(); scrollTo(0,0); $('#app').focus({preventScroll:true});});
+addEventListener("popstate",()=>{ if(PATHMODE){ render(); $('#app').focus({preventScroll:true}); } });
+document.addEventListener('click',e=>{
+  if(!PATHMODE||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const a=e.target.closest('a[href]'); if(!a||a.target||a.hasAttribute('download')) return;
+  const raw=a.getAttribute('href'); if(raw.startsWith('#')){ const h=raw.slice(1); if(P[h]||ALIAS[h]){ e.preventDefault(); go(h); } return; }
+  const u=new URL(a.href,location.href); if(u.origin!==location.origin||!u.pathname.startsWith(BASE)) return;
+  e.preventDefault(); if(u.pathname===location.pathname){ scrollTo(0,0); closeMenus(); return; }
+  history.pushState(null,'',u.pathname); render(); scrollTo(0,0); $('#app').focus({preventScroll:true});
+});
 buildChrome();
+fixLinks(document);
 render();
 </script>
 </body>

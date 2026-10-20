@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>(function(){var b='/';try{b=localStorage.getItem('ieum-base')||'';}catch(e){}
+if(!b){var p=location.pathname.split('/').filter(Boolean);var top=['housing','health','work','support','about'];b=(/\.github\.io$/.test(location.hostname)&&p.length&&top.indexOf(p[0])<0)?'/'+p[0]+'/':'/';}
+document.write('<base href="'+b+'">');})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="ieum-mode" content="path">
+<meta name="robots" content="noindex">
+<meta name="description" content="Project IEUM — simple, verified information and support services for foreign residents in Jeju: housing, healthcare, work and administration.">
+<link rel="icon" type="image/svg+xml" href="assets/logo-illustration.svg">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<meta property="og:title" content="Project IEUM">
+<meta property="og:description" content="Connecting people to a brighter Jeju.">
+<meta property="og:image" content="assets/logo-mark.png">
+<title>Project IEUM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: airy sky-blue canvas with frosted-glass panels; situations read as a trail of numbered markers on a soft blue line. */
+:root{
+  --paper:#E3F1FC; --paper2:#F2F8FD; --surface:rgb(255 255 255 / .72); --solid:#FFFFFF; --sunk:#EDF5FC; --ink:#0D1B2A; --muted:#566779; --line:rgb(13 60 100 / .10);
+  --sea:#0284C7; --sea-2:#38BDF8; --sea-soft:#E0F2FE; --tan:#EA6A1A; --tan-soft:#FFEEDF; --leaf:#0F8A63; --leaf-soft:#DDF5EC; --violet:#6D5BD0; --violet-soft:#ECE9FB;
+  --alert:#D2402C; --alert-soft:#FDECE8; --focus:#0284C7;
+  --f-display:"Plus Jakarta Sans","Noto Sans KR",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans","Noto Sans KR","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:22px; --r-sm:14px;
+  --shadow:0 1px 1px rgb(2 60 110 / .04), 0 12px 32px -14px rgb(2 60 110 / .22);
+  --glow:radial-gradient(600px 420px at 8% -5%, rgb(56 189 248 / .35), transparent 70%), radial-gradient(700px 500px at 100% 30%, rgb(129 140 248 / .16), transparent 70%);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#071521; --paper2:#0A1C2B; --surface:rgb(17 37 54 / .72); --solid:#10273A; --sunk:#0E2232; --ink:#E6F1FA; --muted:#93A9BC; --line:rgb(180 220 255 / .10);
+  --sea:#38BDF8; --sea-2:#7DD3FC; --sea-soft:#0C2E45; --tan:#F59A5B; --tan-soft:#3A2414; --leaf:#4ADE9F; --leaf-soft:#0F3427; --violet:#A79BF5; --violet-soft:#241F45;
+  --alert:#F58C78; --alert-soft:#3A1915; --focus:#38BDF8; --shadow:0 12px 32px -14px rgb(0 0 0 / .6);
+  --glow:radial-gradient(600px 420px at 8% -5%, rgb(56 189 248 / .18), transparent 70%), radial-gradient(700px 500px at 100% 30%, rgb(129 140 248 / .10), transparent 70%); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#071521; --paper2:#0A1C2B; --surface:rgb(17 37 54 / .72); --solid:#10273A; --sunk:#0E2232; --ink:#E6F1FA; --muted:#93A9BC; --line:rgb(180 220 255 / .10);
+  --sea:#38BDF8; --sea-2:#7DD3FC; --sea-soft:#0C2E45; --tan:#F59A5B; --tan-soft:#3A2414; --leaf:#4ADE9F; --leaf-soft:#0F3427; --violet:#A79BF5; --violet-soft:#241F45;
+  --alert:#F58C78; --alert-soft:#3A1915; --focus:#38BDF8; --shadow:0 12px 32px -14px rgb(0 0 0 / .6);
+  --glow:radial-gradient(600px 420px at 8% -5%, rgb(56 189 248 / .18), transparent 70%), radial-gradient(700px 500px at 100% 30%, rgb(129 140 248 / .10), transparent 70%); color-scheme:dark }
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--glow),linear-gradient(180deg,var(--paper),var(--paper2) 60%);background-attachment:fixed;min-height:100vh;color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--focus);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.ko{font-family:var(--f-body);font-weight:600}
+.mono{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 70%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#0D1B2A,#1E3A5F);display:grid;place-items:center;position:relative;overflow:hidden;flex:none}
+.mark span{font:700 13px var(--f-mono);color:var(--paper);letter-spacing:.04em}
+.mark span{color:#fff}.mark::after{content:"";position:absolute;inset:auto 0 0;height:3px;background:linear-gradient(90deg,#38BDF8,#0284C7)}
+.brand b{display:block;font:800 1.02rem/1.1 var(--f-display);letter-spacing:-.01em}
+.brand small{display:block;font-size:.74rem;color:var(--muted)}
+.nav{display:flex;gap:4px}
+.nav a{text-decoration:none;font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:999px;color:var(--muted)}
+.nav a:hover{color:var(--ink)}.nav a[aria-current]{color:var(--sea);background:var(--solid);box-shadow:var(--shadow)}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;background:var(--surface);backdrop-filter:blur(8px)}
+.lang button{border:0;background:none;padding:4px 10px;border-radius:999px;font-size:.8rem;font-weight:600;cursor:pointer;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--solid);color:var(--ink);box-shadow:var(--shadow)}
+.note{background:var(--sea-soft);color:var(--ink);font-size:.86rem}
+.note .wrap{padding-block:8px}
+@media (max-width:720px){ .nav{display:none} .brand small{display:none} }
+
+/* emergency strip */
+.sos{background:transparent;padding-top:28px}.sos .wrap{margin-top:0;border-radius:999px;background:var(--alert-soft);max-width:1040px}
+.sos .wrap{display:flex;align-items:center;gap:12px;padding-block:9px;font-size:.9rem;flex-wrap:wrap}
+.sos strong{color:var(--alert)}
+.sos a{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-weight:700;text-decoration:none;background:var(--alert);color:var(--surface);padding:5px 12px;border-radius:999px;font-size:.85rem}
+
+/* breadcrumb */
+.crumbs{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;padding-top:28px;font-size:.85rem;color:var(--muted)}
+.crumbs a{text-decoration:none;color:var(--muted)}
+.crumbs a:hover{color:var(--ink);text-decoration:underline}
+.crumbs .sep{opacity:.5}
+.crumbs [aria-current]{color:var(--ink);font-weight:500}
+
+/* hero */
+.hero{padding-block:22px 34px;max-width:760px}
+.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--cat,var(--sea));margin-bottom:12px}
+.kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px color-mix(in srgb,currentColor 18%,transparent)}
+h1{font:800 clamp(2.1rem,5.4vw,3.5rem)/1.04 var(--f-display);letter-spacing:-.035em;margin:0 0 14px;text-wrap:balance}
+.lede{font-size:1.12rem;color:var(--muted);margin:0;max-width:62ch}
+.term{display:inline-flex;gap:8px;align-items:baseline;margin-top:16px;padding:6px 12px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf);font-size:.9rem}
+h2{font:800 1.45rem/1.2 var(--f-display);letter-spacing:-.025em;margin:0 0 6px;text-wrap:balance}
+h3{font:600 1.05rem/1.35 var(--f-body);margin:0}
+
+/* category colours */
+.c-housing{--cat:var(--sea);--cat-soft:var(--sea-soft);--badge:var(--tan);--badge-soft:var(--tan-soft)}
+.c-health{--cat:var(--sea);--cat-soft:var(--sea-soft);--badge:var(--leaf);--badge-soft:var(--leaf-soft)}
+.c-work{--cat:var(--sea);--cat-soft:var(--sea-soft);--badge:var(--violet);--badge-soft:var(--violet-soft)}
+
+/* home */
+.home-hero{padding-block:56px 40px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
+.home-hero h1{font-size:clamp(2.4rem,6.4vw,4.4rem)}
+.trailart{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:32px;background:var(--surface);border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+.trailart svg{width:100%;height:100%;display:block}
+@media (max-width:820px){.home-hero{grid-template-columns:1fr}.trailart{display:none}}
+.langpick{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:24px;font-size:.9rem;color:var(--muted)}
+.chip{border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--sea);border-color:var(--sea);color:#fff}
+
+.cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:820px){.cats{grid-template-columns:1fr}}
+.cat{display:flex;flex-direction:column;gap:10px;text-decoration:none;background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r);padding:26px;position:relative;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+.cat:hover{transform:translateY(-4px);box-shadow:0 24px 48px -20px rgb(2 90 160 / .35)}
+.cat .ico{width:48px;height:48px;border-radius:15px;background:var(--badge-soft);color:var(--badge);display:grid;place-items:center}
+.cat h2{font-size:1.5rem;margin-top:6px}
+.cat p{margin:0;color:var(--muted);font-size:.95rem}
+.cat ul{list-style:none;margin:6px 0 0;padding:12px 0 0;border-top:1px dashed var(--line);display:grid;gap:4px;font-size:.88rem;color:var(--muted)}
+.cat ul li::before{content:"→ ";color:var(--sea)}
+.go{margin-top:auto;padding-top:8px;font-weight:700;color:var(--sea);display:inline-flex;gap:6px;align-items:center}
+.soon{font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:var(--sunk);color:var(--muted);padding:3px 8px;border-radius:999px;align-self:flex-start}
+
+.section{padding-block:40px}
+.sechead{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:18px;flex-wrap:wrap}
+.sechead p{margin:0;color:var(--muted)}
+
+.quick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;border-top:1px solid var(--line);background:var(--surface);backdrop-filter:blur(14px);border-radius:var(--r);padding:6px 22px;box-shadow:var(--shadow);border:1px solid var(--line)}
+@media (max-width:720px){.quick{grid-template-columns:1fr}}
+.quick a{display:flex;align-items:center;gap:14px;padding:16px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500}
+.quick a:hover .q{text-decoration:underline}
+.quick .dot{width:10px;height:10px;border-radius:50%;background:var(--badge);flex:none}
+.quick .q{flex:1;min-width:0}
+.quick .arr{color:var(--muted)}
+
+.band{background:linear-gradient(120deg,#0369A1,#0284C7 45%,#38BDF8);color:#fff;border-radius:28px;padding:36px;box-shadow:0 24px 48px -24px rgb(2 132 199 / .6);display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.band h2{color:#fff}
+.band p{margin:0;opacity:.9;max-width:56ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;transition:transform .15s,box-shadow .15s;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-size:.95rem}
+.btn-primary{background:var(--sea);color:#fff;box-shadow:0 8px 20px -8px rgb(2 132 199 / .7)}.btn-primary:hover{transform:translateY(-1px)}
+.band .btn-primary{background:#fff;color:#0369A1;box-shadow:none}
+.btn-ghost{background:var(--solid);border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* hub: situation list */
+.situations{display:grid;gap:12px;counter-reset:s}
+.sit{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center;background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px 22px;text-decoration:none;box-shadow:var(--shadow);transition:transform .2s}
+.sit:hover{transform:translateX(4px)}
+.sit .flag{width:40px;height:40px;border-radius:13px;background:var(--sea-soft);color:var(--sea);display:grid;place-items:center}
+.sit h3{font-size:1.1rem;font-family:var(--f-display);font-weight:700;letter-spacing:-.01em}
+.sit p{margin:3px 0 0;color:var(--muted);font-size:.93rem}
+.sit .meta{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-align:right;white-space:nowrap}
+.sit.is-soon{opacity:.75}
+@media (max-width:560px){.sit{grid-template-columns:auto minmax(0,1fr)}.sit .meta{grid-column:2;text-align:left}}
+.foot-note{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+
+/* guide */
+.guide{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px;align-items:start;padding-bottom:20px}
+@media (max-width:900px){.guide{grid-template-columns:1fr}}
+.block{background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r);padding:30px;margin-bottom:18px;box-shadow:var(--shadow)}
+@media (max-width:560px){.block{padding:20px}}
+.block>header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.block>header .lbl{color:var(--sea);font-weight:600}
+.trail{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.trail>li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px;position:relative;padding-bottom:26px}
+.trail>li:last-child{padding-bottom:0}
+.trail>li::before{content:"";position:absolute;left:16px;top:38px;bottom:4px;width:2px;background:linear-gradient(var(--sea-2),var(--sea-soft));border-radius:2px}
+.trail>li:last-child::before{display:none}
+.trail .n{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--sea-2),var(--sea));color:#fff;box-shadow:0 6px 14px -6px rgb(2 132 199 / .7);display:grid;place-items:center;font:600 .85rem var(--f-mono)}
+.trail h3{padding-top:5px}
+.trail p{margin:4px 0 0;color:var(--muted)}
+.trail .extra{margin-top:14px}
+.minicards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.mini{background:var(--solid);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 16px}
+.mini b{display:block;font-weight:600}
+.mini .ko{display:block;color:var(--leaf);font-size:.88rem;font-weight:600;margin-top:1px}
+.mini p{margin:6px 0 0;font-size:.9rem;color:var(--muted)}
+details.dept{background:var(--sunk);border-radius:var(--r-sm);padding:12px 16px}
+details.dept summary{cursor:pointer;font-weight:600}
+.deptlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px 18px;margin-top:12px;font-size:.92rem}
+.deptlist div{display:flex;gap:8px;justify-content:space-between;border-bottom:1px dashed var(--line);padding-block:6px}
+.deptlist span:first-child{color:var(--leaf);font-weight:600}
+
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.checks label{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:8px;cursor:pointer}
+.checks label:hover{background:var(--sunk)}
+.checks input{width:19px;height:19px;margin:3px 0 0;accent-color:var(--sea);flex:none}
+.checks input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.progress{font:500 .78rem var(--f-mono);color:var(--muted);margin-left:auto}
+.small{font-size:.88rem;color:var(--muted);margin:12px 0 0}
+
+.links{display:grid;gap:10px}
+.lnk{display:flex;align-items:center;gap:14px;padding:15px 18px;border:1px solid var(--line);border-radius:var(--r-sm);text-decoration:none;background:var(--solid);transition:transform .15s}
+.lnk:hover{transform:translateX(3px);border-color:var(--sea)}
+.lnk .t{flex:1;min-width:0;font-weight:600}
+.lnk .t small{display:block;font-weight:400;color:var(--muted);font-size:.82rem}
+.lnk .badge{font:500 .68rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--leaf);background:var(--leaf-soft);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.lnk.primary{background:linear-gradient(120deg,#0284C7,#38BDF8);border-color:transparent;color:#fff;box-shadow:0 10px 24px -12px rgb(2 132 199 / .8)}
+.lnk.primary small{color:#fff;opacity:.85}
+
+.tips{display:grid;gap:10px}
+.tip{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;padding:14px 16px;border-radius:var(--r-sm);background:var(--sea-soft)}
+.tip.warn{background:var(--tan-soft)}.tip{border-radius:var(--r-sm)}
+.tip.warn svg{color:var(--tan)}
+.tip svg{color:var(--sea);margin-top:3px}
+.tip b{display:block}
+.tip p{margin:2px 0 0;color:var(--muted);font-size:.94rem}
+
+.aside{position:sticky;top:calc(84px + env(safe-area-inset-top,0px))}
+@media (max-width:900px){.aside{position:static}}
+.aside .box{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--surface);backdrop-filter:blur(14px);box-shadow:var(--shadow)}
+.aside .box + .box{margin-top:12px}
+.aside h4{margin:0 0 10px;font:500 .72rem var(--f-mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.aside ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.aside ol a{display:flex;gap:10px;padding:7px 8px;border-radius:7px;text-decoration:none;font-size:.9rem}
+.aside ol a:hover{background:var(--sunk)}
+.aside ol a[aria-current]{background:var(--cat-soft,var(--sea-soft));font-weight:600}
+.aside ol a i{font:normal 500 .75rem var(--f-mono);color:var(--muted);padding-top:2px}
+@media (max-width:900px){.aside .box.sibs{display:none}}
+
+.nextprev{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-block:8px 32px}
+.nextprev a{border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;text-decoration:none;background:var(--surface);backdrop-filter:blur(14px)}
+.nextprev a:hover{border-color:var(--sea)}
+.nextprev small{display:block;color:var(--muted);font-size:.78rem}
+.nextprev b{font-weight:600}
+.nextprev .nx{text-align:right;grid-column:2}
+@media (max-width:560px){.nextprev{grid-template-columns:1fr}.nextprev .nx{grid-column:1}}
+
+.feedback{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--line);margin-bottom:24px}
+.feedback b{margin-right:auto;font-weight:600}
+.feedback .msg{width:100%;color:var(--muted);font-size:.92rem;margin:0}
+
+/* housing types */
+.typetabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.typetabs a{text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:7px 14px;border-radius:999px;font-weight:600;font-size:.9rem}
+.typetabs a[aria-current]{background:var(--sea);border-color:var(--sea);color:#fff}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:f;margin-bottom:6px}
+@media (max-width:720px){.flow{grid-template-columns:1fr 1fr;gap:14px 0}}
+.flow li{list-style:none;position:relative;padding:0 10px 0 0}
+.flow li::before{content:"";position:absolute;top:16px;left:34px;right:0;height:2px;background:linear-gradient(90deg,var(--sea-2),var(--sea-soft))}
+.flow li:last-child::before{display:none}
+.flow .n{width:34px;height:34px;border-radius:12px;color:#fff;display:grid;place-items:center;font:600 .85rem var(--f-mono);background:linear-gradient(135deg,var(--sea-2),var(--sea));position:relative}
+.flow b{display:block;margin-top:10px;font-weight:600;line-height:1.3}
+.flow span{display:block;font-size:.85rem;color:var(--muted)}
+.costs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.cost{border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 18px;background:var(--solid)}
+.cost .ko{font-size:1.02rem;color:var(--ink)}
+.cost em{font-style:normal;color:var(--muted);font-size:.85rem;margin-left:6px}
+.cost p{margin:6px 0 0;color:var(--muted);font-size:.92rem}
+.know{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.know li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px}
+.know svg{color:var(--sea);margin-top:3px}
+.know p{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+.key{margin-top:20px;padding:18px 20px;border-radius:var(--r-sm);background:var(--tan-soft)}
+.key b{display:block}
+.key p{margin:4px 0 0;color:var(--muted)}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--sunk);font-weight:600}
+tbody th{font-weight:600;color:var(--muted);width:22%}
+tr:last-child>*{border-bottom:0}
+td .ko{color:var(--leaf)}
+
+/* flowchart (insurance) */
+.steps-h{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 14px}
+@media (max-width:720px){.steps-h{grid-template-columns:1fr}}
+.steps-h div{background:var(--sea-soft);border-radius:var(--r-sm);padding:12px 14px;font-weight:600;font-size:.92rem;position:relative}
+.steps-h div:last-child{background:var(--sea);color:#fff}.steps-h div:last-child small{color:#fff;opacity:.8}
+.steps-h small{display:block;font:500 .7rem var(--f-mono);color:var(--muted);margin-bottom:4px}
+
+/* chooser */
+.choose{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.choose{grid-template-columns:1fr}}
+.opt{display:flex;flex-direction:column;gap:6px;text-decoration:none;border:1px solid var(--line);border-radius:var(--r-sm);padding:22px;background:var(--solid);transition:transform .2s,box-shadow .2s}
+.opt:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--sea)}
+.opt .ko{color:var(--leaf);font-size:.88rem}
+.opt p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* services */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.filters label{display:grid;gap:4px;font-size:.78rem;color:var(--muted);flex:1;min-width:180px}
+select{font:inherit;font-size:.95rem;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.count{font:500 .76rem var(--f-mono);color:var(--muted);margin-bottom:16px}
+.svc{background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r);padding:26px;margin-bottom:14px;box-shadow:var(--shadow)}
+.svc header{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.svc h3{font:700 1.2rem var(--f-display);margin-right:auto}
+.ver{font:500 .7rem var(--f-mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:999px;background:var(--leaf-soft);color:var(--leaf)}
+.ver.todo{background:var(--tan-soft);color:var(--tan)}
+.svc dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;margin:0 0 16px}
+@media (max-width:560px){.svc dl{grid-template-columns:1fr}}
+.svc dt{font-size:.78rem;color:var(--muted)}
+.svc dd{margin:0;font-size:.95rem}
+.svc .num{font:600 1.1rem var(--f-mono);user-select:all}
+.svc .acts{display:flex;gap:8px;flex-wrap:wrap}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:.78rem;background:var(--sunk);padding:2px 9px;border-radius:999px}
+
+/* about */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:720px){.split{grid-template-columns:1fr}}
+.split>div{border-top:3px solid var(--sea);padding-top:16px}
+.split>div:last-child{border-color:var(--sea-2)}
+.split p{color:var(--muted);margin:8px 0 0}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.principles div{background:var(--surface);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px;box-shadow:var(--shadow)}
+.principles b{display:block;font:700 1.05rem var(--f-display)}
+.principles p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+
+.placeholder{background:var(--surface);backdrop-filter:blur(14px);border:1.5px dashed var(--line);border-radius:var(--r);padding:28px;margin-bottom:24px}
+.placeholder p{color:var(--muted);margin:6px 0 16px}
+
+.phrases{display:grid;gap:10px}
+.phrase{background:var(--sea-soft);border-radius:var(--r-sm);padding:16px 18px}
+.phrase .mono{color:var(--sea);font-size:.7rem}
+.phrase .kr{font:700 1.15rem/1.45 var(--f-body);margin:8px 0 6px}
+.phrase .en{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.phrase .btn{padding:7px 12px;font-size:.85rem}
+.full{position:fixed;inset:0;z-index:50;background:var(--surface);display:flex;flex-direction:column;justify-content:center;gap:24px;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+.full .kr{font:700 clamp(2rem,7vw,4rem)/1.35 var(--f-body);margin:0}
+.full .en{font-size:1.1rem;color:var(--muted);margin:0}
+.full button{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px))}
+footer.site{border-top:1px solid var(--line);margin-top:24px;background:transparent}
+footer.site .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-block:24px;font-size:.9rem;color:var(--muted)}
+footer .l{display:flex;align-items:center;gap:12px}
+
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+main#app{flex:1 0 auto;outline:none}
+.bar{display:grid!important;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;min-height:72px}
+.brand{margin-right:0!important}
+.brand img{width:54px;height:auto;display:block}
+.menu{display:flex;justify-content:center;gap:2px}
+.menu>.mi{position:relative}
+.menu>.mi>a,.menu>.mi>button{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:.92rem;padding:9px 14px;border-radius:999px;color:var(--muted);background:none;border:0;cursor:pointer}
+.menu>.mi>a:hover,.menu>.mi>button:hover,.menu>.mi:focus-within>button{color:var(--ink)}
+.menu>.mi[data-on]>a,.menu>.mi[data-on]>button{color:var(--sea);background:var(--solid);box-shadow:var(--shadow)}
+.menu svg.chev{transition:transform .2s}
+.drop{position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,6px);min-width:300px;background:var(--solid);border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:10px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s;z-index:30}
+.drop::before{content:"";position:absolute;inset:-12px 0 auto;height:12px}
+.mi:hover .drop,.mi:focus-within .drop,.mi[data-open] .drop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.mi:hover svg.chev,.mi[data-open] svg.chev{transform:rotate(180deg)}
+.drop a{display:block;padding:10px 12px;border-radius:12px;text-decoration:none}
+.drop a:hover,.drop a:focus-visible{background:var(--sea-soft)}
+.drop a b{display:block;font-weight:600;font-size:.92rem}
+.drop a small{display:block;color:var(--muted);font-size:.8rem;margin-top:1px}
+.drop .all{margin-top:4px;border-top:1px solid var(--line);border-radius:0 0 12px 12px;color:var(--sea);font-weight:700;font-size:.88rem}
+.actions{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--solid);cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:4px}
+.burger span{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.langdd{position:relative}
+.langbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 14px 0 11px;border-radius:999px;border:1px solid var(--line);background:var(--solid);cursor:pointer;font:600 .85rem var(--f-body);color:var(--ink);white-space:nowrap;box-shadow:0 1px 2px rgb(2 60 110 / .06)}
+.langbtn svg{color:var(--ink);width:17px;height:17px}
+#langcur{font-weight:600;font-size:.82rem;letter-spacing:.02em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.langbtn:hover{border-color:var(--sea);color:var(--sea)}
+.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:70;display:grid}
+.langmenu button{border:0;background:none;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font:500 .92rem var(--f-body);color:var(--ink);display:flex;justify-content:space-between;gap:12px}
+.langmenu button:hover{background:var(--sea-soft)}
+.langmenu button[aria-pressed="true"]{color:var(--sea);font-weight:700}
+.langmenu button[aria-pressed="true"]::after{content:"✓"}
+.menu>.mi>a,.menu>.mi>button{white-space:nowrap}
+/* mobile menu: standard full-screen list */
+.drawer{position:fixed;inset:0;z-index:60;background:var(--paper2);display:flex;flex-direction:column;animation:fadein .18s ease-out;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dhead{display:flex;align-items:center;gap:12px;min-height:64px;border-bottom:1px solid var(--line);
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.dhead .brand{margin-right:auto!important}
+.dhead .langbtn,.bar .langbtn{flex:none}
+.langbtn svg{flex:none}
+.dhead .brand img{width:46px}
+.pclose{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--solid);display:grid;place-items:center;cursor:pointer;color:var(--ink);flex:none}
+.dlist{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:12px max(20px,env(safe-area-inset-right,0px)) 32px max(20px,env(safe-area-inset-left,0px))}
+.dlist a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);text-decoration:none;font:700 1.45rem/1.2 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
+.dlist a svg{color:var(--muted);flex:none}
+.dlist a[aria-current]{color:var(--sea)}
+.dsec{display:flex;flex-direction:column;margin-top:28px}
+.dsec.dtop{margin:6px 0 4px}
+.dsec .mono{font-size:.7rem;color:var(--muted);padding:0 4px 6px}
+.drow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:15px 4px;border:0;border-bottom:1px solid var(--line);background:none;cursor:pointer;text-align:left;font:600 1.05rem var(--f-body);color:var(--ink);text-decoration:none}
+.dlist .drow{font:600 1.05rem var(--f-body);letter-spacing:0}
+.dseg{display:grid;grid-template-columns:1fr .8fr 1fr 1.4fr;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);border:1px solid var(--line)}
+.dseg button{border:0;background:none;border-radius:10px;padding:11px 4px;white-space:nowrap;font:600 .95rem var(--f-body);color:var(--muted);cursor:pointer}
+.dseg button[aria-pressed="true"]{background:var(--solid);color:var(--sea);box-shadow:0 1px 3px rgb(2 60 110 / .15)}
+.drow[aria-pressed="true"]{color:var(--sea)}
+.drow[aria-pressed="true"] .ck{visibility:visible}
+.dnum{font:700 1.15rem var(--f-mono);color:var(--alert)}
+.dlist a[aria-current] svg{color:var(--sea)}
+html.locked,html.locked body{overflow:hidden}
+@keyframes fadein{from{opacity:0}}
+@media (max-width:1000px){.menu{display:none}.burger{display:flex}.bar{grid-template-columns:1fr auto}}
+@media (max-width:480px){.brand small{display:none}.bar{gap:10px}}
+
+/* footer */
+footer.site{border-top:1px solid var(--line);margin-top:48px;background:color-mix(in srgb,var(--solid) 55%,transparent);backdrop-filter:blur(12px);flex-shrink:0}
+footer.site>.wrap{display:block!important;padding-block:40px 24px!important}
+.fgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,3fr);gap:40px}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}}
+.fbrand img{width:72px;height:auto;display:block;margin-bottom:10px}
+.fbrand b{font:800 1.1rem var(--f-display);color:var(--ink)}
+.fbrand p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.fcols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+@media (max-width:620px){.fcols{grid-template-columns:1fr 1fr}}
+.fcols h5{margin:0 0 10px;font:600 .72rem var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink)}
+.fcols a{display:block;text-decoration:none;color:var(--muted);font-size:.88rem;padding:4px 0}
+.fcols a:hover{color:var(--sea)}
+.fbottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:32px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+
+/* category bullets */
+.cat ul{gap:8px!important}
+.cat ul li{display:flex;gap:10px;align-items:baseline}
+.cat ul li::before{content:""!important;width:7px;height:7px;border-radius:50%;background:var(--badge);flex:none;transform:translateY(-1px)}
+/* common questions: no rule under last row */
+.quick a:last-child{border-bottom:0}
+@media (min-width:721px){.quick a:nth-last-child(2):nth-child(odd){border-bottom:0}}
+
+.sosgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sostile{display:block;text-decoration:none;background:var(--alert);color:#fff;border-radius:var(--r-sm);padding:14px 18px}
+.sostile small{display:block;opacity:.9;font-size:.82rem}.sostile b{font:700 1.8rem var(--f-mono)}
+.lnk.sosl{background:var(--alert-soft);border-color:transparent}.lnk.sosl .num{color:var(--alert)}
+ul.bul{margin:8px 0 0;padding-left:20px;color:var(--muted);display:grid;gap:3px}
+.inshort{display:flex;gap:16px;align-items:baseline;background:var(--solid);border:1px solid var(--line);border-left:4px solid var(--sea);border-radius:var(--r-sm);padding:16px 20px;margin:-10px 0 24px;box-shadow:var(--shadow);max-width:820px}
+.inshort .mono{color:var(--sea);font-size:.7rem;flex:none}
+.inshort p{margin:0;font-weight:600;font-size:1.05rem}
+@media (max-width:560px){.inshort{flex-direction:column;gap:4px}}
+small.rom{display:block;font:italic 400 .76rem var(--f-body);color:var(--muted);letter-spacing:.01em}
+.term small.rom,.steps-h small.rom{display:inline;margin-left:4px}
+table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;font:inherit;font-size:.9rem;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--solid);color:var(--ink)}
+.block .phrase + .phrase{margin-top:10px}
+.how{background:var(--sea-soft);border-radius:var(--r-sm);padding:10px 14px;font-size:.92rem;margin:-4px 0 14px}.how b{color:var(--sea);margin-right:6px}
+.topictabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.fcols{display:block!important}.flinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
+.flinks a{font-size:.95rem!important;color:var(--ink)!important;font-weight:600}.flinks a span{color:var(--sea)}.flinks a:hover{color:var(--sea)!important}
+.guide>div,.block{min-width:0}
+/* hero image */
+.heroimg{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:100%}
+.heroimg .halo{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--solid) 0%,color-mix(in srgb,var(--solid) 70%,transparent) 45%,transparent 72%)}
+.heroimg img{position:relative;width:88%;height:auto;filter:drop-shadow(0 24px 30px rgb(2 60 110 / .18));animation:float 7s ease-in-out infinite}
+@media (max-width:820px){.heroimg{display:none}}
+/* hero scene */
+.scene{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:32px;overflow:hidden;box-shadow:0 30px 60px -30px rgb(2 90 160 / .5);border:1px solid var(--line)}
+.scene svg{display:block;width:100%;height:100%}
+.scene .sky-a{stop-color:#BFE6FB}.scene .sky-b{stop-color:#F3FAFF}
+.scene .rays{transform-origin:310px 92px;animation:spin 40s linear infinite}
+.scene .sunc{animation:glow 4s ease-in-out infinite;transform-origin:310px 92px}
+.scene .wave1{animation:drift 9s linear infinite}
+.scene .wave2{animation:drift 14s linear infinite reverse}
+.scene .island{animation:bob 6s ease-in-out infinite}
+.scene .arc{stroke-dasharray:6 8;animation:march 1.6s linear infinite}
+.scene .ring{transform-box:fill-box;transform-origin:center;animation:ping 2.6s ease-out infinite}
+.scene .ring.d2{animation-delay:.8s}.scene .ring.d3{animation-delay:1.6s}
+.scene .traveler{offset-path:path("M110 226 Q160 120 205 176 Q252 124 292 222");animation:travel 5s ease-in-out infinite alternate}
+.scene .cloud{animation:float 12s ease-in-out infinite}
+.chipf{position:absolute;display:flex;align-items:center;gap:8px;background:rgb(255 255 255 / .9);color:#0D1B2A;border-radius:999px;padding:7px 13px 7px 8px;font-size:.8rem;font-weight:600;box-shadow:0 10px 24px -10px rgb(2 60 110 / .4);animation:float 6s ease-in-out infinite;white-space:nowrap}
+.chipf i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.7rem;color:#fff}
+.chipf.c1{top:9%;left:7%}.chipf.c2{top:35%;right:5%;animation-delay:-2s}.chipf.c3{bottom:7%;left:9%;animation-delay:-4s}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{50%{transform:scale(1.06)}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-200px)}}
+@keyframes bob{50%{transform:translateY(-4px)}}
+@keyframes march{to{stroke-dashoffset:-28}}
+@keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(2.4);opacity:0}}
+@keyframes travel{from{offset-distance:0%}to{offset-distance:100%}}
+@keyframes float{50%{transform:translateY(-8px)}}
+@media (max-width:820px){.scene{display:none}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fade .25s ease-out}
+@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* mobile header refinements (kept last so they win) */
+@media (max-width:1000px){.bar{min-height:64px}}
+@media (max-width:480px){
+  .burger{border-radius:12px}
+  .brand img{width:46px}
+  .bar .brand div{display:none}
+  h1{font-size:2rem}
+  .block{padding:20px 18px}
+  .hero{padding-block:16px 26px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="Project IEUM home">
+      <img src="assets/logo-illustration.svg" alt="" width="52" height="39">
+      <div><b>Project IEUM</b><small>Jeju support guide</small></div>
+    </a>
+    <nav class="menu" aria-label="Main" id="menu"></nav>
+    <div class="actions">
+      <div class="langdd" id="langdd">
+        <button class="langbtn" id="langbtn" aria-expanded="false" aria-haspopup="true" aria-label="Change language"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="langcur">EN</span></button>
+        <div class="langmenu" id="langmenu" hidden>
+          <button data-lang="ko" aria-pressed="false">한국어</button>
+          <button data-lang="en" aria-pressed="true">English</button>
+          <button data-lang="zh" aria-pressed="false">中文</button>
+          <button data-lang="vi" aria-pressed="false">Tiếng Việt</button>
+        </div>
+      </div>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu" aria-haspopup="dialog"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="mnav" hidden></div>
+<div class="note" id="langnote" hidden><div class="wrap" id="langnotetext"></div></div>
+<div id="sos"></div>
+<main id="app" tabindex="-1"></main>
+<footer class="site"><div class="wrap">
+  <div class="fgrid">
+    <div class="fbrand"><img src="assets/logo-illustration.svg" alt="Project IEUM" width="72" height="54"><b>Project IEUM</b><p>Connecting people to a brighter Jeju.</p></div>
+    <div id="fcols" class="fcols"></div>
+  </div>
+  <div class="fbottom"><span>Connecting information. Connecting people. Connecting Jeju.</span><span class="mono" style="font-size:.7rem">Information last reviewed · Sep 2026</span></div>
+</div></footer>
+
+<script>
+const I = {
+  arrow:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  out:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
+  warn:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>',
+  info:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  phone:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>',
+  house:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>',
+  heart:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 12 5a5.5 5.5 0 0 0-10 3.5c0 2.3 1.5 4 3 5.5l7 7z"/><path d="M3.5 12h4l2-3 3 6 2-3h6"/></svg>',
+  case:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg>',
+  flag:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>',
+};
+
+/* ---------- Content ---------- */
+const NHIS = {label:'National Health Insurance Service (English)', href:'https://www.nhis.or.kr/english/wbheaa02900m01.do', official:true};
+
+const P = {
+home:{type:'home', title:'Home'},
+
+/* HOUSING */
+housing:{type:'hub', cat:'housing', title:'Housing', kicker:'Housing',
+  h1:'What do you need help with?', lede:'Pick the sentence closest to your situation. Each one leads to a short guide with steps, documents and where to get help.',
+  items:['housing.find','housing.contract','housing.problem','housing.dispute'],
+  note:'If there is immediate danger or a medical emergency, call <b>119</b>. For police, call <b>112</b>.'},
+'housing.find':{type:'find', cat:'housing', title:'Find housing', q:'How can I find housing in Jeju?', sub:'Jeonse, wolse or buying — what each means and where to search'},
+'housing.find.jeonse':{type:'htype', cat:'housing', title:'Jeonse 전세', q:'How does Jeonse work?', sub:'Large deposit, little or no monthly rent',
+  ko:'전세', en:'Jeonse', lede:'Rent a home with a large deposit and usually little or no monthly rent.',
+  flow:[['Pay a large deposit','전세금'],['Live in the home','Little or no monthly rent'],['Contract ends',''],['Deposit returned','전세금 반환']],
+  flowNote:'You pay the landlord a large lump-sum deposit, usually pay little or no monthly rent, and expect the deposit back when the rental period ends.',
+  costs:[['전세금','Jeonse deposit','A large upfront deposit paid to the landlord.'],['관리비','Management fee','A regular building or service fee may be charged separately.'],['공과금','Utilities','Electricity, gas, water and internet may be separate.'],['중개보수','Brokerage fee','May apply if you use a licensed real-estate agent.']],
+  know:[['Protect your deposit','Jeonse needs a very large deposit. Before paying, understand which protections exist and what you must do to use them.'],
+    ['Compare deposit to property value','An unusually high deposit compared with the property’s value means more risk if the landlord later cannot return it.'],
+    ['Check existing mortgages or rights','The property register (등기부등본) shows mortgages, claims and other rights that can affect whether you get your deposit back.'],
+    ['Confirm the actual owner','Make sure the person offering the home is the registered owner, or legally authorised to act for them.'],
+    ['Ask about a deposit-return guarantee','Check whether the home and your situation qualify for a Jeonse deposit-return guarantee (전세보증금 반환보증).']],
+  key:['Getting your large deposit back safely is the biggest concern.','Don’t choose a home only because it has little or no monthly rent.'],
+  more:{label:'Jeonse deposit guarantee (HUG)', href:'https://www.khug.or.kr', official:true}},
+'housing.find.wolse':{type:'htype', cat:'housing', title:'Wolse 월세', q:'How does Wolse work?', sub:'Deposit plus monthly rent',
+  ko:'월세', en:'Wolse', lede:'Rent a home with a deposit and monthly rent.',
+  flow:[['Pay a deposit','보증금'],['Move in',''],['Pay monthly rent','월세'],['Contract ends','Deposit returned as agreed']],
+  flowNote:'You pay a deposit when the rental begins and then pay rent to the landlord every month.',
+  costs:[['보증금','Deposit','Money paid upfront when the rental begins.'],['월세','Monthly rent','The regular amount paid to the landlord each month.'],['관리비','Management fee','A separate building or service fee may apply.'],['공과금','Utilities','Electricity, gas, water and internet may be separate.'],['중개보수','Brokerage fee','May apply if you use a licensed real-estate agent.']],
+  know:[['Look beyond the advertised rent','The advertised 월세 may not be everything you pay each month. Check the management fee and utilities.'],
+    ['Ask what 관리비 includes','Ask how much it is, what it covers and what is billed separately — especially when a room looks cheap.'],
+    ['Compare the deposit too','Wolse still usually needs a deposit. Compare 보증금 and 월세 together.'],
+    ['Check which utilities are separate','Electricity, gas, water, internet and parking may each be billed separately.'],
+    ['Check the room itself','Before choosing, check heating, hot water, ventilation, mould or water damage, windows, doors and any included furniture.']],
+  key:['The real monthly cost is the biggest concern.','A cheaper rent may not be cheaper once 관리비 and utilities are added.']},
+'housing.find.buying':{type:'htype', cat:'housing', title:'Buying 매매', q:'How does buying work?', sub:'Purchase and own the property',
+  ko:'매매', en:'Buying', lede:'Purchase a home and become its owner.',
+  flow:[['Find a property',''],['Agree on a price','매매가'],['Purchase the property',''],['Ownership transferred','소유권 이전']],
+  flowNote:'With 매매 you buy the property from the seller instead of renting it.',
+  costs:[['매매가','Purchase price','The agreed price of the property.'],['세금','Taxes','Buying property can involve taxes on top of the price.'],['중개보수','Brokerage fee','May apply if you use a licensed real-estate agent.'],['등기 관련 비용','Registration costs','Costs may arise when ownership is formally transferred and registered.']],
+  know:[['Check who owns the property','Confirm the registered owner before making any major payment.'],
+    ['Check the property records','Look for mortgages, ownership rights or other legal issues attached to the property.'],
+    ['Check its legal status','Make sure the property and its actual use match official building and property information.'],
+    ['Look beyond the sale price','Taxes, brokerage fees and registration costs are added to the 매매가.'],
+    ['Check rules for foreign buyers','Foreign buyers may face reporting and administrative requirements depending on residence status and the deal.']],
+  key:['Know exactly what you are buying.','Verify the property and the legal and financial obligations that come with owning it.']},
+'housing.contract':{type:'hub', cat:'housing', title:'Rental contract', kicker:'Housing · Rental contract', q:'How can I understand my rental contract?', sub:'Payments, dates, deposit return and unclear conditions',
+  h1:'How can I understand my rental contract?', lede:'Choose the part of your contract you want to understand.',
+  items:['housing.contract.payments','housing.contract.period','housing.contract.deposit','housing.contract.conditions']},
+'housing.contract.payments':{type:'guide', cat:'housing', title:'What do I have to pay?', sub:'Deposit, rent, management fee, utilities, other charges',
+  lede:'Your rental contract may include several different housing costs. Check each one separately.',
+  steps:[{t:'Find the payment section of your contract', d:'Look for the amounts you agreed to pay.'},
+    {t:'Identify each type of payment', cards:[['Deposit','보증금','Money paid upfront when you start renting.'],['Monthly rent','월세','Rent paid to the landlord each month.'],['Management fee','관리비','A separate charge for building management or shared services.'],['Utilities','공과금','Electricity, gas and water.'],['Brokerage fee','중개보수','A fee for using a licensed real-estate agent.']]},
+    {t:'Check what is included', d:'Rent may not include management fees or utilities. Check what you pay separately.'},
+    {t:'Ask for help if a charge is unclear', d:'Don’t understand a payment? Get help before you act.'}],
+  needs:['Rental contract','Page showing the payment amounts','Payment records or receipts, if relevant','Any message explaining an additional charge'],
+  where:[{label:'Find someone to explain your contract', to:'housing.contract.help', primary:true}],
+  tips:[{w:1,t:'Monthly rent may not be your total housing cost.',d:'Check whether 관리비 and utilities are separate.'},{w:1,t:'Don’t ignore a charge you don’t understand.',d:'Ask what it is for and get help if needed.'}]},
+'housing.contract.period':{type:'guide', cat:'housing', title:'How long does my contract last?', sub:'Start and end dates, renewal, leaving early',
+  lede:'Check when your rental starts, when it ends, and what the contract says about renewal or leaving.',
+  steps:[{t:'Find the contract dates', d:'Look for the start date and end date in your rental agreement.'},
+    {t:'Check the length of the rental', d:'Make sure you understand how long you agreed to rent the property.'},
+    {t:'Check what it says about renewal', d:'Can the rental continue after the end date, and is notice required?'},
+    {t:'Check what it says about leaving early', d:'Might you leave early? Look for conditions about ending early.'},
+    {t:'Get help if anything is unclear', d:'Don’t guess what a contract condition means.'}],
+  needs:['Rental contract','Contract start and end dates','Any renewal notice','Messages with the landlord about extending or ending the rental'],
+  where:[{label:'Find someone to explain your contract', to:'housing.contract.help', primary:true}],
+  tips:[{w:1,t:'You can’t always leave at any time without consequences.',d:'Check what your agreement says about ending the rental.'},{t:'Keep important dates.',d:'Save the end date and any notices or messages about renewal.'}]},
+'housing.contract.deposit':{type:'guide', cat:'housing', title:'When do I get my deposit back?', sub:'What the contract says about returning your deposit',
+  lede:'Check what your rental agreement says about your deposit and when it is returned.',
+  steps:[{t:'Find your deposit amount', d:'Find the 보증금 (deposit) or 전세금 (Jeonse deposit) amount in your contract.'},
+    {t:'Check when the rental ends', d:'Find the agreed end date.'},
+    {t:'Find the deposit-return conditions', d:'Check when the deposit is returned, and any conditions.'},
+    {t:'Keep proof of your deposit payment', d:'Keep a record showing how much you originally paid.'},
+    {t:'Get help if you don’t understand the conditions', d:'Get support before agreeing to changes or signing more documents.'}],
+  needs:['Rental contract','Proof of deposit payment','Bank or payment records','Rental start and end dates','Messages about the deposit'],
+  where:[{label:'Find someone to explain your contract', to:'housing.contract.help', primary:true}],
+  alert:{t:'Has your rental already ended and the deposit has not been returned?', to:'housing.problem', label:'Go to: a problem with my deposit or rent'},
+  tips:[{w:1,t:'Keep proof of the deposit you paid.',d:'Keep the contract, payment records and related messages together.'}]},
+'housing.contract.conditions':{type:'guide', cat:'housing', title:'What does this condition mean?', sub:'A rule or responsibility in your contract is unclear',
+  lede:'If a rule or condition is unclear, first find exactly which part you don’t understand.',
+  steps:[{t:'Find the unclear condition', d:'Identify the exact sentence or section.'},
+    {t:'Work out what it is about', cards:[['Money','','Rent, deposit, fees or other payments.'],['Repairs & damage','','Who is responsible if something breaks.'],['Leaving the property','','Moving out or ending the rental.'],['Renewal','','Continuing the rental.'],['Use of the property','','Rules about how the home can be used.'],['Something else','','Anything else you don’t understand.']]},
+    {t:'Don’t guess its meaning', d:'If it affects your money or your home, get help understanding it.'},
+    {t:'Get help before agreeing', d:'Use a housing or contract-help service if needed.'}],
+  needs:['Rental contract','The page with the condition','Related messages from the landlord or agent','A translation, if you have one'],
+  where:[{label:'Find someone to explain your contract', to:'housing.contract.help', primary:true}],
+  tips:[{w:1,t:'Don’t rely only on an automatic translation for an important condition.',d:'If you’re asked to sign a change you don’t understand, get help first.'}]},
+'housing.contract.help':{type:'services', cat:'housing', title:'Who can help with my contract?', sub:'Organisations that can explain your rental agreement', need:'contract',
+  lede:'Find an organisation that can help you understand your rental agreement.'},
+'housing.problem':{type:'soon', cat:'housing', title:'A problem with my deposit or rent', sub:'Deposit not returned, rent disputes'},
+'housing.dispute':{type:'soon', cat:'housing', title:'A dispute with my landlord', sub:'Repairs, disagreements, eviction worries'},
+
+/* HEALTH */
+health:{type:'hub', cat:'health', title:'Healthcare', kicker:'Healthcare',
+  h1:'What do you need help with?', lede:'Start with the question that sounds most like you. You can switch at any time.',
+  items:['health.care','health.insurance','health.cost','health.language','health.prepare']},
+'health.care':{type:'guide', cat:'health', title:'Where should I go for medical care?', sub:'Clinic, hospital or emergency room',
+  lede:'Start by understanding the different types of medical care available.',
+  steps:[{t:'Check how urgent it is', d:'If you think you need urgent medical help, call 119. IEUM can’t judge how serious a condition is.', call:true},
+    {t:'Know the main types of care', cards:[['Local clinic','의원','For common health problems and non-emergency care.'],['Hospital','병원','More departments, tests and treatment options.'],['Emergency room','응급실','For urgent treatment.']]},
+    {t:'Find the right department', dept:true},
+    {t:'Find a provider', d:'Check opening hours and whether you need an appointment.'}],
+  needs:['Identification, if requested','Health-insurance information, if available','Medicines you currently take','Known allergies','Relevant medical history','Payment method'],
+  needsNote:'Requirements may differ between providers.',
+  where:[{label:'Prepare for a medical visit', to:'health.prepare'},{label:'Get language support', to:'health.language'},{label:'Find healthcare support', to:'health.support'}],
+  tips:[{t:'IEUM cannot diagnose a condition or decide how urgent it is.'},{t:'Check opening hours and appointments before travelling.'},{t:'If communication may be hard, prepare key information before your visit.'}]},
+'health.insurance':{type:'insurance', cat:'health', title:'How does health insurance work?', sub:'Your type of coverage and where to check it'},
+'health.insurance.workplace':{type:'guide', cat:'health', title:'Am I insured through my workplace?', sub:'직장가입자 — Employee-insured', term:['직장가입자','Employee-insured'],
+  lede:'If you work in Korea, your workplace may be how you are enrolled in National Health Insurance.',
+  steps:[{t:'Check whether you are enrolled', d:'Having a job doesn’t automatically confirm your insurance status.'},
+    {t:'Check your payslip', d:'Look for a health-insurance deduction such as 건강보험 (Health Insurance).'},
+    {t:'Ask your workplace if needed', d:'They can tell you whether contributions are being deducted.'},
+    {t:'Confirm with NHIS', d:'If you are unsure, confirm your status directly with NHIS.'}],
+  needs:['Identification','Employment information','Payslip, if available','NHIS documents or notices, if available'],
+  where:[{...NHIS,label:'Check your status with NHIS',primary:true},{label:'Get language support', to:'health.language'}],
+  tips:[{w:1,t:'Don’t rely only on what you think your employment status means.'},{t:'Keep NHIS notices and insurance documents.'}]},
+'health.insurance.individual':{type:'guide', cat:'health', title:'Am I insured directly through NHIS?', sub:'지역가입자 — Self-employed / individual', term:['지역가입자','Individually insured'],
+  lede:'Some foreign residents not covered through a workplace or as a dependent may be covered directly by National Health Insurance.',
+  steps:[{t:'Check whether you are registered', d:'Don’t decide this only from your employment situation.'},
+    {t:'Look for NHIS notices', d:'Insurance notices, bills or other letters you have received.'},
+    {t:'Check your eligibility', d:'Eligibility and start date can depend on residence and other rules.'},
+    {t:'Confirm with NHIS', d:'Use the official NHIS service if you are unsure.'}],
+  needs:['Identification','Residence information, if requested','NHIS notices or bills, if available'],
+  where:[{...NHIS,label:'Check your eligibility with NHIS',primary:true},{label:'Get language support', to:'health.language'}],
+  tips:[{w:1,t:'Don’t decide your eligibility based only on nationality or how long you’ve lived in Korea.'},{t:'Rules can differ by individual circumstances. NHIS confirms your actual status.'}]},
+'health.insurance.dependent':{type:'guide', cat:'health', title:'Am I covered as a family member?', sub:'피부양자 — Dependent', term:['피부양자','Dependent'],
+  lede:'Some family members of an employee-insured person may qualify for National Health Insurance as a dependent.',
+  steps:[{t:'Check whether you are registered as a dependent', d:'Being related to an insured person doesn’t automatically mean you are registered.'},
+    {t:'Check the NHIS requirements', d:'Eligibility can depend on relationship, income, property, residence and more.'},
+    {t:'Check which documents are needed', d:'You may need documents proving your family relationship.'},
+    {t:'Confirm with NHIS', d:'NHIS confirms individual eligibility.'}],
+  needs:['Identification','Details of the employee-insured family member','Documents showing family relationship, if requested'],
+  where:[{...NHIS,label:'Check dependent eligibility with NHIS',primary:true},{label:'Get language support', to:'health.language'}],
+  tips:[{w:1,t:'Being a spouse or family member doesn’t confirm dependent status.'},{t:'Check directly with NHIS before relying on dependent coverage.'}]},
+'health.cost':{type:'guide', cat:'health', title:'How much will medical care cost?', sub:'What affects your bill and what to check',
+  lede:'Costs depend on your insurance, the provider, tests and treatment, and whether a service is covered.',
+  steps:[{t:'Check your health-insurance status', d:'Insurance affects how much you pay yourself.', link:{label:'Understand health insurance', to:'health.insurance'}},
+    {t:'Ask about expected costs', d:'For planned care, ask the provider what it may cost.'},
+    {t:'Ask whether important services are covered', d:'With National Health Insurance, ask whether key tests or treatments are covered.'},
+    {t:'Keep your bill and receipt', d:'You may need them later, or for private insurance.'},
+    {t:'Get support if cost is stopping you', d:'Contact a verified healthcare or migrant-support service.'}],
+  needs:['Health-insurance information','Medical bill','Receipt','Cost estimate, if provided','Private insurance details, if relevant'],
+  where:[{label:'Understand health insurance', to:'health.insurance'},{label:'Get language support', to:'health.language'},{label:'Find healthcare support', to:'health.support', primary:true}],
+  tips:[{w:1,t:'Health insurance doesn’t mean all care is free.',d:'Some services may not be covered.'},{t:'The same treatment won’t always cost the same amount.'}]},
+'health.language':{type:'guide', cat:'health', title:'What if I can’t speak Korean at the hospital?', sub:'Interpretation, phrase cards to show staff',
+  lede:'Prepare key information before your visit and check whether interpretation support is available.',
+  steps:[{t:'Check whether language support is available', d:'Some providers and support organisations offer interpretation or multilingual help.', link:{label:'Find interpretation services', to:'support.interpretation'}},
+    {t:'Prepare important information', d:'Write these down before you go: why you are visiting, when the problem started, medicines you take, allergies, relevant medical history, and questions you want to ask.'},
+    {t:'Show a Korean communication card', phrases:[['한국어 통역이 필요합니다.\n통역 지원을 받을 수 있나요?','I need Korean interpretation.\nIs interpretation support available?'],['한국어를 잘하지 못합니다.\n천천히 설명해 주세요.','I don’t speak Korean well.\nPlease explain slowly.'],['이 내용을 이해하지 못했습니다.\n다시 설명해 주세요.','I didn’t understand this.\nPlease explain it again.']]},
+    {t:'Make sure you understand important instructions', d:'Ask again about medicine, follow-up visits, tests or anything else important.'}],
+  needs:['The language you need','Reason for your visit','Medicines you currently take','Allergy information','Relevant medical information','Questions you want to ask'],
+  where:[{label:'Find interpretation support', to:'support.interpretation', primary:true},{label:'Prepare for a medical visit', to:'health.prepare'},{label:'Where should I go for medical care?', to:'health.care'}],
+  tips:[{w:1,t:'Don’t guess important medical instructions.'},{t:'Ask if you’re unsure how to take medicine or what to do next.'},{w:1,t:'Automatic translation helps with basics, but important medical information may need professional clarification.'}]},
+'health.prepare':{type:'prepare', cat:'health', title:'How do I prepare for a medical visit?', sub:'What to bring and what usually happens',
+  lede:'Know what to prepare and what usually happens when you visit a healthcare provider.'},
+'support.interpretation':{type:'services', cat:'health', title:'Interpretation services', sub:'Phone and in-person interpretation', need:'interpretation', lede:'Services that can help you communicate in Korean healthcare and other settings.'},
+'health.support':{type:'services', cat:'health', title:'Where can I get more healthcare support?', sub:'Verified services for access, insurance and language', need:'health',
+  lede:'Verified services for healthcare access, insurance and language support.'},
+
+/* WORK */
+work:{type:'hub', cat:'work', title:'Work & administration', kicker:'Work & administration', h1:'What do you need help with?',
+  lede:'Guides for wages, labour issues and administration are being written.', items:['work.wages','work.labour','work.admin']},
+'work.wages':{type:'soon', cat:'work', title:'I haven’t been paid correctly', sub:'Unpaid or incorrect wages'},
+'work.labour':{type:'soon', cat:'work', title:'I have a problem at work', sub:'Working conditions and labour issues'},
+'work.admin':{type:'soon', cat:'work', title:'I need help with paperwork', sub:'Registration and administrative tasks'},
+
+support:{type:'services', title:'Find support', kicker:'Find support', h1:'Where can I get more support?', lede:'Every verified organisation, phone number and office in one place. Filter by topic, need, language and location. For help in your language, start with Danuri (1577-1366).'},
+about:{type:'about', title:'About IEUM'},
+notfound:{type:'notfound', title:'Page not found'},
+};
+
+const MSGS={"housing.problem.deposit-not-returned": [["안녕하세요. 계약이 [날짜]에 끝났습니다.\n보증금은 언제 돌려받을 수 있을까요? 답변 부탁드립니다.", "Hello. My contract ended on [date].\nWhen can I get my deposit back? Please let me know."]], "housing.problem.unexpected-charge": [["안녕하세요. 이번에 요청하신 [금액]원은 어떤 비용인가요?\n항목별 내역도 보내주실 수 있을까요?", "Hello. What is the [amount] won you asked for?\nCould you also send a breakdown of each item?"]], "housing.problem.payment-difference": [["안녕하세요. 계약서에는 [항목]이 [금액]원으로 되어 있는데,\n이번에는 [금액]원으로 요청하셨습니다. 금액이 달라진 이유를 알려주실 수 있을까요?", "Hello. My contract says [item] is [amount] won,\nbut you asked for [amount] won. Could you explain why it changed?"]], "housing.problem.cannot-pay-rent": [["안녕하세요. 이번 달 월세를 제때 내기 어려울 것 같습니다.\n납부 일정을 상의드릴 수 있을까요?", "Hello. I may not be able to pay this month’s rent on time.\nCould we talk about the payment schedule?"]], "housing.problem.deposit-deduction": [["안녕하세요. 보증금에서 공제된 금액과 각 항목의 이유를 알려주실 수 있을까요?\n관련 영수증이나 사진이 있으면 함께 보내주세요.", "Hello. Could you tell me each amount taken from my deposit and why?\nPlease send any related receipts or photos."]], "housing.dispute.asked-to-leave": [["안녕하세요. 집을 비워 달라고 하신 이유와 정확한 날짜를\n문자나 서면으로 알려주실 수 있을까요?", "Hello. Could you tell me in writing why you want me to move out,\nand the exact date?"]], "housing.dispute.repairs": [["안녕하세요. 집에 [문제]가 있습니다. [날짜]부터 생긴 문제이고 사진을 함께 보내드립니다.\n언제 수리가 가능한지 알려주세요.", "Hello. There is a problem with [issue] in the home. It started on [date]; photos attached.\nPlease let me know when it can be repaired."]], "housing.dispute.privacy": [["안녕하세요. 집에 들어오셔야 할 때는\n미리 연락 주시고 제 동의를 받아 주시면 감사하겠습니다.", "Hello. If you need to enter the home,\nplease contact me in advance and ask for my agreement."]], "housing.dispute.damage": [["안녕하세요. 말씀하신 파손이 정확히 어떤 부분인지,\n제가 무엇을 해야 하는지 알려주실 수 있을까요? 사진이나 견적서가 있으면 보내주세요.", "Hello. Could you tell me exactly what damage you mean\nand what you are asking me to do? Please send any photos or estimates."]]};
+const LOGS=['housing.dispute.repairs','housing.dispute.privacy','housing.dispute.damage','housing.dispute.use-of-home'];
+const ROM={"보증금": "bo-jeung-geum", "전세금": "jeon-se-geum", "전세": "jeon-se", "월세": "wol-se", "매매": "mae-mae", "매매가": "mae-mae-ga", "관리비": "gwal-li-bi", "공과금": "gong-gwa-geum", "중개보수": "jung-gae-bo-su", "등기부등본": "deung-gi-bu-deung-bon", "공인중개사": "gong-in-jung-gae-sa", "세금": "se-geum", "등기 관련 비용": "deung-gi gwal-lyeon bi-yong", "소유권 이전": "so-yu-gwon i-jeon", "전세금 반환": "jeon-se-geum ban-hwan", "의원": "ui-won", "병원": "byeong-won", "응급실": "eung-geup-sil", "내과": "nae-gwa", "정형외과": "jeong-hyeong-oe-gwa", "이비인후과": "i-bi-in-hu-gwa", "피부과": "pi-bu-gwa", "안과": "an-gwa", "산부인과": "san-bu-in-gwa", "직장가입자": "jik-jang-ga-ip-ja", "지역가입자": "ji-yeok-ga-ip-ja", "피부양자": "pi-bu-yang-ja", "국민건강보험": "gung-min-geon-gang-bo-heom", "건강보험": "geon-gang-bo-heom", "민간 의료보험": "min-gan ui-ryo-bo-heom", "접수": "jeop-su", "대기": "dae-gi", "진료": "jil-lyo", "검사 · 치료": "geom-sa · chi-ryo", "수납": "su-nap", "처방전": "cheo-bang-jeon", "약국": "yak-guk", "제주도": "je-ju-do"};
+const rom=k=>ROM[k]?`<small class="rom">${ROM[k]}</small>`:'';
+const SHORT={"housing.contract.payments": "List every payment in your contract — deposit, rent, fees, utilities — and check which ones are separate.", "housing.contract.period": "Find the start and end dates, then check the rules for renewing or leaving early.", "housing.contract.deposit": "Find the deposit amount and return conditions, and keep proof of what you paid.", "housing.contract.conditions": "Find the exact sentence, work out what it’s about, and get help before agreeing to it.", "housing.problem.deposit-not-returned": "Check your contract and payment proof, ask the landlord in writing, then contact housing support.", "housing.problem.unexpected-charge": "Ask what the charge is for and for a breakdown. Check your contract before paying.", "housing.problem.payment-difference": "Compare the new amount with your contract, ask why it changed, and don’t sign anything unclear.", "housing.problem.cannot-pay-rent": "Check the amount and due date, tell your landlord early, and ask a support service for help.", "housing.problem.deposit-deduction": "Ask for each deduction and its reason, compare with your photos and records, then get support.", "housing.dispute.asked-to-leave": "Keep the notice, check your contract dates, and get advice before you move out.", "housing.dispute.repairs": "Photograph the problem, report it in writing, keep the replies, and get support if it isn’t fixed.", "housing.dispute.privacy": "Write down each time it happens, keep messages, and get support if it continues.", "housing.dispute.damage": "Ask exactly what damage and what they want, compare with your photos, and get support if you disagree.", "housing.dispute.use-of-home": "Keep a simple record of what happens and get support if it continues.", "housing.dispute.safety": "In danger now? Call 112. You don’t need any documents to get help.", "health.care": "Emergency? Call 119. Otherwise, start at a local clinic (의원) for most common problems.", "health.insurance.workplace": "Check your payslip for 건강보험, ask your workplace, and confirm with NHIS.", "health.insurance.individual": "Look for NHIS notices or bills, and confirm your status with NHIS.", "health.insurance.dependent": "Being family isn’t enough. Check NHIS requirements and confirm your registration.", "health.cost": "Know your insurance status, ask about costs before planned care, and keep every receipt.", "health.language": "Ask about interpretation, prepare your key information, and show a phrase card to staff.", "health.prepare": "Check the provider, bring your ID, insurance and medicine list, and ask questions before you leave."};
+/* ===== Content from the IEUM content spec (Healthcare + Housing 03/04) ===== */
+const NHIS_F={label:'NHIS guidance for foreigners', href:'https://www.nhis.or.kr/english/wbheaa02900m01.do', official:true};
+const NHIS_B={label:'Learn about NHIS benefits', href:'https://www.nhis.or.kr/english/wbheaa02600m01.do', official:true};
+const HS={label:'Find housing support', to:'housing.support'}, LS={label:'Find legal support', to:'support.legal'};
+const NHISchk=(label,primary)=>({...NHIS_F,label,primary});
+Object.assign(P,{
+housing:{...P.housing, items:['housing.find','housing.contract','housing.problem','housing.dispute']},
+'housing.problem':{type:'hub', cat:'housing', title:'Deposit or rent problem', kicker:'Housing · Deposit or rent', q:'What can I do about a problem with my deposit or rent?', sub:'Deposit not returned, unexpected charges, can’t pay rent',
+  h1:'Solve a deposit or rent problem', lede:'What is happening with your deposit or rent?',
+  items:['housing.problem.deposit-not-returned','housing.problem.unexpected-charge','housing.problem.payment-difference','housing.problem.cannot-pay-rent','housing.problem.deposit-deduction']},
+'housing.problem.deposit-not-returned':{type:'guide',cat:'housing',title:'When will I get my deposit back?',sub:'Your rental has ended, but some or all of your deposit has not been returned.',
+  lede:'If your rental has ended and your deposit has not been returned, check what was agreed and keep records of what has happened.',
+  steps:[{t:'Check your rental contract',d:'Find the deposit amount, end date and return conditions.'},{t:'Check how much you paid',d:'Find a bank transfer, receipt, or other record showing the deposit you paid.'},{t:'Ask when the deposit will be returned',d:'Ask your landlord when you’ll get it. Keep their answer.'},{t:'Keep all relevant records',d:'Save your contract, payment records, messages, and documents related to moving out.'},{t:'Get support if the deposit is still not returned',d:'Contact a verified housing or legal-support service if the problem remains unresolved.'}],
+  needs:['Rental contract','Proof of deposit payment','Bank or payment records','Rental end date','Messages with the landlord','Move-out records, if available'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Keep evidence of your deposit and communication.'},{w:1,t:'Be careful before signing a document that changes what happens to your deposit.',d:'If you do not understand it, get professional help first.'},{t:'Keep important communication in writing when possible.'}]},
+'housing.problem.unexpected-charge':{type:'guide',cat:'housing',title:'Why am I being asked to pay this charge?',sub:'You are being asked to pay a housing cost or fee that you did not expect.',
+  lede:'If you are being asked to pay a housing cost you did not expect, first find out exactly what the payment is for.',
+  steps:[{t:'Ask what the charge is for',d:'Ask for a clear explanation of the payment.'},{t:'Check your rental contract',d:'Look for the charge or related condition in your agreement.'},{t:'Check what you normally pay',d:'Compare it with your usual rent, fees and utilities.'},{t:'Ask for a breakdown',d:'If several costs are combined, ask what each amount is for.'},{t:'Get help if the charge is still unclear',d:'Take your contract and the payment request to a verified support service.'}],
+  needs:['Rental contract','Bill or payment request','Previous bills','Payment records','Messages about the charge'],
+  where:[{...HS,primary:true},{label:'Get help with a housing payment',to:'housing.support'}],
+  tips:[{w:1,t:'Do not assume every requested payment is included in your normal rent.'},{t:'Ask what the charge is for and keep the original bill or message.'},{t:'If you are unsure whether you have to pay it, get professional advice.',d:'Don’t rely only on an automatic translation.'}]},
+'housing.problem.payment-difference':{type:'guide',cat:'housing',title:'Why is the amount different from my contract?',sub:'Your rent, deposit, or another payment does not match your agreement.',
+  lede:'Compare the payment you are being asked to make with the amount written in your rental agreement.',
+  steps:[{t:'Find the amount in your contract',d:'Check the agreed rent, deposit, management fee, or other relevant payment.'},{t:'Compare the two amounts',d:'Identify exactly what has changed.'},{t:'Ask why the amount is different',d:'Ask the landlord or relevant person to explain the difference.'},{t:'Keep the payment request',d:'Save the message, bill, or document showing the new amount.'},{t:'Get support if you still disagree or are unsure',d:'Contact a verified housing or legal-support service.'}],
+  needs:['Rental contract','New payment request','Previous payment records','Relevant bills','Messages explaining the change'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Compare the exact amounts written in the documents.'},{t:'Keep records of any changes you are asked to accept.'},{t:'Do not sign a change to your agreement if you do not understand what it means.'}]},
+'housing.problem.cannot-pay-rent':{type:'guide',cat:'housing',title:'What can I do if I cannot pay my rent?',sub:'You are worried you may not be able to pay rent on time.',
+  lede:'If you think you may not be able to pay your rent on time, check your payment details and seek help early.',
+  steps:[{t:'Check how much you need to pay',d:'Confirm the rent amount in your contract.'},{t:'Check when it is due',d:'Find the payment date.'},{t:'Do not ignore the situation',d:'If possible, talk about the problem before the payment becomes very overdue.'},{t:'Keep records',d:'Save messages about your rent and any payment arrangement discussed.'},{t:'Look for support',d:'Contact a local support organisation to ask what help may be available.'}],
+  needs:['Rental contract','Rent amount and due date','Recent payment records','Messages about rent','Other information requested by the support organisation'],
+  where:[{...HS,primary:true},{label:'Find financial or welfare support',to:'support.welfare'}],
+  whereNote:'Financial help is not guaranteed. Eligibility depends on the service and your situation.',
+  tips:[{w:1,t:'Seek help early.',d:'Waiting can make the situation harder to resolve.'},{t:'Keep records of any agreement about changing when or how rent is paid.'},{t:'Support programmes may have different eligibility requirements.'}]},
+'housing.problem.deposit-deduction':{type:'guide',cat:'housing',title:'Why was money taken from my deposit?',sub:'Your landlord is keeping part of your deposit for damage, unpaid costs or another reason.',
+  lede:'If some of your deposit is being kept, first find out how much was deducted and why.',
+  steps:[{t:'Ask what was deducted',d:'Ask for the amount and reason for each deduction.'},{t:'Check your rental contract',d:'Look for conditions about damage, unpaid costs, or other charges.'},{t:'Check your records',d:'Compare the explanation with photos, payment records, or other evidence you have.'},{t:'Ask about anything you disagree with',d:'Keep a record of your questions and the response.'},{t:'Get professional support if the disagreement continues',d:'Contact a verified housing or legal-support service.'}],
+  needs:['Rental contract','Deposit payment record','Explanation of the deduction','Move-in or move-out photos, if available','Messages with the landlord','Bills or receipts related to the deduction'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Ask for a clear explanation of each deduction.'},{t:'Keep photos and records showing the condition of the property.'},{t:'Do not delete messages or payment records related to the disagreement.'}]},
+
+'housing.dispute':{type:'hub', cat:'housing', title:'Landlord dispute', kicker:'Housing · Landlord', q:'What can I do about a dispute with my landlord?', sub:'Asked to leave, repairs, entry, damage, safety',
+  h1:'Solve a problem with your landlord', lede:'What is happening with your landlord?',
+  items:['housing.dispute.asked-to-leave','housing.dispute.repairs','housing.dispute.privacy','housing.dispute.damage','housing.dispute.use-of-home','housing.dispute.safety']},
+'housing.dispute.asked-to-leave':{type:'guide',cat:'housing',title:'Do I have to leave if my landlord tells me to?',sub:'Your landlord has told you to move out.',
+  lede:'If your landlord has told you to leave, first check what you were told and what your rental agreement says.',
+  steps:[{t:'Check exactly what you were told',d:'In person, by message, or in writing? Keep a copy if you can.'},{t:'Check your rental contract',d:'Find the rental end date and any conditions about ending the rental.'},{t:'Check the date you were asked to leave',d:'Make sure you know exactly when the landlord expects you to move out.'},{t:'Ask for clarification if needed',d:'If the reason or date is unclear, ask for a clear explanation.'},{t:'Get professional advice',d:'Unsure what to do? Contact a verified housing or legal service.'}],
+  needs:['Rental contract','Notice or message asking you to leave','Rental start and end dates','Messages with the landlord','Relevant payment records'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Being told to leave does not always mean you must leave immediately.',d:'Get advice about your specific situation.'},{t:'Keep any written notice or message you receive.'},{w:1,t:'If you feel unsafe right now, call 112.',d:'Don’t wait for normal housing support.',to:'housing.dispute.safety'}]},
+'housing.dispute.repairs':{type:'guide',cat:'housing',title:'What can I do if my landlord will not repair a problem?',sub:'Something needs fixing, but it has not been resolved.',
+  lede:'Keep a clear record of the problem and what you have already done to report it.',
+  steps:[{t:'Record the problem',d:'Take photos or videos and note when you first noticed it.'},{t:'Tell the landlord',d:'Explain clearly what needs attention. Use written messages when possible.'},{t:'Keep the response',d:'Save messages and note when you contacted the landlord.'},{t:'Record any changes',d:'If the problem gets worse, keep updated photos or information.'},{t:'Get support if it is not fixed',d:'Contact a verified housing-support service.'}],
+  needs:['Rental contract','Photos or videos','Date the problem started','Messages with the landlord','Previous repair requests','Relevant receipts, if available'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Keep evidence showing the condition of the property.'},{t:'Keep a record of when you first reported the problem.'},{w:1,t:'If the problem is an immediate safety emergency, call 119.'}]},
+'housing.dispute.privacy':{type:'guide',cat:'housing',title:'What can I do if my landlord enters my home without my agreement?',sub:'You are worried about your landlord entering the property.',
+  lede:'If you are worried about someone entering your rented home, record what happened and get support if needed.',
+  steps:[{t:'Record what happened',d:'Write down the date, time, and what happened.'},{t:'Keep relevant evidence',d:'Save messages, notices, or other records you already have.'},{t:'Check your rental agreement',d:'Look for any conditions about access to the property.'},{t:'Tell the landlord your concern, if it is safe',d:'Explain the problem clearly and keep a record of the response.'},{t:'Get support if it continues',d:'Contact a verified housing or legal-support service.'}],
+  needs:['Rental contract','Dates and times of incidents','Messages with the landlord','Any notice about entry','Other existing evidence'],
+  where:[{...HS,primary:true},LS],
+  tips:[{w:1,t:'Write down each incident while the details are still clear.'},{w:1,t:'Do not put yourself at risk to collect evidence.'},{t:'If you feel threatened right now, get emergency help.',to:'housing.dispute.safety'}]},
+'housing.dispute.damage':{type:'guide',cat:'housing',title:'What can I do if my landlord says I damaged the property?',sub:'Your landlord says you caused damage and you disagree or are unsure.',
+  lede:'If you disagree or are unsure about a damage claim, collect information showing what happened and the condition of the property.',
+  steps:[{t:'Ask which damage the landlord means',d:'Identify the exact problem.'},{t:'Ask what you are being asked to do',d:'Repair something, pay money, or accept a deduction from your deposit?'},{t:'Check your records',d:'Look for photos showing the condition when you moved in and now.'},{t:'Check your contract',d:'Find any conditions about damage or repairs.'},{t:'Get support if you disagree',d:'Contact a verified housing or legal-support service.'}],
+  needs:['Rental contract','Move-in photos, if available','Current photos or videos','Messages with the landlord','Repair estimate or bill, if provided','Payment request, if provided'],
+  where:[{...HS,primary:true},LS,{label:'Money already taken from your deposit? Why was money taken from my deposit?',to:'housing.problem.deposit-deduction'}],
+  tips:[{w:1,t:'Keep old and current photos of the property if you have them.'},{t:'Ask for a clear explanation of any amount you are asked to pay.'},{t:'Keep messages and documents related to the disagreement.'}]},
+'housing.dispute.use-of-home':{type:'guide',cat:'housing',title:'What can I do if my landlord is interfering with my use of the home?',sub:'Your landlord is making it hard to access or use your home.',
+  lede:'Use this guide if your landlord’s actions make it hard to access or normally use the home you rent.',
+  steps:[{t:'Record what is happening',d:'Write down what happened, when, and how it affected you.'},{t:'Keep relevant evidence',d:'Save messages, notices, photos, or other information you already have.'},{t:'Check your rental agreement',d:'Look for any conditions related to the issue.'},{t:'Tell the landlord, if it is safe',d:'Explain your concern clearly and keep the response.'},{t:'Get support if it continues',d:'Contact a verified housing or legal-support organisation.'}],
+  needs:['Rental contract','Dates and description of incidents','Messages or notices','Existing photos or other evidence','Previous communication about the problem'],
+  where:[{...HS,primary:true},LS,{label:'I feel threatened or unsafe',to:'housing.dispute.safety'}],
+  tips:[{w:1,t:'Keep a simple timeline if it happens more than once.'},{w:1,t:'Do not put yourself at risk to collect evidence.'},{t:'If the situation becomes threatening, use the safety guide.',to:'housing.dispute.safety'}]},
+'housing.dispute.safety':{type:'guide',cat:'housing',title:'What should I do if I feel threatened or unsafe?',sub:'Your landlord or someone connected to your housing makes you feel unsafe.',
+  lede:'Your safety comes first. What to do next depends on how urgent the situation is.', urgent:true,
+  steps:[{t:'If there is immediate danger',d:'Move somewhere safer if you can. Call 112 (police) or 119.',sos:true},{t:'If there is no immediate danger',d:'Keep any messages or records you already have and contact a support service.'},{t:'Get help with the housing problem',d:'Once you’re safe, a housing or legal service can explain your options.'}],
+  needsLead:'You do not need to collect documents before seeking urgent help.',
+  needsTitle:'If you already have them',
+  needs:['Rental contract','Relevant messages','Dates of incidents','Existing records'],
+  where:[{call:'112',label:'Call police'},{call:'119',label:'Emergency / medical'},HS,LS],
+  tips:[{w:1,t:'Do not delay urgent help because you do not have documents.'},{w:1,t:'Do not put yourself in danger to take photos or collect evidence.'},{t:'If there is no immediate danger, keep records that may help a support organisation understand what happened.'}]},
+
+/* Healthcare: align with spec */
+'health.care':{...P['health.care'],
+  steps:[{t:'Check how urgent the situation is',d:'If you think you need urgent medical help, call 119.',call:true,small:'IEUM cannot determine how serious a medical condition is.'},
+    {t:'Understand the main types of medical care',cards:[['Local clinic','의원','Often used for common health problems and non-emergency medical care.'],['Hospital','병원','A wider range of medical services, and may have more departments, tests, or treatment options.'],['Emergency room','응급실','Emergency medical care when urgent treatment is needed.']]},
+    {t:'Understand common medical departments',dept:true},
+    {t:'Find a medical provider',link:{label:'Find medical care in Jeju',to:'support.care'}}],
+  needs:['Identification, if requested','Health-insurance information, if available','Information about medicines you currently take','Information about known allergies','Relevant previous medical information','Payment method'],
+  where:[{label:'Find medical care in Jeju',to:'support.care',primary:true},{label:'How do I prepare for a medical visit?',to:'health.prepare'},{label:'Find language support',to:'health.language'},{label:'Find healthcare support',to:'health.support'}],
+  tips:[{w:1,t:'IEUM cannot diagnose your condition or determine how urgent it is.'},{t:'Check opening hours and whether an appointment is needed before travelling, when possible.'},{t:'If communication may be difficult, prepare important information before your visit.'}]},
+'health.insurance.workplace':{...P['health.insurance.workplace'],
+  steps:[{t:'Check whether you are enrolled',d:'Do not assume that having a job automatically confirms your current insurance status.'},{t:'Check your payslip',d:'Look for a health-insurance deduction such as 건강보험 (Health Insurance).'},{t:'Ask your workplace if necessary',d:'Your workplace can tell you if insurance is being deducted.'},{t:'Confirm with NHIS',d:'If you are unsure, confirm your insurance status directly with NHIS.'}],
+  needs:['Identification','Employment information','Payslip, if available','NHIS documents or notices, if available','Other information requested by NHIS'],
+  where:[NHISchk('Check with NHIS',true),NHIS_F,{label:'I need language support',to:'health.language'},{label:'Find healthcare support',to:'health.support'}],
+  tips:[{w:1,t:'Do not rely only on what you think your employment status means.'},{t:'Confirm your actual insurance status with NHIS if you are unsure.'},{t:'Keep important NHIS notices and insurance-related documents.'}]},
+'health.insurance.individual':{...P['health.insurance.individual'], term:['지역가입자','Self-employed insured'],
+  needs:['Identification','Residence information, if requested','NHIS notices or bills, if available','Other documents requested by NHIS'],
+  where:[NHISchk('Check my eligibility with NHIS',true),NHIS_F,{label:'Find language support',to:'health.language'},{label:'Find healthcare support',to:'health.support'}],
+  tips:[{w:1,t:'Do not decide your eligibility based only on your nationality or how long you have lived in Korea.'},{t:'Different eligibility and enrollment rules may apply depending on individual circumstances.'},{t:'Use NHIS to confirm your actual status.'}]},
+'health.insurance.dependent':{...P['health.insurance.dependent'],
+  steps:[{t:'Check whether you are already registered as a dependent',d:'Being related to an insured person doesn’t mean you’re registered.'},{t:'Check whether you meet NHIS requirements',d:'Dependent eligibility can involve family relationship, income, property, residence, and other circumstances.'},{t:'Check what documents are required',d:'Foreign residents may need documents proving family relationships or other eligibility requirements.'},{t:'Confirm with NHIS',d:'Use NHIS to confirm your individual eligibility.'}],
+  needs:['Identification','Information about the employee-insured family member','Documents showing family relationship, if requested','Other eligibility documents requested by NHIS'],
+  where:[NHISchk('Check dependent eligibility with NHIS',true),NHIS_F,{label:'Find language support',to:'health.language'},{label:'Find healthcare support',to:'health.support'}],
+  tips:[{w:1,t:'Being a spouse or family member does not automatically confirm dependent status.'},{t:'Requirements can differ depending on the individual situation.'},{t:'Check directly with NHIS before relying on dependent coverage.'}]},
+'health.cost':{...P['health.cost'], lede:'Medical costs can vary depending on your insurance, healthcare provider, tests, treatment, and whether a service is covered.',
+  steps:[{t:'Check your health-insurance status',d:'Insurance can affect how much you personally pay.',link:{label:'Understand health insurance',to:'health.insurance'}},{t:'Ask about expected costs',d:'For planned care, ask the provider about expected costs when possible.'},{t:'Ask whether important services are covered',d:'Ask whether important tests or treatments are covered.'},{t:'Keep your bill and receipt',d:'You may need them to check a charge or claim private insurance.'},{t:'Get support if cost is preventing you from getting care',d:'Contact a verified healthcare or migrant-support service.'}],
+  needs:['Health-insurance information','Medical bill','Receipt','Information about the proposed test or treatment','Cost estimate, if provided','Private insurance information, if relevant'],
+  where:[{label:'Check my health insurance',to:'health.insurance'},{label:'Get help understanding a medical bill',to:'support.cost'},{label:'Find healthcare support',to:'health.support',primary:true}],
+  tips:[{w:1,t:'Health insurance does not mean all healthcare is free.'},{t:'Some services may not be covered.'},{t:'If cost matters to you, ask about expected costs before planned treatment when possible.'},{t:'Do not assume the same type of treatment will always cost the same amount.'}]},
+'health.language':{...P['health.language'],
+  steps:[{t:'Check whether language support is available',d:'Some healthcare providers or support organisations may offer interpretation or multilingual help.'},
+    {t:'Prepare important information',checks:['Why you are visiting','When the problem started','Medicines you currently take','Allergies you know about','Important previous medical information','Questions you want to ask']},
+    P['health.language'].steps[2],
+    {t:'Make sure you understand important instructions',d:'Ask again about medicine, follow-up visits or tests if unsure.'}],
+  needs:['Language you need','Medication information','Allergy information','Relevant medical information','Questions you want to ask'],
+  where:[{label:'Find interpretation support',to:'support.interpretation',primary:true},{label:'Find multilingual healthcare support',to:'health.support'},{label:'Find medical care',to:'health.care'},{label:'Prepare for a medical visit',to:'health.prepare'}],
+  tips:[{w:1,t:'Do not guess important medical instructions that you do not understand.'},{t:'Ask for clarification if you are unsure how to take medicine or what to do next.'},{t:'Automatic translation can help with basic communication, but important medical information may need professional clarification.'}]},
+'health.support':{...P['health.support'], lede:'Find verified services that may be able to help with healthcare access, insurance, language support, or other difficulties.', needSet:'health', need:'all',
+  empty:{t:'No verified healthcare services listed yet.',d:'Jeju service details are awaiting verification. Languages, eligibility, locations, hours and contact details will appear here once confirmed.',link:NHISchk('Check with NHIS')}},
+'support.interpretation':{...P['support.interpretation'], needSet:'health'},
+'support.care':{type:'services',cat:'health',title:'Find medical care in Jeju',sub:'Clinics, hospitals and emergency rooms',need:'care',needSet:'health',lede:'Verified medical providers in Jeju will be listed here.',
+  empty:{t:'No verified medical providers listed yet.',d:'Provider details for Jeju are awaiting verification. In an emergency, call 119.'}},
+'support.cost':{type:'services',cat:'health',title:'Help with a medical bill',sub:'Understanding charges and costs',need:'cost',needSet:'health',lede:'Services that may help you understand a medical bill or cost.',
+  empty:{t:'No verified services for medical costs listed yet.',d:'Details are awaiting verification.',link:NHIS_B}},
+
+'support.legal':{type:'services',cat:'housing',title:'Legal support',sub:'Legal help and advice',need:'legal',needSet:'housing',lede:'Verified organisations that may provide legal help.'},
+'support.welfare':{type:'services',cat:'housing',title:'Financial or welfare support',sub:'Help if you are struggling to pay',need:'welfare',needSet:'housing',lede:'Organisations that may offer financial or welfare help. Eligibility depends on the service and your situation.',
+  empty:{t:'No verified welfare services listed yet.',d:'Details are awaiting verification. Danuri Helpline (1577-1366) can give multilingual guidance on where to ask.'}},
+'housing.contract.help':{...P['housing.contract.help'], needSet:'housing'},
+'housing.support':{type:'services',cat:'housing',title:'Where can I get more housing support?',kicker:'Housing · Support',sub:'Verified organisations, phone numbers and offices for housing problems',needSet:'housing',need:'all',
+  lede:'Verified services that can help with deposits, contracts, landlord disputes and legal questions. If you need help in your language, start with Danuri (1577-1366).'},
+});
+
+/* Services directory — ONLY verified organisations (per content rules: never invent organisations). Add more as they are verified. */
+const SVC = [
+ {name:'Danuri Helpline', num:'1577-1366', topics:['housing','health','work'], needs:['interpretation','contract','general','housing'], langs:['ko','en','zh','vi'], langText:'13 languages, including Korean, English, Chinese and Vietnamese',
+  can:'Interpretation and multilingual guidance', who:'People seeking multilingual guidance. Confirm service scope directly.', location:'Phone service (nationwide)', hours:'Confirm on the official website', verifiedOn:'September 2026', site:'https://www.liveinkorea.kr',
+  how:'Call and ask for your language. They can also join a call as an interpreter.'},
+ {name:'Korea Legal Aid Corporation — Jeju Branch', ko:'대한법률구조공단 제주지부', num:'064-753-9955', alt:'132 (national legal advice line, no area code)', topics:['housing','work'], needs:['contract','legal','housing','deposit'], langs:['ko'], langText:'Korean. Ask about interpretation, or use Danuri (1577-1366)',
+  can:'Free legal advice · Contract help · Deposit and lease problems · Legal representation', who:'People with limited income or legal knowledge. Eligibility depends on the type of help.', location:'Jeju City', address:'제주시 중앙로 298 이튼빌딩 2층', addrEn:'2F Eaton Building, 298 Jungang-ro, Jeju City',
+  hours:'Weekdays, by appointment (closed at lunch)', verifiedOn:'October 2026', site:'https://www.klac.or.kr',
+  how:'Book first: call 132 or the branch, then visit with your contract and records.'},
+ {name:'Lease Dispute Mediation Committee (Korea Real Estate Board · LH)', ko:'임대차분쟁조정위원회', num:'1644-5599', topics:['housing'], needs:['housing','deposit','legal'], langs:['ko'], langText:'Korean',
+  can:'Mediation for deposit return, rent changes, renewal and repair disputes, without going to court', who:'Tenants and landlords with a lease dispute.', location:'Phone / online (nationwide)',
+  hours:'Weekdays 09:00–12:00 and 13:00–17:30', verifiedOn:'October 2026', site:'https://adrhome.reb.or.kr',
+  how:'Apply online or by phone. The committee aims to propose a settlement within 60 days.'},
+ {name:'HUG Jeonse Damage & Prevention Support Center', ko:'주택도시보증공사 전세피해 및 예방지원센터', num:'1533-8119', alt:'1566-9009 (HUG general line, deposit return guarantee)', topics:['housing'], needs:['housing','deposit'], langs:['ko'], langText:'Korean',
+  can:'Jeonse deposit safety, jeonse fraud victim support, deposit return guarantee (전세보증금 반환보증)', who:'Jeonse tenants, including people worried about getting their deposit back.', location:'Phone / online (nationwide)',
+  hours:'Weekdays 09:00–18:00 (closed 12:00–13:00)', verifiedOn:'October 2026', site:'https://www.khug.or.kr/jeonse/index.jsp',
+  how:'Call before signing a Jeonse contract to ask about protecting your deposit, or after if it is not returned.'},
+];
+const TOPICS={all:'All topics',housing:'Housing',health:'Healthcare',work:'Work & admin'};
+const NEEDSETS = {
+  all:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Housing problems', legal:'Legal help', welfare:'Financial / welfare', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General support'},
+  health:{all:'All support types', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General healthcare support'},
+  work:{all:'All support types', legal:'Legal help', interpretation:'Interpretation', general:'General support'},
+  housing:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Disputes with a landlord', legal:'Legal help', welfare:'Financial / welfare', interpretation:'Interpretation'},
+};
+const LANGNAMES = {ko:'한국어', en:'English', zh:'中文', vi:'Tiếng Việt'};
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const catOf = r => (P[r]&&P[r].cat) || r.split('.')[0];
+const titleOf = r => P[r] ? (P[r].q || P[r].title) : r;
+function parentOf(r){ const p=r.split('.'); p.pop(); return p.length? p.join('.') : null; }
+
+function crumbs(r){
+  const chain=[]; let x=r; while(x){chain.unshift(x); x=parentOf(x);}
+  const parts=['<a href="#home">Home</a>'];
+  chain.forEach((c,i)=>{ parts.push('<span class="sep">/</span>');
+    parts.push(i===chain.length-1? `<span aria-current="page">${P[c].title}</span>` : `<a href="#${c}">${P[c].title}</a>`); });
+  return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join('')}</nav>`;
+}
+function hero(r, p, extra=''){
+  const kick = p.kicker || P[catOf(r)]?.title || '';
+  return `${crumbs(r)}<div class="hero"><div class="kicker mono">${kick}</div><h1>${p.h1||p.q||p.title}</h1>${p.lede?`<p class="lede">${p.lede}</p>`:''}${p.term?`<div class="term"><span class="ko">${p.term[0]}</span>${rom(p.term[0])}<span>${p.term[1]}</span></div>`:''}${extra}</div>`;
+}
+function sosTiles(){return `<a class="sostile" href="tel:112"><small>Police</small><b>112</b></a><a class="sostile" href="tel:119"><small>Emergency / medical</small><b>119</b></a>`;}
+function linkItem(l){
+  if(l.call) return `<a class="lnk sosl" href="tel:${l.call}"><span class="t">${l.label}<small>Call ${l.call}</small></span><b class="num" style="font:700 1.4rem var(--f-mono)">${l.call}</b></a>`;
+  if(l.to) return `<a class="lnk${l.primary?' primary':''}" href="#${l.to}"><span class="t">${l.label}</span>${I.arrow}</a>`;
+  return `<a class="lnk${l.primary?' primary':''}" href="${l.href}" target="_blank" rel="noopener"><span class="t">${l.label}${l.official?'<small>Official government source</small>':''}</span>${I.out}</a>`;
+}
+function siblings(r){
+  const par=parentOf(r); const hub=P[par]; if(!hub||!hub.items) return null;
+  return {par, list:hub.items};
+}
+function feedback(r){
+  return `<div class="feedback" data-r="${r}"><b>Did this page help?</b>
+    <button class="btn btn-ghost" data-fb="yes">Yes</button><button class="btn btn-ghost" data-fb="no">No</button></div>`;
+}
+function nextPrev(r){
+  const s=siblings(r); if(!s) return '';
+  const i=s.list.indexOf(r); const pv=s.list[i-1], nx=s.list[i+1];
+  return `<div class="nextprev">${pv?`<a href="#${pv}"><small>← Previous</small><b>${titleOf(pv)}</b></a>`:''}${nx?`<a class="nx" href="#${nx}"><small>Next →</small><b>${titleOf(nx)}</b></a>`:''}</div>`;
+}
+function aside(r, p){
+  const s=siblings(r);
+  let html='';
+  if(s){ html+=`<div class="box sibs"><h4>In this situation</h4><ol>${s.list.map((x,i)=>`<li><a href="#${x}" ${x===r?'aria-current="page"':''}><i>${String(i+1).padStart(2,'0')}</i><span>${titleOf(x)}</span></a></li>`).join('')}</ol></div>`; }
+  html+=`<div class="box"><h4>Still unsure?</h4><p style="margin:0 0 12px;font-size:.9rem;color:var(--muted)">Talk to a verified organisation in your language.</p><a class="btn btn-ghost" style="width:100%;justify-content:space-between" href="#support">Find support ${I.arrow}</a></div>`;
+  return `<aside class="aside">${html}</aside>`;
+}
+
+/* ---------- renderers ---------- */
+function inShort(r){ return SHORT[r]?`<div class="inshort"><span class="mono">In short</span><p>${SHORT[r]}</p></div>`:''; }
+function msgBlock(r){
+  const m=MSGS[r]; if(!m) return '';
+  return `<section class="block"><header><span class="mono lbl">Message you can send</span></header>
+    <p style="margin:0 0 12px;color:var(--muted)">Copy this polite Korean message, fill in the [brackets], and send it by text or KakaoTalk so you have a written record.</p>
+    ${m.map((x,i)=>`<div class="phrase"><span class="mono">Korean</span><p class="kr" id="msg-${i}">${x[0].replace(/\n/g,'<br>')}</p><p class="en">${x[1].replace(/\n/g,'<br>')}</p><button class="btn btn-ghost" data-copy="${i}" data-r="${r}">Copy Korean text</button></div>`).join('')}
+  </section>`;
+}
+function logBlock(r){
+  if(!LOGS.includes(r)) return '';
+  const rows=store.get('log:landlord')||[{d:'',w:'',e:'',t:''}];
+  return `<section class="block"><header><span class="mono lbl">Keep a simple record</span><span class="progress">Saved on this device</span></header>
+    <p style="margin:0 0 12px;color:var(--muted)">Add a line each time something happens. A support organisation can understand your situation faster with this.</p>
+    <div class="tablewrap"><table class="log"><thead><tr><th>Date</th><th>What happened</th><th>Evidence (photos, messages)</th><th>Who you told</th></tr></thead>
+    <tbody>${rows.map((x,i)=>`<tr><td><input type="date" id="log-d-${i}" data-row="${i}" data-f="d" value="${x.d||''}"></td><td><input id="log-w-${i}" data-row="${i}" data-f="w" value="${(x.w||'').replace(/"/g,'&quot;')}" placeholder="e.g. Landlord entered while I was out"></td><td><input id="log-e-${i}" data-row="${i}" data-f="e" value="${(x.e||'').replace(/"/g,'&quot;')}" placeholder="2 photos, text message"></td><td><input id="log-t-${i}" data-row="${i}" data-f="t" value="${(x.t||'').replace(/"/g,'&quot;')}" placeholder="Landlord, by text"></td></tr>`).join('')}</tbody></table></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-ghost" data-logadd>+ Add a line</button><button class="btn btn-ghost" data-logcopy>Copy record as text</button></div>
+    <p class="small" id="logmsg"></p></section>`;
+}
+
+const R = {};
+R.home = () => `
+<div class="wrap">
+  <section class="home-hero">
+    <div>
+      <div class="kicker mono">A marked trail across Jeju</div>
+      <h1>What do you need help with today?</h1>
+      <p class="lede">Simple, verified information and support services in Jeju, in the language you read best.</p>
+      <div class="langpick">Continue in
+        ${['ko','en','zh','vi'].map(l=>`<button class="chip" data-lang="${l}" aria-pressed="${l===state.lang}">${{ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[l]}</button>`).join('')}
+      </div>
+    </div>
+    ${sceneHTML()}
+  </section>
+
+  <section class="section" style="padding-top:8px">
+    <div class="sechead"><h2>Where would you like to start?</h2></div>
+    <div class="cats">
+      ${catCard('housing', I.house, 'Finding a home, understanding your contract, or problems with a landlord.')}
+      ${catCard('health', I.heart, 'Finding medical care, health insurance, costs and language support.')}
+      ${catCard('work', I.case, 'Wages, labour issues, immigration and paperwork.', true)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sechead"><h2>Common questions</h2><p>Jump straight to a guide.</p></div>
+    <div class="quick">
+      ${['housing.find','health.care','housing.contract.deposit','health.insurance','housing.contract.payments','health.language'].map(r=>`<a href="#${r}" class="c-${catOf(r)}"><span class="dot"></span><span class="q">${titleOf(r)}</span><span class="arr">${I.arrow}</span></a>`).join('')}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="band">
+      <div><h2>Not sure which kind of help you need?</h2><p>Browse trusted organisations and official services by language and need.</p></div>
+      <a class="btn btn-primary" href="#support">Find a support organisation ${I.arrow}</a>
+    </div>
+  </section>
+</div>`;
+function catCard(c, ico, d, soon){
+  const hub=P[c]; const items=hub.items.slice(0,3);
+  return `<a class="cat c-${c}" href="#${c}"><div style="display:flex;justify-content:space-between;align-items:center"><span class="ico">${ico}</span>${soon?'<span class="soon">Coming soon</span>':''}</div>
+    <h2>${hub.title}</h2><p>${d}</p>${soon?'':`<ul>${items.map(i=>`<li>${titleOf(i)}</li>`).join('')}</ul>`}<span class="go">Start here ${I.arrow}</span></a>`;
+}
+function sceneHTML(){
+  return `<div class="heroimg" aria-hidden="true"><div class="halo"></div><img src="assets/logo-illustration.svg" alt=""></div>`;
+}
+
+R.hub = (r,p) => `<div class="wrap c-${p.cat}">${hero(r,p)}
+  <div class="situations">${p.items.map(i=>{const q=P[i]; const soon=q.type==='soon';
+    const count = q.items? `${q.items.length} guides` : soon? 'Coming soon' : q.type==='services'?'Directory':q.type==='find'?'3 options':'Guide';
+    return `<a class="sit${soon?' is-soon':''}" href="#${i}"><span class="flag">${I.flag}</span><div><h3>${titleOf(i)}</h3>${q.sub?`<p>${q.sub}</p>`:''}</div><span class="meta">${count} →</span></a>`}).join('')}</div>
+  <a class="sit" href="#${p.cat==='health'?'health.support':p.cat==='housing'?'housing.support':'support'}" style="margin-top:12px;background:var(--sea-soft)"><span class="flag" style="background:var(--solid)">${I.phone}</span><div><h3>Where can I get more support?</h3><p>Phone numbers, offices and websites of verified organisations.</p></div><span class="meta">Find support →</span></a>
+  ${p.note?`<p class="foot-note">${p.note}</p>`:''}
+  <div style="height:40px"></div></div>`;
+
+R.guide = (r,p) => {
+  const done = store.get('chk:'+r) || []; let wSeen=0; const tips=p.tips.map(t=>({...t,w:t.w&&(p.urgent||!wSeen++)?1:0}));
+  const steps = p.steps.map((s,i)=>`<li><span class="n">${i+1}</span><div><h3>${s.t}</h3>${s.d?`<p>${s.d}</p>`:''}
+    ${s.call?`<div class="extra"><a class="btn btn-primary" href="tel:119" style="background:var(--alert);box-shadow:none">${I.phone} Call 119</a>${s.small?`<p class="small" style="margin-top:8px">${s.small}</p>`:''}</div>`:''}
+    ${s.sos?`<div class="extra sosgrid">${sosTiles()}</div>`:''}
+    ${s.checks?`<ul class="extra bul">${s.checks.map(c=>`<li>${c}</li>`).join('')}</ul>`:''}
+    ${s.cards?`<div class="extra minicards">${s.cards.map(c=>`<div class="mini"><b>${c[0]}</b>${c[1]?`<span class="ko">${c[1]}${rom(c[1])}</span>`:''}<p>${c[2]}</p></div>`).join('')}</div>`:''}
+    ${s.dept?deptBlock():''}
+    ${s.phrases?`<div class="extra phrases">${s.phrases.map((ph,k)=>`<div class="phrase"><span class="mono">Show this to staff</span><p class="kr">${ph[0].replace('\n','<br>')}</p><p class="en">${ph[1].replace('\n','<br>')}</p><button class="btn btn-ghost" data-show="${k}" data-r="${r}" data-s="${i}">Show full screen</button></div>`).join('')}</div>`:''}
+    ${s.link?`<div class="extra">${linkItem(s.link)}</div>`:''}</div></li>`).join('');
+  return `<div class="wrap c-${p.cat}">${hero(r,p)}${inShort(r)}
+  <div class="guide"><div>
+    <section class="block"><header><span class="mono lbl">What to do</span></header><ol class="trail">${steps}</ol></section>
+    <section class="block"><header><span class="mono lbl">${p.needsTitle||'What you may need'}</span><span class="progress" id="prog">${done.length}/${p.needs.length} ready</span></header>
+      ${p.needsLead?`<div class="key" style="margin:0 0 14px;background:var(--sea-soft)"><b>${p.needsLead}</b></div>`:''}<ul class="checks">${p.needs.map((n,i)=>`<li><label><input type="checkbox" id="chk-${r}-${i}" data-i="${i}" ${done.includes(i)?'checked':''}><span>${n}</span></label></li>`).join('')}</ul>
+      <p class="small">${p.needsNote||'Tick items off as you gather them. Your list is saved on this device.'}</p></section>
+    <section class="block"><header><span class="mono lbl">Where to go</span></header><div class="links">${p.where.map(linkItem).join('')}</div>${p.whereNote?`<p class="small">${p.whereNote}</p>`:''}
+      ${p.alert?`<div class="key" style="margin-top:16px"><b>${p.alert.t}</b><p><a href="#${p.alert.to}" style="color:var(--sea);font-weight:700">${p.alert.label} →</a></p></div>`:''}</section>
+    ${msgBlock(r)}${logBlock(r)}<section class="block"><header><span class="mono lbl">Tips &amp; warnings</span></header><div class="tips">${tips.map(t=>`<div class="tip${t.w?' warn':''}">${t.w?I.warn:I.info}<div><b>${t.t}</b>${t.d?`<p>${t.d}</p>`:''}${t.to?`<p><a href="#${t.to}" style="color:var(--sea);font-weight:700">${titleOf(t.to)} →</a></p>`:''}</div></div>`).join('')}</div></section>
+    ${nextPrev(r)}${feedback(r)}
+  </div>${aside(r,p)}</div></div>`;
+};
+function deptBlock(){
+  const d=[['내과','Internal medicine','General adult health problems and many common illnesses.'],['정형외과','Orthopedics','Bone, joint, muscle, and injury-related care.'],['이비인후과','ENT','Ear, nose, and throat care.'],['피부과','Dermatology','Skin-related care.'],['안과','Ophthalmology','Eye-related care.'],['산부인과','Obstetrics & gynecology','Pregnancy and reproductive health care.']];
+  return `<details class="dept extra"><summary>Which department am I looking for?</summary><div class="minicards" style="margin-top:12px">${d.map(x=>`<div class="mini" style="background:var(--solid)"><b>${x[1]}</b><span class="ko">${x[0]}${rom(x[0])}</span><p>${x[2]}</p></div>`).join('')}</div></details>`;
+}
+
+R.prepare = (r,p) => {
+  const groups=[['Check the provider',['Location','Opening hours','Whether you need an appointment','Whether language support is available']],
+    ['Prepare important information',['Main reason for your visit','Medicines you currently take','Known allergies','Relevant previous medical information','Questions you want to ask']],
+    ['Prepare useful documents',['Identification, if requested','Health-insurance information','Relevant previous medical documents','Payment method']]];
+  const leave=['Whether you need medicine','How and when to take it','Whether you need another visit','Whether you need another test','Whether you need to visit another provider','What you should do next'];
+  const done=store.get('chk:'+r)||[]; let idx=0; const total=groups.reduce((a,g)=>a+g[1].length,0)+leave.length;
+  const visit=[['Reception','접수','Register and give the information staff ask for.'],['Wait','대기','Wait until your name is called.'],['Consultation','진료','Meet the doctor and explain why you came.'],['Tests or treatment','검사 · 치료','You may have tests or treatment if needed.'],['Payment','수납','Pay at the desk after your visit.'],['Prescription','처방전','If medicine is prescribed, you get a prescription.'],['Pharmacy','약국','Take the prescription to a pharmacy for your medicine.']];
+  return `<div class="wrap c-health">${hero(r,p)}${inShort(r)}<div class="guide"><div>
+  <section class="block"><header><span class="mono lbl">Before you go</span><span class="progress" id="prog">${done.length}/${total} ready</span></header>
+    ${groups.map((g,gi)=>`<h3 style="margin:${gi?'18px':'0'} 0 6px">${gi+1}. ${g[0]}</h3><ul class="checks">${g[1].map(n=>{const k=idx++;return `<li><label><input type="checkbox" id="chk-${r}-${k}" data-i="${k}" ${done.includes(k)?'checked':''}><span>${n}</span></label></li>`}).join('')}</ul>`).join('')}
+    <p class="small">Requirements differ between providers. Your list is saved on this device.</p></section>
+  <section class="block"><header><span class="mono lbl">What happens during a typical visit</span></header>
+    <ol class="trail">${visit.map((v,k)=>`<li><span class="n">${k+1}</span><div><h3>${v[0]} <span class="ko" style="color:var(--leaf);font-size:.9rem;margin-left:4px">${v[1]}</span> ${rom(v[1])}</h3><p>${v[2]}</p></div></li>`).join('')}</ol>
+    <p class="small">The exact process can differ between providers.</p></section>
+  <section class="block"><header><span class="mono lbl">Before you leave</span></header>
+    <p style="margin:0 0 10px;color:var(--muted)">Make sure you understand, if relevant:</p>
+    <ul class="checks">${leave.map(n=>{const k=idx++;return `<li><label><input type="checkbox" id="chk-${r}-${k}" data-i="${k}" ${done.includes(k)?'checked':''}><span>${n}</span></label></li>`}).join('')}</ul>
+    <div class="links" style="margin-top:14px">${linkItem({label:'Get language support', to:'health.language'})}</div></section>
+  <section class="block"><header><span class="mono lbl">Where to go</span></header><div class="links">
+    ${linkItem({label:'What if I can’t speak Korean at the hospital?', to:'health.language', primary:true})}${linkItem({label:'Understand health insurance', to:'health.insurance'})}${linkItem({label:'Find healthcare support', to:'health.support'})}</div></section>
+  <section class="block"><header><span class="mono lbl">Tips &amp; warnings</span></header><div class="tips">
+    <div class="tip">${I.info}<div><b>Keep prescriptions, receipts and medical documents.</b><p>You may need them again.</p></div></div>
+    <div class="tip warn">${I.warn}<div><b>If you don’t understand an important instruction, ask before leaving.</b></div></div></div></section>
+  ${nextPrev(r)}${feedback(r)}</div>${aside(r,p)}</div></div>`;
+};
+
+R.find = (r,p) => `<div class="wrap c-housing">${hero(r,{...p,h1:p.q,lede:'Understand Korea’s three housing options, search for homes, and get professional help when you need it.'})}
+  <section class="block"><header><span class="mono lbl">Step 1 · Choose a housing type</span></header>
+    <div class="choose">${['jeonse','wolse','buying'].map(t=>{const q=P['housing.find.'+t];return `<a class="opt c-housing" href="#housing.find.${t}"><span class="ko" style="color:var(--sea)">${q.ko}</span><h3 style="font:700 1.25rem var(--f-display)">${q.en}</h3><p>${q.sub}</p><span class="go">Understand ${q.en} ${I.arrow}</span></a>`}).join('')}</div>
+    <details class="dept" style="margin-top:16px"><summary>Compare the three side by side</summary>
+      <div class="tablewrap" style="margin-top:12px;background:var(--surface)"><table><thead><tr><th></th><th>Jeonse 전세</th><th>Wolse 월세</th><th>Buying 매매</th></tr></thead><tbody>
+      <tr><th>Upfront</th><td>Very large deposit</td><td>Smaller deposit</td><td>Full purchase price</td></tr>
+      <tr><th>Every month</th><td>Little or no rent, plus fees</td><td>Rent, plus fees</td><td>No rent; ownership costs</td></tr>
+      <tr><th>At the end</th><td>Deposit returned</td><td>Deposit returned as agreed</td><td>You own the home</td></tr>
+      <tr><th>Main risk</th><td>Getting the deposit back</td><td>True monthly cost</td><td>Legal &amp; financial obligations</td></tr></tbody></table></div></details>
+  </section>
+  <section class="block"><header><span class="mono lbl">Step 2 · Search for a home</span></header>
+    <p style="margin:0 0 14px">Browse current listings in Jeju. Select <b class="ko">제주도</b>, then choose <b class="ko">전세 / 월세 / 매매</b>.</p>
+    <a class="btn btn-primary" href="https://new.land.naver.com" target="_blank" rel="noopener">Search homes in Jeju ${I.out}</a>
+    <p class="small">IEUM doesn’t copy listings or calculate prices. Current information stays on the property platform.</p></section>
+  <section class="block"><header><span class="mono lbl">Step 3 · Get professional help</span></header>
+    <p style="margin:0 0 14px">A licensed real-estate agent (<span class="ko">공인중개사</span>) can help you search and handle the process.</p>
+    <a class="btn btn-ghost" href="https://www.kar.or.kr" target="_blank" rel="noopener">Find a registered agent ${I.out}</a></section>
+  <section class="block"><header><span class="mono lbl">Words you may see</span></header>
+    <div class="minicards">${[['보증금','Deposit'],['전세금','Jeonse deposit'],['월세','Monthly rent'],['관리비','Management fee'],['공과금','Utilities'],['중개보수','Brokerage fee'],['등기부등본','Property register'],['공인중개사','Licensed agent']].map(w=>`<div class="mini"><span class="ko" style="color:var(--ink);font-size:1rem">${w[0]}</span>${rom(w[0])}<p style="margin-top:2px">${w[1]}</p></div>`).join('')}</div></section>
+  ${nextPrev(r)}${feedback(r)}</div>`;
+
+R.htype = (r,p) => {
+  const types=['jeonse','wolse','buying']; const cur=r.split('.').pop(); const i=types.indexOf(cur);
+  return `<div class="wrap c-housing">${hero(r,{...p,h1:`${p.en} <span class="ko">${p.ko}</span>`},
+    `<div class="typetabs">${types.map(t=>`<a href="#housing.find.${t}" ${t===cur?'aria-current="page"':''}>${P['housing.find.'+t].en} <span class="ko">${P['housing.find.'+t].ko}</span></a>`).join('')}</div>`)}
+  <section class="block"><header><span class="mono lbl">How it works</span></header>
+    <ol class="flow" style="padding:0;margin:0 0 18px">${p.flow.map((f,k)=>`<li><span class="n">${k+1}</span><b>${f[0]}</b>${f[1]?`<span${/[가-힣]/.test(f[1])?' class="ko"':''}>${f[1]}</span>`:''}</li>`).join('')}</ol>
+    <p style="margin:0;color:var(--muted)">${p.flowNote}</p></section>
+  <section class="block"><header><span class="mono lbl">What will I pay?</span></header>
+    <div class="costs">${p.costs.map(c=>`<div class="cost"><span class="ko">${c[0]}</span>${rom(c[0])}<em>${c[1]}</em><p>${c[2]}</p></div>`).join('')}</div></section>
+  <section class="block"><header><span class="mono lbl">What to check</span></header>
+    <ul class="know">${p.know.map(k=>`<li>${I.warn}<div><b>${k[0]}</b><p>${k[1]}</p></div></li>`).join('')}</ul>
+    <div class="key"><b>${p.key[0]}</b><p>${p.key[1]}</p></div>
+    ${p.more?`<div style="margin-top:16px">${linkItem(p.more)}</div>`:''}</section>
+  <section class="block"><header><span class="mono lbl">Next step</span></header><div class="links">
+    <a class="lnk primary" href="https://new.land.naver.com" target="_blank" rel="noopener"><span class="t">Search ${p.en} homes in Jeju</span>${I.out}</a>
+    ${linkItem({label:'Understand your rental contract', to:'housing.contract'})}</div></section>
+  <div class="nextprev">${i>0?`<a href="#housing.find.${types[i-1]}"><small>← Previous</small><b>${P['housing.find.'+types[i-1]].en}</b></a>`:''}${i<2?`<a class="nx" href="#housing.find.${types[i+1]}"><small>Next →</small><b>${P['housing.find.'+types[i+1]].en}</b></a>`:''}</div>
+  ${feedback(r)}</div>`;
+};
+
+R.insurance = (r,p) => `<div class="wrap c-health">${hero(r,{...p,h1:p.title,lede:'Your coverage can depend on your job, residence, family situation and other eligibility rules.'},
+  `<div class="term"><span class="ko">국민건강보험</span><span>National Health Insurance, run by NHIS</span></div>`)}
+  <section class="block"><header><span class="mono lbl">Which sounds most like you?</span></header>
+    <div class="choose">${[['workplace','직장가입자 — Employee-insured','If you work at a workplace covered by National Health Insurance, you may be enrolled through your employment.'],['individual','지역가입자 — Self-employed insured','Some foreign residents who are not covered through a workplace or as a dependent may be insured directly through NHIS.'],['dependent','피부양자 — Dependent','Some family members of an employee-insured person may qualify as dependents if they meet NHIS requirements.']].map(([k,ko,d])=>`<a class="opt c-health" href="#health.insurance.${k}"><span class="ko">${ko}</span><h3 style="font:700 1.15rem var(--f-display)">${P['health.insurance.'+k].title}</h3><p>${d}</p><span class="go">Read guide ${I.arrow}</span></a>`).join('')}</div>
+    <a class="opt c-health" href="${NHIS_F.href}" target="_blank" rel="noopener" style="margin-top:12px;flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:220px"><h3 style="font:700 1.15rem var(--f-display)">I don’t know what type of insurance I have</h3><p>Not sure whether you are insured, or which type applies to you? Check your individual status with NHIS.</p></div><span class="go" style="padding:0;margin:0;align-self:center;white-space:nowrap">Check with NHIS ${I.out}</span></a><p class="small">Official government source</p></section>
+  <section class="block"><header><span class="mono lbl">At a glance</span></header>
+    <div class="tablewrap"><table><thead><tr><th></th><th>Workplace</th><th>Individual</th><th>Dependent</th></tr></thead><tbody>
+      <tr><th>Korean term</th><td class="ko" style="color:var(--leaf)">직장가입자</td><td class="ko" style="color:var(--leaf)">지역가입자</td><td class="ko" style="color:var(--leaf)">피부양자</td></tr>
+      <tr><th>Covered through</th><td>Your employment</td><td>NHIS directly</td><td>An employee-insured family member</td></tr>
+      <tr><th>Depends on</th><td>Employment and workplace requirements</td><td>Residence and eligibility requirements</td><td>Relationship, income, property and more</td></tr></tbody></table></div>
+    <p class="small">This table helps you understand the system. It does not determine your individual eligibility.</p><div style="margin-top:12px">${linkItem({...NHIS_F,label:'Check my situation with NHIS'})}</div></section>
+  <section class="block"><header><span class="mono lbl">What it means at the hospital</span></header>
+    <div class="steps-h"><div><small>1</small>You get medical care</div><div><small>2</small>Is the service covered?</div><div><small>3</small>NHIS may pay an eligible portion</div><div><small>4</small>You may still pay a patient share</div></div>
+    <div class="tip warn">${I.warn}<div><b>Health insurance doesn’t mean all care is free.</b><p>You may pay part of the cost, and some services aren’t covered.</p></div></div>
+    <p class="small">Some services may not be covered.</p><div class="links" style="margin-top:14px">${linkItem({label:'How much will medical care cost?', to:'health.cost'})}${linkItem(NHIS_B)}</div></section>
+  <section class="block"><header><span class="mono lbl">Private health insurance</span> <span class="ko" style="color:var(--leaf);font-size:.88rem">민간 의료보험</span></header>
+    <p style="margin:0 0 12px;color:var(--muted)">Private, travel or student insurance is separate from National Health Insurance. If you have it, check:</p>
+    <ul class="checks">${['What treatment the policy covers','Which providers you can use','Whether you pay first and claim later','What documents a claim needs','Coverage limits or exclusions'].map(x=>`<li style="padding:6px 10px">• ${x}</li>`).join('')}</ul>
+    <p style="margin:12px 0 0;color:var(--muted)">If you want to use private insurance for planned care, check your policy terms or contact your insurer.</p><div class="tip warn" style="margin-top:12px">${I.warn}<div><b>IEUM cannot determine whether a treatment will be covered by your private insurance.</b></div></div></section>
+  <section class="block"><header><span class="mono lbl">I don’t think I have health insurance</span></header>
+    <p style="margin:0 0 12px;color:var(--muted)">If you’re not sure whether you’re covered, check your status with NHIS before assuming you have no insurance.</p><div style="margin-bottom:16px">${linkItem({...NHIS_F,label:'Check my status with NHIS'})}</div><h3 style="margin-bottom:4px">Do you need medical care now?</h3><p style="margin:0 0 12px;color:var(--muted)">Do not use this guide to decide whether to delay necessary medical care.</p>
+    <div class="links">${linkItem({label:'Where should I go for medical care?', to:'health.care', primary:true})}${linkItem({label:'Find healthcare support', to:'health.support'})}</div></section>
+  ${nextPrev(r)}${feedback(r)}</div>`;
+
+R.services = (r,p) => {
+  const pre=PRESET||{}; PRESET=null;
+  const topic=pre.topic||'all', need=pre.need||'all';
+  const langs=[...new Set(SVC.flatMap(x=>x.langs))];
+  const locs=[...new Set(SVC.map(x=>x.location).filter(Boolean))];
+  return `<div class="wrap">${hero(r,p)}
+  <div class="topictabs" role="group" aria-label="Topic">${Object.entries(TOPICS).map(([k,v])=>`<button class="chip" data-topic="${k}" aria-pressed="${k===topic}">${v}</button>`).join('')}</div>
+  <div class="filters block" style="padding:18px;margin-bottom:12px">
+    <label for="f-need">What do you need help with?<select id="f-need" data-pre="${need}"></select></label>
+    <label for="f-lang">Language<select id="f-lang"><option value="all">All verified languages</option>${langs.map(k=>`<option value="${k}">${LANGNAMES[k]}</option>`).join('')}</select></label>
+    <label for="f-loc">Location<select id="f-loc"><option value="all">All verified locations</option>${locs.map(k=>`<option>${k}</option>`).join('')}</select></label>
+  </div>
+  <div class="count" id="svc-count"></div><div id="svc-list"></div>
+  <div class="foot-note">In an emergency, call <b>119</b>. For police, call <b>112</b>.</div>
+  ${feedback(r)}</div>`;
+};
+function curTopic(){ return document.querySelector('[data-topic][aria-pressed="true"]')?.dataset.topic||'all'; }
+function fillNeeds(keep){
+  const sel=$('#f-need'); const set=NEEDSETS[curTopic()]||NEEDSETS.all; const want=keep||sel.dataset.pre||sel.value||'all';
+  sel.innerHTML=Object.entries(set).map(([k,v])=>`<option value="${k}" ${k===want?'selected':''}>${v}</option>`).join(''); sel.dataset.pre='';
+}
+const EMPTY={health:{t:'No verified healthcare services listed yet.',d:'Jeju healthcare service details are awaiting verification. In an emergency, call 119.',link:{label:'Check your insurance status with NHIS',href:'https://www.nhis.or.kr/english/wbheaa02900m01.do',official:true}},
+  work:{t:'No verified work or administration services listed yet.',d:'Details are awaiting verification. Danuri Helpline (1577-1366) can give multilingual guidance.'}};
+function drawServices(){
+  if(!$('#f-lang')) return; if(!$('#f-need').options.length) fillNeeds();
+  const l=$('#f-lang').value, n=$('#f-need').value, lo=$('#f-loc').value, tp=curTopic();
+  const list=SVC.filter(s=>(tp==='all'||s.topics.includes(tp))&&(l==='all'||s.langs.includes(l))&&(n==='all'||s.needs.includes(n))&&(lo==='all'||s.location===lo));
+  $('#svc-count').textContent=`${list.length} verified service${list.length===1?'':'s'} · only verified organisations are listed`;
+  const em=(n==='all'&&EMPTY[tp])||(tp==='health'&&EMPTY.health)||{t:'No verified services match these filters yet.',d:'Try “All support types”, or call Danuri Helpline on 1577-1366 for multilingual guidance.'};
+  $('#svc-list').innerHTML = list.length? list.map(s=>`<article class="svc"><header><h3>${s.name}${s.ko?`<small class="rom" style="font-style:normal;font-size:.85rem;margin-top:2px">${s.ko}</small>`:''}</h3><span class="ver">Verified ${s.verifiedOn}</span></header>
+    <dl><div><dt>Can help with</dt><dd>${s.can}</dd></div><div><dt>Languages</dt><dd>${s.langText}</dd></div>
+    <div><dt>Who can use it</dt><dd>${s.who}</dd></div><div><dt>Location</dt><dd>${s.location}${s.address?`<br><span class="ko" style="user-select:all">${s.address}</span><br><small style="color:var(--muted)">${s.addrEn}</small>`:''}</dd></div>
+    <div><dt>Hours</dt><dd>${s.hours}</dd></div><div><dt>Contact</dt><dd><span class="num">${s.num}</span>${s.alt?`<br><small style="color:var(--muted)">Also: ${s.alt}</small>`:''}</dd></div></dl>${s.how?`<div class="how"><b>How to use it</b> ${s.how}</div>`:''}
+    <div class="acts"><a class="btn btn-primary" href="tel:${s.num.replace(/-/g,'')}">${I.phone} Call ${s.num}</a>${s.address?`<a class="btn btn-ghost" href="https://map.naver.com/p/search/${encodeURIComponent(s.address)}" target="_blank" rel="noopener">Directions ${I.out}</a>`:''}${s.site?`<a class="btn btn-ghost" href="${s.site}" target="_blank" rel="noopener">Website ${I.out}</a>`:''}</div></article>`).join('')
+    : `<div class="placeholder"><h3>${em.t}</h3><p>${em.d}</p>${em.link?`<div style="max-width:420px">${linkItem(em.link)}</div>`:''}</div>`;
+}
+
+R.notfound = (r,p) => `<div class="wrap"><div class="hero" style="padding-top:56px"><div class="kicker mono">Error 404</div><h1>We can’t find that page.</h1>
+  <p class="lede">The address may be wrong, or the page may have moved. Start again from one of these:</p></div>
+  <div class="situations" style="max-width:760px">${[['housing',I.house,'Housing','Finding a home, contracts, deposits and landlords'],['health',I.heart,'Healthcare','Medical care, insurance, costs and language support'],['work',I.case,'Work & admin','Wages, labour issues and paperwork'],['support',I.phone,'Find support','Phone numbers and offices of verified organisations']].map(([k,ic,t,d])=>`<a class="sit" href="#${k}"><span class="flag">${ic}</span><div><h3>${t}</h3><p>${d}</p></div><span class="meta">→</span></a>`).join('')}</div>
+  <p style="margin:28px 0 40px"><a class="btn btn-primary" href="#home">Go to the home page ${I.arrow}</a></p></div>`;
+
+R.soon = (r,p) => `<div class="wrap c-${p.cat}">${hero(r,{...p,h1:p.title,lede:p.sub})}
+  <div class="placeholder"><span class="soon">Guide in progress</span><h2 style="margin-top:12px">This guide is being written</h2>
+  <p>In the meantime, a verified organisation can help you in your language.</p>
+  <a class="btn btn-primary" href="#support">Find support ${I.arrow}</a></div>
+  ${nextPrev(r)}<div style="height:24px"></div></div>`;
+
+R.about = (r,p) => `<div class="wrap">${crumbs(r)}
+  <div class="hero"><div class="kicker mono">About Project IEUM</div><h1>Connecting people to the right support.</h1>
+  <p class="lede"><span class="ko">이음</span> (IEUM) means connection. We make essential information easier to find, understand and act on in Jeju.</p></div>
+  <div class="split"><div><h2>The problem</h2><p>Information about housing, healthcare and administration exists, but it is spread across many institutions and hard to navigate.</p></div>
+  <div><h2>Our approach</h2><p>IEUM gathers that information and turns it into simple, situation-based paths that end at verified support in Jeju.</p></div></div>
+  <section class="section"><h2 style="margin-bottom:16px">What makes IEUM different</h2><div class="principles">
+    ${[['Jeju-specific','Local services, local numbers, local context.'],['Multilingual','Korean, English, Chinese and Vietnamese.'],['Situation-based','Start from what is happening to you, not from a government department.'],['Verified','Every service is checked and dated.'],['Connected to real help','Every guide ends with a person or service you can contact.']].map(x=>`<div><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div></section>
+  <section class="section"><div class="band"><div><h2>Connecting information. Connecting people. Connecting Jeju.</h2></div><a class="btn btn-primary" href="#support">Find support ${I.arrow}</a></div></section></div>`;
+
+
+/* ---------- header + footer ---------- */
+const NAVS=[['housing','Housing'],['health','Healthcare'],['work','Work & admin']];
+const chev='<svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function buildChrome(){
+  $('#menu').innerHTML = `<div class="mi" data-k="about"><a href="#about">About IEUM</a></div>` + NAVS.map(([k,l])=>`<div class="mi" data-k="${k}"><button aria-expanded="false" aria-haspopup="true">${l}${chev}</button>
+    <div class="drop">${P[k].items.map(i=>`<a href="#${i}"><b>${titleOf(i)}</b>${P[i].sub?`<small>${P[i].sub}</small>`:''}</a>`).join('')}<a class="all" href="#${k}">All ${l.toLowerCase()} situations →</a></div></div>`).join('')
+    + `<div class="mi" data-k="support"><a href="#support">Find support</a></div>`;
+  const arrow='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const check='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
+  $('#mnav').innerHTML = `<div class="dhead">
+      <a class="brand" href="#home"><img src="${document.querySelector('.brand img').getAttribute('src')}" alt="Project IEUM home" width="46" height="35"><div><b>Project IEUM</b></div></a>
+      <button class="pclose" data-closemenu aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="dlist">
+      <div class="dsec dtop"><span class="mono">Language</span><div class="dseg" role="group" aria-label="Language">${[['ko','한국어'],['en','EN'],['zh','中文'],['vi','Tiếng Việt']].map(([k,v])=>`<button data-lang="${k}" aria-pressed="false">${v}</button>`).join('')}</div></div>
+      <nav aria-label="Mobile">${[['home','Home'],['housing','Housing'],['health','Healthcare'],['work','Work & admin'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}" data-k="${k}">${l}${arrow}</a>`).join('')}</nav>
+    </div>`;
+  $('#fcols').innerHTML = `<h5>Explore</h5><nav class="flinks" aria-label="Footer">${[['housing','All housing situations'],['health','All healthcare situations'],['work','All work & admin situations'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}">${l} <span aria-hidden="true">→</span></a>`).join('')}</nav>`;
+}
+function closeMenus(){ document.querySelectorAll('.mi[data-open]').forEach(m=>{m.removeAttribute('data-open');m.querySelector('button')?.setAttribute('aria-expanded','false')});
+  closeDrawer(); }
+function openDrawer(){ const r=curRoute(); const m=$('#mnav'); m.hidden=false; document.documentElement.classList.add('locked'); $('#burger').setAttribute('aria-expanded','true');
+  m.querySelectorAll('.dlist nav a').forEach(a=>a.toggleAttribute('aria-current', r===a.dataset.k || (r!=='home'&&(r.split('.')[0]===a.dataset.k || catOf(r)===a.dataset.k))));
+  m.querySelector('.pclose').focus(); }
+function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; m.hidden=true; document.documentElement.classList.remove('locked'); $('#burger').setAttribute('aria-expanded','false'); if(was&&document.activeElement&&m.contains(document.activeElement)) $('#burger').focus(); }
+
+/* old per-topic support pages now open the one Find support page, pre-filtered */
+const ALIAS={'housing.support':{topic:'housing'},'health.support':{topic:'health'},'support.interpretation':{need:'interpretation'},'support.care':{topic:'health',need:'care'},
+  'support.cost':{topic:'health',need:'cost'},'support.legal':{topic:'housing',need:'legal'},'support.welfare':{topic:'housing',need:'welfare'},'housing.contract.help':{topic:'housing',need:'contract'}};
+let PRESET=null;
+/* ---------- router: clean paths on the real site, # fallback in previews ---------- */
+const PATHMODE=!!document.querySelector('meta[name="ieum-mode"][content="path"]');
+const BASE=PATHMODE?new URL(document.baseURI).pathname:'';
+try{ if(PATHMODE) localStorage.setItem('ieum-base',BASE); }catch(e){}
+function href(r){ if(!PATHMODE) return '#'+r; return r==='home'?BASE:BASE+r.split('.').join('/')+'/'; }
+function curRoute(){
+  if(!PATHMODE) return (location.hash||'#home').slice(1)||'home';
+  let p=decodeURIComponent(location.pathname);
+  if(p.startsWith(BASE)) p=p.slice(BASE.length); else p=p.replace(/^\//,'');
+  p=p.replace(/index\.html$/,'').replace(/^\/+|\/+$/g,'');
+  return p?p.split('/').join('.'):'home';
+}
+function go(r,replace){ if(PATHMODE){ history[replace?'replaceState':'pushState'](null,'',href(r)); render(); scrollTo(0,0);} else { replace?location.replace('#'+r):(location.hash=r); } }
+function fixLinks(root){ if(!PATHMODE) return; root.querySelectorAll('a[href^="#"]').forEach(a=>{const r=a.getAttribute('href').slice(1); if(P[r]||ALIAS[r]) a.setAttribute('href',href(r));}); }
+if(PATHMODE && location.hash.length>1 && (P[location.hash.slice(1)]||ALIAS[location.hash.slice(1)])) history.replaceState(null,'',href(location.hash.slice(1)));
+/* ---------- router ---------- */
+const state={lang: store.get('lang')||'en'};
+function render(){
+  let r=curRoute();
+  if(ALIAS[r]){PRESET=ALIAS[r]; go('support',true); return;}
+  if(!P[r]) r=PATHMODE?'notfound':'home';
+  const p=P[r];
+  $('#app').innerHTML=`<div class="fade">${R[p.type](r,p)}</div>`;
+  $('#sos').innerHTML = catOf(r)==='health' ? `<div class="sos"><div class="wrap"><strong>Need urgent medical help?</strong><span>If you think you need urgent medical help, call 119.</span><a href="tel:119">${I.phone} Call 119</a></div></div>` : p.urgent ? `<div class="sos"><div class="wrap"><strong>In immediate danger?</strong><span>Call police on 112, or 119 for emergency or medical help.</span><a href="tel:112">${I.phone} Call 112</a></div></div>`:'';
+  document.querySelectorAll('.mi').forEach(m=>m.toggleAttribute('data-on', (r!=='home'&&(catOf(r)===m.dataset.k||r.split('.')[0]===m.dataset.k))));
+  closeMenus();
+  document.title = r==='home'?'Project IEUM':`${p.title} · Project IEUM`;
+  if(p.type==='services') drawServices();
+  fixLinks(document);
+  syncLang();
+}
+function syncLang(){
+  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
+  const lab={ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[state.lang]; const lc=$('#langcur'); if(lc) lc.textContent={ko:'KO',en:'EN',zh:'中文',vi:'VI'}[state.lang]; if(lc) lc.parentElement.setAttribute('aria-label','Language: '+lab); document.querySelectorAll('.dlcur').forEach(x=>x.textContent=lab);
+  const msg={ko:'한국어 번역을 준비하고 있습니다. 지금은 영어로 표시됩니다.',zh:'中文翻译正在准备中，目前以英文显示。',vi:'Bản tiếng Việt đang được chuẩn bị. Hiện đang hiển thị tiếng Anh.'}[state.lang];
+  $('#langnote').hidden=!msg; if(msg) $('#langnotetext').textContent=msg;
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('#burger')){ $('#mnav').hidden?openDrawer():closeDrawer(); return;}
+  if(e.target.closest('[data-closemenu]')){closeDrawer(); return;}
+  if(e.target.closest('[data-dlang]')){const m=$('#dlangmenu'); m.hidden=!m.hidden; e.target.closest('[data-dlang]').setAttribute('aria-expanded',String(!m.hidden)); return;}
+  const mb=e.target.closest('.mi>button'); if(mb){const mi=mb.parentElement; const open=!mi.hasAttribute('data-open'); closeMenus(); if(open){mi.setAttribute('data-open',''); mb.setAttribute('aria-expanded','true');} return;}
+  if(!e.target.closest('.mi')) document.querySelectorAll('.mi[data-open]').forEach(m=>m.removeAttribute('data-open'));
+  if(e.target.closest('#langbtn')){const m=$('#langmenu'); m.hidden=!m.hidden; $('#langbtn').setAttribute('aria-expanded',String(!m.hidden)); return;}
+  const lb=e.target.closest('[data-lang]'); if(lb){state.lang=lb.dataset.lang; store.set('lang',state.lang); syncLang(); $('#langmenu').hidden=true; $('#langbtn').setAttribute('aria-expanded','false'); return;}
+  if(!e.target.closest('#langdd')){$('#langmenu').hidden=true; $('#langbtn').setAttribute('aria-expanded','false');}
+  const sh=e.target.closest('[data-show]'); if(sh){const ph=P[sh.dataset.r].steps[sh.dataset.s].phrases[sh.dataset.show];
+    const d=document.createElement('div'); d.className='full'; d.setAttribute('role','dialog'); d.setAttribute('aria-label','Phrase for medical staff');
+    d.innerHTML=`<button class="btn btn-ghost" data-close>Close</button><p class="kr">${ph[0].replace('\n','<br>')}</p><p class="en">${ph[1].replace('\n','<br>')}</p>`;
+    document.body.appendChild(d); d.querySelector('button').focus(); return;}
+  if(e.target.closest('[data-close]')){e.target.closest('.full').remove(); return;}
+  const tb=e.target.closest('[data-topic]'); if(tb){document.querySelectorAll('[data-topic]').forEach(b=>b.setAttribute('aria-pressed',String(b===tb))); fillNeeds('all'); drawServices(); return;}
+  const cp=e.target.closest('[data-copy]'); if(cp){const t=MSGS[cp.dataset.r][cp.dataset.copy][0];
+    const done=()=>{cp.textContent='Copied ✓'; setTimeout(()=>cp.textContent='Copy Korean text',1800)};
+    try{navigator.clipboard.writeText(t).then(done,()=>selectEl($('#msg-'+cp.dataset.copy)))}catch(_){selectEl($('#msg-'+cp.dataset.copy))} return;}
+  if(e.target.closest('[data-logadd]')){const rows=readLog(); rows.push({d:'',w:'',e:'',t:''}); store.set('log:landlord',rows); render(); return;}
+  if(e.target.closest('[data-logcopy]')){const txt=readLog().filter(x=>x.d||x.w).map(x=>`${x.d||'(no date)'} — ${x.w}${x.e?` | Evidence: ${x.e}`:''}${x.t?` | Told: ${x.t}`:''}`).join('\n');
+    const m=$('#logmsg'); try{navigator.clipboard.writeText(txt).then(()=>m.textContent='Copied. Paste it into a message or document.',()=>m.textContent=txt)}catch(_){m.textContent=txt} return;}
+  const fb=e.target.closest('[data-fb]'); if(fb){const box=fb.closest('.feedback');
+    box.innerHTML = fb.dataset.fb==='yes' ? `<b>Thanks — glad it helped.</b>` : `<b>Thanks for telling us.</b><p class="msg">We’ll use this to improve the guide. If you still need help now, <a href="#support">talk to a support organisation</a>.</p>`;}
+});
+document.addEventListener('change',e=>{
+  if(e.target.matches('.checks input')){const r=curRoute();
+    const done=[...document.querySelectorAll('.checks input')].filter(x=>x.checked).map(x=>+x.dataset.i);
+    store.set('chk:'+r,done); const pr=$('#prog'); if(pr) pr.textContent=`${done.length}/${document.querySelectorAll('.checks input').length} ready`;}
+  if(e.target.matches('#f-lang,#f-need,#f-loc')) drawServices();
+});
+function selectEl(el){const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r);}
+function readLog(){return [...document.querySelectorAll('table.log tbody tr')].map((tr,i)=>({d:$('#log-d-'+i).value,w:$('#log-w-'+i).value,e:$('#log-e-'+i).value,t:$('#log-t-'+i).value}));}
+document.addEventListener('input',e=>{if(e.target.closest('table.log')) store.set('log:landlord',readLog());});
+addEventListener("keydown",e=>{if(e.key==="Escape"){document.querySelector(".full")?.remove();closeMenus();}});
+addEventListener("hashchange",()=>{ if(PATHMODE){ const h=location.hash.slice(1); if(P[h]||ALIAS[h]) go(h,true); return; } render(); scrollTo(0,0); $('#app').focus({preventScroll:true});});
+addEventListener("popstate",()=>{ if(PATHMODE){ render(); $('#app').focus({preventScroll:true}); } });
+document.addEventListener('click',e=>{
+  if(!PATHMODE||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  const a=e.target.closest('a[href]'); if(!a||a.target||a.hasAttribute('download')) return;
+  const raw=a.getAttribute('href'); if(raw.startsWith('#')){ const h=raw.slice(1); if(P[h]||ALIAS[h]){ e.preventDefault(); go(h); } return; }
+  const u=new URL(a.href,location.href); if(u.origin!==location.origin||!u.pathname.startsWith(BASE)) return;
+  e.preventDefault(); if(u.pathname===location.pathname){ scrollTo(0,0); closeMenus(); return; }
+  history.pushState(null,'',u.pathname); render(); scrollTo(0,0); $('#app').focus({preventScroll:true});
+});
+buildChrome();
+fixLinks(document);
+render();
+</script>
+</body>
+</html>
