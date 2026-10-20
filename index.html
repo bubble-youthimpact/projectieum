@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Project IEUM — simple, verified information and support services for foreign residents in Jeju: housing, healthcare, work and administration.">
+<link rel="icon" type="image/svg+xml" href="assets/logo-illustration.svg">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <meta property="og:title" content="Project IEUM">
 <meta property="og:description" content="Connecting people to a brighter Jeju.">
-<meta property="og:image" content="assets/logo-illustration.png">
+<meta property="og:image" content="assets/logo-mark.png">
 <title>Project IEUM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -36,6 +37,7 @@
   --glow:radial-gradient(600px 420px at 8% -5%, rgb(56 189 248 / .18), transparent 70%), radial-gradient(700px 500px at 100% 30%, rgb(129 140 248 / .10), transparent 70%); color-scheme:dark }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--glow),linear-gradient(180deg,var(--paper),var(--paper2) 60%);background-attachment:fixed;min-height:100vh;color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 a{color:inherit}
@@ -149,7 +151,7 @@ h3{font:600 1.05rem/1.35 var(--f-body);margin:0}
 
 /* guide */
 .guide{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:40px;align-items:start;padding-bottom:20px}
-@media (max-width:900px){.guide{grid-template-columns:1fr}.aside{order:-1}}
+@media (max-width:900px){.guide{grid-template-columns:1fr}}
 .block{background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r);padding:30px;margin-bottom:18px;box-shadow:var(--shadow)}
 @media (max-width:560px){.block{padding:20px}}
 .block>header{display:flex;align-items:center;gap:10px;margin-bottom:18px}
@@ -324,7 +326,7 @@ body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 main#app{flex:1 0 auto;outline:none}
 .bar{display:grid!important;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;min-height:72px}
 .brand{margin-right:0!important}
-.brand img{width:52px;height:auto;display:block}
+.brand img{width:54px;height:auto;display:block}
 .menu{display:flex;justify-content:center;gap:2px}
 .menu>.mi{position:relative}
 .menu>.mi>a,.menu>.mi>button{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:.92rem;padding:9px 14px;border-radius:999px;color:var(--muted);background:none;border:0;cursor:pointer}
@@ -346,21 +348,47 @@ main#app{flex:1 0 auto;outline:none}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
-.mnav{border-top:1px solid var(--line);background:var(--solid);max-height:calc(100dvh - 72px);overflow:auto;padding-block:10px 20px}
-.mnav .grp{padding-block:10px;border-bottom:1px solid var(--line)}
-.mnav .grp:last-child{border-bottom:0}
-.mnav .gh{display:block;font-weight:800;font-size:1.05rem;text-decoration:none;padding:6px 0}
-.mnav .grp a.sub{display:block;padding:7px 0 7px 14px;text-decoration:none;color:var(--muted);font-size:.95rem;border-left:2px solid var(--sea-soft)}
 .langdd{position:relative}
-.langbtn{display:inline-flex;align-items:center;gap:6px;height:42px;padding:0 12px;border-radius:999px;border:1px solid var(--line);background:var(--solid);cursor:pointer;font-weight:600;font-size:.85rem;color:var(--ink)}
+.langbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:42px;height:42px;padding:0;border-radius:50%;border:1px solid var(--line);background:var(--solid);cursor:pointer;font:600 .85rem var(--f-body);color:var(--ink);white-space:nowrap;box-shadow:0 1px 2px rgb(2 60 110 / .06)}
+.langbtn svg{color:var(--ink);width:19px;height:19px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .langbtn:hover{border-color:var(--sea);color:var(--sea)}
-.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:40;display:grid}
-.langmenu button{border:0;background:none;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font-weight:500;font-size:.92rem;display:flex;justify-content:space-between}
+.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:70;display:grid}
+.langmenu button{border:0;background:none;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font:500 .92rem var(--f-body);color:var(--ink);display:flex;justify-content:space-between;gap:12px}
 .langmenu button:hover{background:var(--sea-soft)}
 .langmenu button[aria-pressed="true"]{color:var(--sea);font-weight:700}
 .langmenu button[aria-pressed="true"]::after{content:"✓"}
+.menu>.mi>a,.menu>.mi>button{white-space:nowrap}
+/* mobile menu: standard full-screen list */
+.drawer{position:fixed;inset:0;z-index:60;background:var(--paper2);display:flex;flex-direction:column;animation:fadein .18s ease-out;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.dhead{display:flex;align-items:center;gap:12px;min-height:64px;border-bottom:1px solid var(--line);
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.dhead .brand{margin-right:auto!important}
+.dhead .langbtn,.bar .langbtn{flex:none}
+.langbtn svg{flex:none}
+.dhead .brand img{width:46px}
+.pclose{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--solid);display:grid;place-items:center;cursor:pointer;color:var(--ink);flex:none}
+.dlist{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:12px max(20px,env(safe-area-inset-right,0px)) 32px max(20px,env(safe-area-inset-left,0px))}
+.dlist a{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);text-decoration:none;font:700 1.45rem/1.2 var(--f-display);letter-spacing:-.02em;color:var(--ink)}
+.dlist a svg{color:var(--muted);flex:none}
+.dlist a[aria-current]{color:var(--sea)}
+.dsec{display:flex;flex-direction:column;margin-top:28px}
+.dsec.dtop{margin:6px 0 4px}
+.dsec .mono{font-size:.7rem;color:var(--muted);padding:0 4px 6px}
+.drow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:15px 4px;border:0;border-bottom:1px solid var(--line);background:none;cursor:pointer;text-align:left;font:600 1.05rem var(--f-body);color:var(--ink);text-decoration:none}
+.dlist .drow{font:600 1.05rem var(--f-body);letter-spacing:0}
+.dseg{display:grid;grid-template-columns:1fr .8fr 1fr 1.4fr;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);border:1px solid var(--line)}
+.dseg button{border:0;background:none;border-radius:10px;padding:11px 4px;white-space:nowrap;font:600 .95rem var(--f-body);color:var(--muted);cursor:pointer}
+.dseg button[aria-pressed="true"]{background:var(--solid);color:var(--sea);box-shadow:0 1px 3px rgb(2 60 110 / .15)}
+.drow[aria-pressed="true"]{color:var(--sea)}
+.drow[aria-pressed="true"] .ck{visibility:visible}
+.dnum{font:700 1.15rem var(--f-mono);color:var(--alert)}
+.dlist a[aria-current] svg{color:var(--sea)}
+html.locked,html.locked body{overflow:hidden}
+@keyframes fadein{from{opacity:0}}
 @media (max-width:1000px){.menu{display:none}.burger{display:flex}.bar{grid-template-columns:1fr auto}}
-@media (max-width:480px){.lang button{padding:4px 7px}.brand small{display:none}}
+@media (max-width:480px){.brand small{display:none}.bar{gap:10px}}
 
 /* footer */
 footer.site{border-top:1px solid var(--line);margin-top:48px;background:color-mix(in srgb,var(--solid) 55%,transparent);backdrop-filter:blur(12px);flex-shrink:0}
@@ -402,10 +430,11 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
 .topictabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .fcols{display:block!important}.flinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
 .flinks a{font-size:.95rem!important;color:var(--ink)!important;font-weight:600}.flinks a span{color:var(--sea)}.flinks a:hover{color:var(--sea)!important}
+.guide>div,.block{min-width:0}
 /* hero image */
 .heroimg{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:100%}
 .heroimg .halo{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--solid) 0%,color-mix(in srgb,var(--solid) 70%,transparent) 45%,transparent 72%)}
-.heroimg img{position:relative;width:82%;height:auto;filter:drop-shadow(0 24px 30px rgb(2 60 110 / .18));animation:float 7s ease-in-out infinite}
+.heroimg img{position:relative;width:88%;height:auto;filter:drop-shadow(0 24px 30px rgb(2 60 110 / .18));animation:float 7s ease-in-out infinite}
 @media (max-width:820px){.heroimg{display:none}}
 /* hero scene */
 .scene{position:relative;aspect-ratio:1/1;max-width:100%;border-radius:32px;overflow:hidden;box-shadow:0 30px 60px -30px rgb(2 90 160 / .5);border:1px solid var(--line)}
@@ -437,19 +466,29 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 .fade{animation:fade .25s ease-out}
 @keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* mobile header refinements (kept last so they win) */
+@media (max-width:1000px){.bar{min-height:64px}}
+@media (max-width:480px){
+  .burger{border-radius:12px}
+  .brand img{width:46px}
+  .bar .brand div{display:none}
+  h1{font-size:2rem}
+  .block{padding:20px 18px}
+  .hero{padding-block:16px 26px}
+}
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#home" aria-label="Project IEUM home">
-      <img src="assets/logo-mark.png" alt="" width="52" height="39">
+      <img src="assets/logo-illustration.svg" alt="" width="52" height="39">
       <div><b>Project IEUM</b><small>Jeju support guide</small></div>
     </a>
     <nav class="menu" aria-label="Main" id="menu"></nav>
     <div class="actions">
       <div class="langdd" id="langdd">
-        <button class="langbtn" id="langbtn" aria-expanded="false" aria-haspopup="true" aria-label="Change language"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="langcur">EN</span></button>
+        <button class="langbtn" id="langbtn" aria-expanded="false" aria-haspopup="true" aria-label="Change language"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="langcur" class="sr">EN</span></button>
         <div class="langmenu" id="langmenu" hidden>
           <button data-lang="ko" aria-pressed="false">한국어</button>
           <button data-lang="en" aria-pressed="true">English</button>
@@ -457,17 +496,17 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
           <button data-lang="vi" aria-pressed="false">Tiếng Việt</button>
         </div>
       </div>
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="Open menu" aria-haspopup="dialog"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="mnav" id="mnav" hidden></div>
 </header>
+<div class="drawer" id="mnav" hidden></div>
 <div class="note" id="langnote" hidden><div class="wrap" id="langnotetext"></div></div>
 <div id="sos"></div>
 <main id="app" tabindex="-1"></main>
 <footer class="site"><div class="wrap">
   <div class="fgrid">
-    <div class="fbrand"><img src="assets/logo-mark.png" alt="Project IEUM" width="72" height="54"><b>Project IEUM</b><p>Connecting people to a brighter Jeju.</p></div>
+    <div class="fbrand"><img src="assets/logo-illustration.svg" alt="Project IEUM" width="72" height="54"><b>Project IEUM</b><p>Connecting people to a brighter Jeju.</p></div>
     <div id="fcols" class="fcols"></div>
   </div>
   <div class="fbottom"><span>Connecting information. Connecting people. Connecting Jeju.</span><span class="mono" style="font-size:.7rem">Information last reviewed · Sep 2026</span></div>
@@ -934,7 +973,7 @@ function catCard(c, ico, d, soon){
     <h2>${hub.title}</h2><p>${d}</p>${soon?'':`<ul>${items.map(i=>`<li>${titleOf(i)}</li>`).join('')}</ul>`}<span class="go">Start here ${I.arrow}</span></a>`;
 }
 function sceneHTML(){
-  return `<div class="heroimg" aria-hidden="true"><div class="halo"></div><img src="assets/logo-illustration.png" alt=""></div>`;
+  return `<div class="heroimg" aria-hidden="true"><div class="halo"></div><img src="assets/logo-illustration.svg" alt=""></div>`;
 }
 
 R.hub = (r,p) => `<div class="wrap c-${p.cat}">${hero(r,p)}
@@ -1043,7 +1082,7 @@ R.insurance = (r,p) => `<div class="wrap c-health">${hero(r,{...p,h1:p.title,led
   `<div class="term"><span class="ko">국민건강보험</span><span>National Health Insurance, run by NHIS</span></div>`)}
   <section class="block"><header><span class="mono lbl">Which sounds most like you?</span></header>
     <div class="choose">${[['workplace','직장가입자 — Employee-insured','If you work at a workplace covered by National Health Insurance, you may be enrolled through your employment.'],['individual','지역가입자 — Self-employed insured','Some foreign residents who are not covered through a workplace or as a dependent may be insured directly through NHIS.'],['dependent','피부양자 — Dependent','Some family members of an employee-insured person may qualify as dependents if they meet NHIS requirements.']].map(([k,ko,d])=>`<a class="opt c-health" href="#health.insurance.${k}"><span class="ko">${ko}</span><h3 style="font:700 1.15rem var(--f-display)">${P['health.insurance.'+k].title}</h3><p>${d}</p><span class="go">Read guide ${I.arrow}</span></a>`).join('')}</div>
-    <a class="opt c-health" href="${NHIS_F.href}" target="_blank" rel="noopener" style="margin-top:12px;flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:220px"><h3 style="font:700 1.15rem var(--f-display)">I don’t know what type of insurance I have</h3><p>Not sure whether you are insured, or which type applies to you? Check your individual status with NHIS.</p></div><span class="go" style="padding:0">Check with NHIS ${I.out}</span></a><p class="small">Official government source</p></section>
+    <a class="opt c-health" href="${NHIS_F.href}" target="_blank" rel="noopener" style="margin-top:12px;flex-direction:row;align-items:center;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:220px"><h3 style="font:700 1.15rem var(--f-display)">I don’t know what type of insurance I have</h3><p>Not sure whether you are insured, or which type applies to you? Check your individual status with NHIS.</p></div><span class="go" style="padding:0;margin:0;align-self:center;white-space:nowrap">Check with NHIS ${I.out}</span></a><p class="small">Official government source</p></section>
   <section class="block"><header><span class="mono lbl">At a glance</span></header>
     <div class="tablewrap"><table><thead><tr><th></th><th>Workplace</th><th>Individual</th><th>Dependent</th></tr></thead><tbody>
       <tr><th>Korean term</th><td class="ko" style="color:var(--leaf)">직장가입자</td><td class="ko" style="color:var(--leaf)">지역가입자</td><td class="ko" style="color:var(--leaf)">피부양자</td></tr>
@@ -1123,12 +1162,24 @@ function buildChrome(){
   $('#menu').innerHTML = `<div class="mi" data-k="about"><a href="#about">About IEUM</a></div>` + NAVS.map(([k,l])=>`<div class="mi" data-k="${k}"><button aria-expanded="false" aria-haspopup="true">${l}${chev}</button>
     <div class="drop">${P[k].items.map(i=>`<a href="#${i}"><b>${titleOf(i)}</b>${P[i].sub?`<small>${P[i].sub}</small>`:''}</a>`).join('')}<a class="all" href="#${k}">All ${l.toLowerCase()} situations →</a></div></div>`).join('')
     + `<div class="mi" data-k="support"><a href="#support">Find support</a></div>`;
-  $('#mnav').innerHTML = `<div class="wrap"><div class="grp"><a class="gh" href="#about">About IEUM</a></div>${NAVS.map(([k,l])=>`<div class="grp"><a class="gh" href="#${k}">${l}</a>${P[k].items.map(i=>`<a class="sub" href="#${i}">${titleOf(i)}</a>`).join('')}</div>`).join('')}
-    <div class="grp"><a class="gh" href="#support">Find support</a></div></div>`;
+  const arrow='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const check='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
+  $('#mnav').innerHTML = `<div class="dhead">
+      <a class="brand" href="#home"><img src="${document.querySelector('.brand img').getAttribute('src')}" alt="Project IEUM home" width="46" height="35"><div><b>Project IEUM</b></div></a>
+      <button class="pclose" data-closemenu aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="dlist">
+      <div class="dsec dtop"><span class="mono">Language</span><div class="dseg" role="group" aria-label="Language">${[['ko','한국어'],['en','EN'],['zh','中文'],['vi','Tiếng Việt']].map(([k,v])=>`<button data-lang="${k}" aria-pressed="false">${v}</button>`).join('')}</div></div>
+      <nav aria-label="Mobile">${[['home','Home'],['housing','Housing'],['health','Healthcare'],['work','Work & admin'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}" data-k="${k}">${l}${arrow}</a>`).join('')}</nav>
+    </div>`;
   $('#fcols').innerHTML = `<h5>Explore</h5><nav class="flinks" aria-label="Footer">${[['housing','All housing situations'],['health','All healthcare situations'],['work','All work & admin situations'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}">${l} <span aria-hidden="true">→</span></a>`).join('')}</nav>`;
 }
 function closeMenus(){ document.querySelectorAll('.mi[data-open]').forEach(m=>{m.removeAttribute('data-open');m.querySelector('button')?.setAttribute('aria-expanded','false')});
-  $('#mnav').hidden=true; $('#burger').setAttribute('aria-expanded','false'); }
+  closeDrawer(); }
+function openDrawer(){ const r=(location.hash||'#home').slice(1); const m=$('#mnav'); m.hidden=false; document.documentElement.classList.add('locked'); $('#burger').setAttribute('aria-expanded','true');
+  m.querySelectorAll('.dlist nav a').forEach(a=>a.toggleAttribute('aria-current', r===a.dataset.k || (r!=='home'&&(r.split('.')[0]===a.dataset.k || catOf(r)===a.dataset.k))));
+  m.querySelector('.pclose').focus(); }
+function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; m.hidden=true; document.documentElement.classList.remove('locked'); $('#burger').setAttribute('aria-expanded','false'); if(was&&document.activeElement&&m.contains(document.activeElement)) $('#burger').focus(); }
 
 /* old per-topic support pages now open the one Find support page, pre-filtered */
 const ALIAS={'housing.support':{topic:'housing'},'health.support':{topic:'health'},'support.interpretation':{need:'interpretation'},'support.care':{topic:'health',need:'care'},
@@ -1151,12 +1202,14 @@ function render(){
 }
 function syncLang(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
-  const lc=$('#langcur'); if(lc) lc.textContent={ko:'한국어',en:'EN',zh:'中文',vi:'VI'}[state.lang];
+  const lab={ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[state.lang]; const lc=$('#langcur'); if(lc) lc.textContent=lab; document.querySelectorAll('.dlcur').forEach(x=>x.textContent=lab);
   const msg={ko:'한국어 번역을 준비하고 있습니다. 지금은 영어로 표시됩니다.',zh:'中文翻译正在准备中，目前以英文显示。',vi:'Bản tiếng Việt đang được chuẩn bị. Hiện đang hiển thị tiếng Anh.'}[state.lang];
   $('#langnote').hidden=!msg; if(msg) $('#langnotetext').textContent=msg;
 }
 document.addEventListener('click',e=>{
-  if(e.target.closest('#burger')){const m=$('#mnav'); m.hidden=!m.hidden; $('#burger').setAttribute('aria-expanded',String(!m.hidden)); return;}
+  if(e.target.closest('#burger')){ $('#mnav').hidden?openDrawer():closeDrawer(); return;}
+  if(e.target.closest('[data-closemenu]')){closeDrawer(); return;}
+  if(e.target.closest('[data-dlang]')){const m=$('#dlangmenu'); m.hidden=!m.hidden; e.target.closest('[data-dlang]').setAttribute('aria-expanded',String(!m.hidden)); return;}
   const mb=e.target.closest('.mi>button'); if(mb){const mi=mb.parentElement; const open=!mi.hasAttribute('data-open'); closeMenus(); if(open){mi.setAttribute('data-open',''); mb.setAttribute('aria-expanded','true');} return;}
   if(!e.target.closest('.mi')) document.querySelectorAll('.mi[data-open]').forEach(m=>m.removeAttribute('data-open'));
   if(e.target.closest('#langbtn')){const m=$('#langmenu'); m.hidden=!m.hidden; $('#langbtn').setAttribute('aria-expanded',String(!m.hidden)); return;}
