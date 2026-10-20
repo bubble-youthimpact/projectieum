@@ -40,6 +40,9 @@
 
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+img{max-width:100%}
 body{background:var(--glow),linear-gradient(180deg,var(--paper),var(--paper2) 60%);background-attachment:fixed;min-height:100vh;color:var(--ink);font:16px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 a{color:inherit}
