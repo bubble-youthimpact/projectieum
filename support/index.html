@@ -444,6 +444,72 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
 .fcols{display:block!important}.flinks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px 24px}
 .flinks a{font-size:.95rem!important;color:var(--ink)!important;font-weight:600}.flinks a span{color:var(--sea)}.flinks a:hover{color:var(--sea)!important}
 .guide>div,.block{min-width:0}
+/* ---- tables that stack on mobile ---- */
+.rtable{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--solid)}
+.rtable table{min-width:0;width:100%}
+.rtable th{background:var(--sunk);font-weight:600;font-size:.82rem;text-align:left}
+.rtable td{vertical-align:top}
+.rtable td .ko{color:var(--leaf);font-weight:600}
+.tlink{display:inline-flex;gap:6px;align-items:baseline;color:var(--sea);font-weight:700;text-decoration:none}
+.tlink:hover{text-decoration:underline}
+.htable{margin-top:36px}.htable h2{margin-bottom:12px}.htable .block{padding:0;overflow:hidden}.htable .rtable{border:0;border-radius:0}
+@media (max-width:640px){
+  .rtable{border:0;background:none;overflow:visible}
+  .rtable thead{display:none}
+  .rtable table,.rtable tbody,.rtable tr,.rtable td{display:block;width:100%}
+  .rtable tr{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:10px;background:var(--solid)}
+  .rtable td{border:0;padding:5px 0}
+  .rtable td::before{content:attr(data-label);display:block;font:500 .68rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .htable .block{padding:0;background:none;border:0;box-shadow:none;backdrop-filter:none}
+}
+/* ---- flow chain ---- */
+.chain{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 0;align-items:center}
+.chain li{background:var(--sea-soft);border-radius:999px;padding:8px 14px;font-weight:600;font-size:.9rem;display:flex;align-items:center}
+.chain li{position:relative}
+.chain li:not(:last-child){margin-right:30px}
+.chain li:not(:last-child)::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-52%);color:var(--sea);font-weight:700;line-height:1}
+.chain li.end{background:var(--sea);color:#fff}
+@media (max-width:560px){.chain{flex-direction:column;align-items:stretch;gap:0}.chain li{border-radius:12px;justify-content:center;text-align:center;margin:0!important}
+  .chain li:not(:last-child)::after{display:none}.chain li:not(:last-child){margin-bottom:22px!important;position:relative}
+  .chain li:not(:last-child)::before{content:"↓";position:absolute;bottom:-21px;left:50%;transform:translateX(-50%);color:var(--sea);font-weight:700}}
+/* ---- contract card ---- */
+.contract{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--sea-soft);padding:16px 18px}
+.contract .ch{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.contract .ch .ko{font-size:1.25rem;font-weight:700;color:var(--ink)}
+.contract .ch small.rom{display:inline}
+.contract .ch .mono{font-size:.7rem;color:var(--sea);margin-left:auto}
+.contract p{margin:6px 0 10px;color:var(--muted)}
+ul.ticks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px 16px}
+ul.ticks li{display:flex;gap:8px;align-items:baseline;font-weight:500}
+ul.ticks li::before{content:"✓";color:var(--sea);font-weight:800}
+/* ---- payslip ---- */
+.slip{border:1px solid var(--line);border-radius:14px;background:var(--solid);overflow:hidden;font-size:.9rem;max-width:520px}
+.slip .sh{display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px;background:var(--sunk);border-bottom:1px solid var(--line)}
+.slip .sh b{font-size:1.05rem}.slip .sh span{font:500 .7rem var(--f-mono);text-transform:uppercase;color:var(--muted);letter-spacing:.05em}
+.slip .srw{display:flex;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px dashed var(--line)}
+.slip .srw span:first-child{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0}
+.slip em{font-style:normal;color:var(--muted);font-size:.82rem}
+.slip .v{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);white-space:nowrap}
+.slip .sg{padding:10px 16px 4px;font-weight:700;display:flex;align-items:center;gap:6px}
+.slip .sum{background:var(--sea-soft);font-weight:600}
+.slip .net{background:var(--sea);color:#fff;font-weight:700;border-bottom:0}.slip .net em,.slip .net .v{color:#fff}
+i.cn{font-style:normal;flex:none;width:20px;height:20px;border-radius:50%;background:var(--tan);color:#fff;display:inline-grid;place-items:center;font:700 .7rem var(--f-mono)}
+ol.legend{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+ol.legend li{display:flex;gap:10px;align-items:flex-start;background:var(--solid);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+ol.legend li i.cn{margin-top:2px}
+ol.legend b{display:block;font-weight:600}ol.legend b .ko{color:var(--leaf)}
+ol.legend p{margin:2px 0 0;font-size:.88rem;color:var(--muted)}
+/* ---- official links ---- */
+.lnk.off{background:var(--solid);border-style:solid;border-color:color-mix(in srgb,var(--leaf) 35%,var(--line))}
+.lnk.off small{color:var(--leaf)!important;font-weight:600}
+.gico{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--leaf-soft);color:var(--leaf)}
+.lnk.primary.off{background:linear-gradient(120deg,#0284C7,#38BDF8);border-color:transparent}
+.lnk.primary.off .gico{background:rgb(255 255 255 / .2);color:#fff}.lnk.primary.off small{color:#fff!important;opacity:.9}
+.lnk.pend{opacity:.7;border-style:dashed;cursor:default}
+.key b.lead span{display:block;font-weight:400;color:var(--muted);margin-top:4px}
+.pending{border:1.5px dashed var(--line);border-radius:var(--r);padding:16px 20px;margin-bottom:18px;color:var(--muted)}
+.pending b{color:var(--ink)}.pending p{margin:4px 0 0}
+table.log input[type=time]{min-width:96px}
 /* hero image */
 .heroimg{position:relative;display:grid;place-items:center;aspect-ratio:1/1;max-width:100%}
 .heroimg .halo{position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--solid) 0%,color-mix(in srgb,var(--solid) 70%,transparent) 45%,transparent 72%)}
@@ -531,6 +597,7 @@ table.log{min-width:640px}table.log td{padding:6px}table.log input{width:100%;fo
 
 <script>
 const I = {
+  gov:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10 12 3l10 7z"/></svg>',
   arrow:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
   out:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
   warn:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>',
@@ -703,11 +770,6 @@ health:{type:'hub', cat:'health', title:'Healthcare', kicker:'Healthcare',
   lede:'Verified services for healthcare access, insurance and language support.'},
 
 /* WORK */
-work:{type:'hub', cat:'work', title:'Work & administration', kicker:'Work & administration', h1:'What do you need help with?',
-  lede:'Guides for wages, labour issues and administration are being written.', items:['work.wages','work.labour','work.admin']},
-'work.wages':{type:'soon', cat:'work', title:'I haven’t been paid correctly', sub:'Unpaid or incorrect wages'},
-'work.labour':{type:'soon', cat:'work', title:'I have a problem at work', sub:'Working conditions and labour issues'},
-'work.admin':{type:'soon', cat:'work', title:'I need help with paperwork', sub:'Registration and administrative tasks'},
 
 support:{type:'services', title:'Find support', kicker:'Find support', h1:'Where can I get more support?', lede:'Every verified organisation, phone number and office in one place. Filter by topic, need, language and location. For help in your language, start with Danuri (1577-1366).'},
 about:{type:'about', title:'About IEUM'},
@@ -715,7 +777,7 @@ notfound:{type:'notfound', title:'Page not found'},
 };
 
 const MSGS={"housing.problem.deposit-not-returned": [["안녕하세요. 계약이 [날짜]에 끝났습니다.\n보증금은 언제 돌려받을 수 있을까요? 답변 부탁드립니다.", "Hello. My contract ended on [date].\nWhen can I get my deposit back? Please let me know."]], "housing.problem.unexpected-charge": [["안녕하세요. 이번에 요청하신 [금액]원은 어떤 비용인가요?\n항목별 내역도 보내주실 수 있을까요?", "Hello. What is the [amount] won you asked for?\nCould you also send a breakdown of each item?"]], "housing.problem.payment-difference": [["안녕하세요. 계약서에는 [항목]이 [금액]원으로 되어 있는데,\n이번에는 [금액]원으로 요청하셨습니다. 금액이 달라진 이유를 알려주실 수 있을까요?", "Hello. My contract says [item] is [amount] won,\nbut you asked for [amount] won. Could you explain why it changed?"]], "housing.problem.cannot-pay-rent": [["안녕하세요. 이번 달 월세를 제때 내기 어려울 것 같습니다.\n납부 일정을 상의드릴 수 있을까요?", "Hello. I may not be able to pay this month’s rent on time.\nCould we talk about the payment schedule?"]], "housing.problem.deposit-deduction": [["안녕하세요. 보증금에서 공제된 금액과 각 항목의 이유를 알려주실 수 있을까요?\n관련 영수증이나 사진이 있으면 함께 보내주세요.", "Hello. Could you tell me each amount taken from my deposit and why?\nPlease send any related receipts or photos."]], "housing.dispute.asked-to-leave": [["안녕하세요. 집을 비워 달라고 하신 이유와 정확한 날짜를\n문자나 서면으로 알려주실 수 있을까요?", "Hello. Could you tell me in writing why you want me to move out,\nand the exact date?"]], "housing.dispute.repairs": [["안녕하세요. 집에 [문제]가 있습니다. [날짜]부터 생긴 문제이고 사진을 함께 보내드립니다.\n언제 수리가 가능한지 알려주세요.", "Hello. There is a problem with [issue] in the home. It started on [date]; photos attached.\nPlease let me know when it can be repaired."]], "housing.dispute.privacy": [["안녕하세요. 집에 들어오셔야 할 때는\n미리 연락 주시고 제 동의를 받아 주시면 감사하겠습니다.", "Hello. If you need to enter the home,\nplease contact me in advance and ask for my agreement."]], "housing.dispute.damage": [["안녕하세요. 말씀하신 파손이 정확히 어떤 부분인지,\n제가 무엇을 해야 하는지 알려주실 수 있을까요? 사진이나 견적서가 있으면 보내주세요.", "Hello. Could you tell me exactly what damage you mean\nand what you are asking me to do? Please send any photos or estimates."]]};
-const LOGS=['housing.dispute.repairs','housing.dispute.privacy','housing.dispute.damage','housing.dispute.use-of-home'];
+const LOGS={'housing.dispute.repairs':'landlord','housing.dispute.privacy':'landlord','housing.dispute.damage':'landlord','housing.dispute.use-of-home':'landlord','work.problem.treatment':'work','work.problem.conditions':'work','work.pay.missing-hours':'hours','work.pay.unpaid':'hours'};
 const ROM={"보증금": "bo-jeung-geum", "전세금": "jeon-se-geum", "전세": "jeon-se", "월세": "wol-se", "매매": "mae-mae", "매매가": "mae-mae-ga", "관리비": "gwal-li-bi", "공과금": "gong-gwa-geum", "중개보수": "jung-gae-bo-su", "등기부등본": "deung-gi-bu-deung-bon", "공인중개사": "gong-in-jung-gae-sa", "세금": "se-geum", "등기 관련 비용": "deung-gi gwal-lyeon bi-yong", "소유권 이전": "so-yu-gwon i-jeon", "전세금 반환": "jeon-se-geum ban-hwan", "의원": "ui-won", "병원": "byeong-won", "응급실": "eung-geup-sil", "내과": "nae-gwa", "정형외과": "jeong-hyeong-oe-gwa", "이비인후과": "i-bi-in-hu-gwa", "피부과": "pi-bu-gwa", "안과": "an-gwa", "산부인과": "san-bu-in-gwa", "직장가입자": "jik-jang-ga-ip-ja", "지역가입자": "ji-yeok-ga-ip-ja", "피부양자": "pi-bu-yang-ja", "국민건강보험": "gung-min-geon-gang-bo-heom", "건강보험": "geon-gang-bo-heom", "민간 의료보험": "min-gan ui-ryo-bo-heom", "접수": "jeop-su", "대기": "dae-gi", "진료": "jil-lyo", "검사 · 치료": "geom-sa · chi-ryo", "수납": "su-nap", "처방전": "cheo-bang-jeon", "약국": "yak-guk", "제주도": "je-ju-do"};
 const rom=k=>ROM[k]?`<small class="rom">${ROM[k]}</small>`:'';
 const SHORT={"housing.contract.payments": "List every payment in your contract — deposit, rent, fees, utilities — and check which ones are separate.", "housing.contract.period": "Find the start and end dates, then check the rules for renewing or leaving early.", "housing.contract.deposit": "Find the deposit amount and return conditions, and keep proof of what you paid.", "housing.contract.conditions": "Find the exact sentence, work out what it’s about, and get help before agreeing to it.", "housing.problem.deposit-not-returned": "Check your contract and payment proof, ask the landlord in writing, then contact housing support.", "housing.problem.unexpected-charge": "Ask what the charge is for and for a breakdown. Check your contract before paying.", "housing.problem.payment-difference": "Compare the new amount with your contract, ask why it changed, and don’t sign anything unclear.", "housing.problem.cannot-pay-rent": "Check the amount and due date, tell your landlord early, and ask a support service for help.", "housing.problem.deposit-deduction": "Ask for each deduction and its reason, compare with your photos and records, then get support.", "housing.dispute.asked-to-leave": "Keep the notice, check your contract dates, and get advice before you move out.", "housing.dispute.repairs": "Photograph the problem, report it in writing, keep the replies, and get support if it isn’t fixed.", "housing.dispute.privacy": "Write down each time it happens, keep messages, and get support if it continues.", "housing.dispute.damage": "Ask exactly what damage and what they want, compare with your photos, and get support if you disagree.", "housing.dispute.use-of-home": "Keep a simple record of what happens and get support if it continues.", "housing.dispute.safety": "In danger now? Call 112. You don’t need any documents to get help.", "health.care": "Emergency? Call 119. Otherwise, start at a local clinic (의원) for most common problems.", "health.insurance.workplace": "Check your payslip for 건강보험, ask your workplace, and confirm with NHIS.", "health.insurance.individual": "Look for NHIS notices or bills, and confirm your status with NHIS.", "health.insurance.dependent": "Being family isn’t enough. Check NHIS requirements and confirm your registration.", "health.cost": "Know your insurance status, ask about costs before planned care, and keep every receipt.", "health.language": "Ask about interpretation, prepare your key information, and show a phrase card to staff.", "health.prepare": "Check the provider, bring your ID, insurance and medicine list, and ask questions before you leave."};
@@ -856,11 +918,302 @@ housing:{...P.housing, items:['housing.find','housing.contract','housing.problem
 });
 
 /* Services directory — ONLY verified organisations (per content rules: never invent organisations). Add more as they are verified. */
+
+/* ===== Work & administration (content spec, Oct 2026) ===== */
+const HIKOREA={label:'Check with Hi Korea', href:'https://www.hikorea.go.kr', official:true};
+const WORK24={label:'Search jobs on Work24 (고용24)', href:'https://www.work24.go.kr', official:true};
+const MOEL={label:'Ministry of Employment and Labor', href:'https://www.moel.go.kr', official:true};
+const COMWEL={label:'Korea Workers’ Compensation & Welfare Service', href:'https://www.comwel.or.kr', official:true};
+const KOSHA={label:'Korea Occupational Safety & Health Agency', href:'https://www.kosha.or.kr', official:true};
+const LAB={label:'Contact labour support', to:'support.labour'};
+const MIG={label:'Find migrant worker support', to:'support.migrant'};
+const LANGS_={label:'Get language support', to:'support.interpretation'};
+const IMM={label:'Find immigration support', to:'support.immigration'};
+const C1350={call:'1350', label:'Ministry of Employment and Labor helpline'};
+const C1345={call:'1345', label:'Immigration Contact Center (20 languages)'};
+const REQ='Requirements may differ depending on your situation. Tick items off as you gather them — your list is saved on this device.';
+const NOT_ALL='You don’t need every document before asking for help. <span>A support organisation can help you work out what will be useful.</span>';
+
+Object.assign(P,{
+work:{type:'hub', cat:'work', title:'Work & administration', kicker:'Choose your situation', h1:'Work & administration',
+  lede:'Start with the question that sounds most like your situation. You can change your choice at any time.',
+  items:['work.find-job','work.pay','work.problem','work.administration'],
+  tables:[{title:'Not sure where to start?', head:['If this sounds like you','Start here'], rows:[
+    ['“I am looking for work.”',{to:'work.find-job',label:'How can I find a job?'}],
+    ['“My employer hasn’t paid me.”',{to:'work.pay',label:'I haven’t been paid correctly'}],
+    ['“Something is wrong at my workplace.”',{to:'work.problem',label:'I have a problem at work'}],
+    ['“I don’t understand a work or residence procedure.”',{to:'work.administration',label:'Work & residence administration'}]]}]},
+
+'work.find-job':{type:'guide', cat:'work', title:'How can I find a job?', sub:'Find trusted ways to look for work and know what to check before accepting a job.',
+  lede:'Use trusted job-search services and check important information before you start working.',
+  steps:[
+    {t:'Check whether you can work', d:'Your right to work can depend on your residence status and conditions.', link:{label:'How do I check whether I can work in Korea?', to:'work.administration.can-i-work'}},
+    {t:'Use trusted job-search services', d:'Look for jobs through official employment services or verified organisations.', link:WORK24},
+    {t:'Check the job before accepting it', table:{head:['Check','What to look for'], rows:[
+      ['Employer','Who are you working for?'],['Type of work','What work will you actually do?'],['Workplace','Where will you work?'],
+      ['Working hours','When do you start and finish?'],['Wage','How much will you be paid?'],['Payment date','When will you receive your wage?'],
+      ['Days off','When are your rest days?'],['Housing / meals','Are they provided? Is money taken from your pay for them?'],
+      ['Employment contract','Are the important conditions written in your contract?']]}},
+    {t:'Check your employment contract', contract:{ko:'근로계약서', en:'Employment contract', d:'Check that important working conditions are written clearly.', items:['Wage','Working hours','Payment date','Type of work','Workplace','Days off','Other important working conditions']}},
+    {t:'Keep your own copy', d:'Keep a copy of your contract and important work documents.'}],
+  needs:['Identification','Information about your residence or work status','Employment contract, once provided','Employer contact information','Bank account details, if needed for wage payment','Other documents requested by the employment service'],
+  needsNote:REQ,
+  where:[{...WORK24,label:'Find official job-search services',primary:true},{label:'Check whether I can work', to:'work.administration.can-i-work'},MIG],
+  tips:[{w:1,t:'Know the wage, hours, payment date and type of work before you start.'},{t:'Keep your own copy of your employment contract.'},
+    {w:1,t:'Be careful if someone asks you to pay money just to get a job.',d:'Ask exactly what the money is for before paying anything.'},
+    {t:'Not sure your residence status allows this work? Check official information first.',to:'work.administration.can-i-work'}]},
+
+/* ---- Wages ---- */
+'work.pay':{type:'hub', cat:'work', title:'Wages', kicker:'Work & administration · Wages', q:'What can I do if I have not been paid correctly?',
+  sub:'Late, missing, lower than expected, or hard-to-understand wages', h1:'What can I do if I have not been paid correctly?',
+  lede:'Choose the situation that sounds most like what is happening with your wages.',
+  items:['work.pay.unpaid','work.pay.less-than-expected','work.pay.deduction','work.pay.payslip','work.pay.missing-hours'],
+  tables:[
+    {title:'Understand your pay', head:['Korean term','English','What it means'], rows:[
+      [{ko:'임금 / 급여'},'Wage / salary','Money paid for your work'],[{ko:'급여명세서'},'Payslip / wage statement','Shows how your pay was calculated'],
+      [{ko:'공제'},'Deduction','Money taken from your total pay'],[{ko:'실수령액'},'Net pay','The amount you actually receive'],
+      [{ko:'지급일'},'Payment date','The date your wage should be paid'],[{ko:'체불임금'},'Unpaid wages','Wages that should have been paid but were not']]},
+    {title:'What kind of wage problem do I have?', head:['Situation','First thing to check','Useful records'], rows:[
+      [{to:'work.pay.unpaid',label:'No wage received'},'Payment date','Contract, bank record, work records'],
+      [{to:'work.pay.less-than-expected',label:'Less than expected'},'Contract vs payment','Payslip, contract, work records'],
+      [{to:'work.pay.deduction',label:'Unknown deduction'},'Payslip','Payslip, contract'],
+      [{to:'work.pay.missing-hours',label:'Working time missing'},'Actual working time','Schedule, time records, messages'],
+      [{to:'work.pay.payslip',label:'Payslip unclear'},'Wage statement','Payslip']]}]},
+
+'work.pay.unpaid':{type:'guide', cat:'work', title:'What can I do if I have not received my wages?', sub:'Your payment date has passed, but some or all of your wages are missing.',
+  lede:'Check what you should have received, keep useful records, and get support if the problem isn’t resolved.',
+  steps:[
+    {t:'Check when you should have been paid', d:'Look at your contract and your previous payment dates.'},
+    {t:'Work out how much is missing', d:'Write down:', checks:['Work period','Expected wage','Amount received','Amount still unpaid']},
+    {t:'Keep records of your work', d:'Keep anything that shows you worked and what you were promised.'},
+    {t:'Ask your employer about the missing pay', d:'If you can, ask in writing so you have a record.'},
+    {t:'Get official support if it isn’t resolved', d:'Contact the labour office or a verified worker-support service.'}],
+  flow:{title:'How it usually goes', items:['Wage not received','Check contract','Check payment date','Check work and payment records','Ask employer','Still not resolved?','Official labour support']},
+  needs:['Employment contract','Payslips, if available','Bank records showing wage payments','Records of working days or hours','Messages with your employer','Employer and workplace information','Other records showing the work you did'],
+  needsLead:NOT_ALL, needsNote:REQ,
+  where:[{...LAB,label:'Contact official labour support',primary:true},C1350,MIG,LANGS_],
+  tips:[{w:1,t:'Keep your own records of your work and payments.'},{t:'Don’t delete messages about your wages or working hours.'},
+    {w:1,t:'Get help before signing any document about unpaid wages that you don’t understand.'}]},
+
+'work.pay.less-than-expected':{type:'guide', cat:'work', title:'Why was I paid less than I expected?', sub:'The amount you received is lower than you expected from your work or contract.',
+  lede:'Compare what you agreed to, the work you did, and the payment you received.',
+  steps:[
+    {t:'Check your employment contract', d:'Find the agreed wage and payment conditions.'},
+    {t:'Check your actual working time', d:'Compare the days and hours you worked with what you were paid.'},
+    {t:'Check your payslip', d:'Look for these words:', cards:[['Wage / salary','급여','Your pay before deductions.'],['Deduction','공제','Money taken from your pay.'],['Net pay','실수령액','The amount you actually receive.']]},
+    {t:'Find the difference', d:'Is it working time, a deduction, or another part of your pay?'},
+    {t:'Ask for an explanation', d:'Still unclear? Ask your employer or get labour support.'}],
+  needs:['Employment contract','Payslip','Bank payment record','Working-hours records','Relevant messages'], needsNote:REQ,
+  where:[{label:'How do I understand my payslip?',to:'work.pay.payslip'},{label:'Why was money deducted from my wages?',to:'work.pay.deduction'},{...LAB,primary:true},MIG],
+  tips:[{w:1,t:'Don’t rely only on the amount that arrived in your bank account.'},{t:'Compare your contract, work records, payslip and actual payment.'},{t:'Ask for help if you can’t understand why an amount was deducted.'}]},
+
+'work.pay.deduction':{type:'guide', cat:'work', title:'Why was money deducted from my wages?', sub:'You can see a deduction on your pay but don’t understand what it is for.',
+  lede:'Check your payslip and find out what each deduction is for.',
+  steps:[
+    {t:'Find the deduction on your payslip', d:'Look for the amount taken from your pay, under 공제.'},
+    {t:'Find the name of the deduction', d:'Don’t guess what a Korean term means.', link:{label:'See common deduction names',to:'work.pay.payslip'}},
+    {t:'Compare it with what you were told', d:'Were you told about this deduction before, or in your contract?'},
+    {t:'Ask for an explanation', d:'Ask your employer or payroll contact what it is for.'},
+    {t:'Get support if it’s still unclear', d:'Or if you think there is a problem with it.'}],
+  needs:['Payslip','Employment contract','Bank payment record','Information about the deduction','Relevant messages or documents'], needsNote:REQ,
+  where:[{label:'How do I understand my payslip?',to:'work.pay.payslip'},{...LAB,primary:true},MIG],
+  tips:[{w:1,t:'Don’t assume every deduction is the same.'},{t:'Keep your payslips and payment records.'},{t:'Get help before signing a document about a deduction you don’t understand.'}]},
+
+'work.pay.payslip':{type:'guide', cat:'work', title:'How do I understand my payslip?', sub:'You received a wage statement but don’t understand the amounts or Korean terms.',
+  lede:'Use the Korean terms on your wage statement to understand how your payment was calculated.', stepsLabel:'What to check',
+  steps:[
+    {t:'Find the key labels on your payslip', payslip:true},
+    {t:'Follow how your pay is calculated', chain:['Total pay','Deductions','Net pay · 실수령액']},
+    {t:'Know common deduction names', d:'Not every payslip has all of these. Which ones apply depends on your situation.', table:{head:['Korean','English'], rows:[
+      [{ko:'국민연금'},'National Pension'],[{ko:'건강보험'},'Health Insurance'],[{ko:'장기요양보험'},'Long-term Care Insurance'],
+      [{ko:'고용보험'},'Employment Insurance'],[{ko:'소득세'},'Income tax'],[{ko:'지방소득세'},'Local income tax']]}},
+    {t:'Compare with the money you received', d:'Net pay should match the amount paid into your account.'}],
+  needs:['Payslip','Employment contract','Bank payment record','Working-hours records'], needsNote:REQ,
+  where:[{label:'Why was I paid less than I expected?',to:'work.pay.less-than-expected'},{label:'Why was money deducted from my wages?',to:'work.pay.deduction'},{...LAB,primary:true},LANGS_],
+  tips:[{t:'Keep your payslips.'},{t:'Compare the payslip with the amount actually paid to you.'},{t:'Ask for help if important terms or amounts are unclear.'}]},
+
+'work.pay.missing-hours':{type:'guide', cat:'work', title:'What if some of my working time was not included in my pay?', sub:'Some hours or extra work you did seem to be missing from your pay.',
+  lede:'Compare your work records with the payment you received.',
+  steps:[
+    {t:'Choose the period you are checking', d:'For example, one month of work.'},
+    {t:'Check the days and hours you worked', d:'Use your schedule, messages or your own notes.'},
+    {t:'Compare your records with your payslip', d:'Look at the hours (근로시간) shown on your payslip.'},
+    {t:'Find which working time seems missing'},
+    {t:'Ask your employer for an explanation', d:'If you can, ask in writing.'},
+    {t:'Get labour support if it isn’t resolved'}],
+  needs:['Employment contract','Work schedule','Working-time records','Payslip','Bank payment record','Relevant messages'], needsNote:REQ,
+  where:[{label:'How do I understand my payslip?',to:'work.pay.payslip'},{...LAB,primary:true},MIG],
+  tips:[{w:1,t:'Keep your own record of the days and hours you work.'},{t:'Don’t delete schedules or messages about your hours.'}]},
+
+/* ---- Workplace problems ---- */
+'work.problem':{type:'hub', cat:'work', title:'Workplace problems', kicker:'Work & administration · Workplace problems', q:'What can I do if I have a problem at work?',
+  sub:'Working conditions, treatment, safety, injury, or losing your job', h1:'What can I do if I have a problem at work?',
+  lede:'Choose the situation that sounds most like what is happening.',
+  items:['work.problem.conditions','work.problem.treatment','work.problem.safety','work.problem.injury','work.problem.job-ended'],
+  tables:[{title:'Which workplace problem do I have?', head:['My situation','Useful records','Start here'], rows:[
+    ['Work differs from what I agreed','Contract, schedule, messages',{to:'work.problem.conditions',label:'Working conditions'}],
+    ['Unfair treatment or harassment','Incident details, existing messages',{to:'work.problem.treatment',label:'Workplace treatment'}],
+    ['Unsafe workplace','Information about the danger',{to:'work.problem.safety',label:'Workplace safety'}],
+    ['Injured at work','Medical and workplace information',{to:'work.problem.injury',label:'Workplace injury'}],
+    ['Told to leave my job','Contract, notice, messages',{to:'work.problem.job-ended',label:'Employment ended'}],
+    ['Another problem','Relevant documents',{to:'work.support',label:'Worker support'}]]}]},
+
+'work.problem.conditions':{type:'guide', cat:'work', title:'Is my job different from what I agreed to?', sub:'Your actual work, hours, pay, workplace or other conditions are different.',
+  lede:'Compare your actual working conditions with what you originally agreed to.',
+  steps:[
+    {t:'Check what you originally agreed to', d:'Look at your employment contract (근로계약서).'},
+    {t:'Find what is different', checks:['Wage','Working hours','Type of work','Workplace or location','Days off','Housing or meals','Another condition']},
+    {t:'Keep records of the difference', d:'Save schedules, messages, payment records or other information.'},
+    {t:'Ask for clarification', d:'If it’s safe, ask why the condition is different.'},
+    {t:'Get support if the problem continues'}],
+  needs:['Employment contract','Work schedule','Payslips or payment records','Messages with your employer','Records showing your actual working conditions'], needsNote:REQ,
+  where:[{...LAB,primary:true},MIG,LANGS_],
+  tips:[{w:1,t:'Keep your own copy of your employment contract.'},{t:'Keep records of both what was agreed and what actually happened.'},{t:'Get help before signing a change you don’t understand.'}]},
+
+'work.problem.treatment':{type:'guide', cat:'work', title:'What can I do if I am treated unfairly or harassed at work?', sub:'Harmful, intimidating, discriminatory or unfair treatment at work.',
+  lede:'Keep useful information and find the right support. You don’t have to handle this alone.', urgent:false,
+  steps:[
+    {t:'Put your safety first', d:'If there is immediate danger, get emergency help.', sos:true},
+    {t:'Write down what happened, if it’s safe', checks:['What happened','When it happened','Where it happened','Who was involved']},
+    {t:'Keep evidence you already have', d:'Save messages, documents or other records you already have.'},
+    {t:'Contact a support service', d:'A labour or migrant-worker service can explain your options.'}],
+  needs:['Employment contract','Dates and details of incidents','Relevant messages','Workplace information','Existing evidence'],
+  needsLead:'You don’t need to collect every document before asking for help.', needsNote:REQ,
+  where:[{label:'Find labour support',to:'support.treatment',primary:true},C1345,MIG,LANGS_],
+  tips:[{w:1,t:'Don’t put yourself at risk to collect evidence.'},{t:'When it’s safe, keep a record of repeated incidents.'},{t:'Not speaking Korean doesn’t mean you must handle this alone.',d:'1345 and Danuri (1577-1366) can help in your language.'}]},
+
+'work.problem.safety':{type:'guide', cat:'work', title:'What can I do if my workplace is unsafe?', sub:'A dangerous working condition or missing safety protection.',
+  lede:'Put immediate safety first, then find workplace-safety support.',
+  steps:[
+    {t:'Move away from immediate danger', d:'Only if you can do so safely.'},
+    {t:'If someone needs urgent medical help, call 119', call:true},
+    {t:'Report the safety concern', d:'Tell a supervisor if it’s safe, or contact an official safety service.'},
+    {t:'Keep information about the problem, if it’s safe', d:'What it is, where, and when you noticed it.'},
+    {t:'Get official workplace-safety or worker support'}],
+  needs:['Workplace information','Description of the safety problem','Date and time','Photos or records you already have, if safe','Employment information'], needsNote:REQ,
+  where:[{label:'Find workplace safety support',to:'support.safety',primary:true},KOSHA,LAB,MIG],
+  tips:[{w:1,t:'Don’t put yourself in danger to take photos or collect evidence.'},{t:'If there is an immediate risk, get urgent help first.'}]},
+
+'work.problem.injury':{type:'guide', cat:'work', title:'What should I do if I was injured at work?', sub:'You were injured or became unwell because of something at work.',
+  lede:'Get medical help first when needed, keep useful information, and find workplace-injury support.',
+  steps:[
+    {t:'Get medical help', d:'If you need urgent help, call 119. Otherwise, find a clinic or hospital.', call:true, link:{label:'Where should I go for medical care?', to:'health.care'}},
+    {t:'Tell the doctor it happened at work', d:'If it’s relevant, say so at your visit.'},
+    {t:'Write down what happened', checks:['Date','Time','Workplace','What happened']},
+    {t:'Keep medical and workplace documents'},
+    {t:'Find official workplace-injury support', d:'They can explain the process. IEUM can’t decide whether you qualify for compensation.'}],
+  needs:['Identification','Workplace or employer information','Employment contract, if available','When and where the incident happened','Relevant medical documents','Existing workplace records'], needsNote:REQ,
+  where:[{label:'Find medical care',to:'health.care'},{label:'Find workplace injury support',to:'support.injury',primary:true},COMWEL,MIG,LANGS_],
+  tips:[{w:1,t:'Get the medical help you need before worrying about documents.'},{t:'Don’t put yourself at risk to collect evidence.'},{t:'Keep medical documents and information about the incident.'}]},
+
+'work.problem.job-ended':{type:'guide', cat:'work', title:'What can I do if I am told to leave my job?', sub:'Your employer dismissed you or said you can no longer work there.',
+  lede:'Keep information about what happened, and check employment and residence procedures when relevant.',
+  steps:[
+    {t:'Check exactly how you were told', checks:['In person','By message','In writing']},
+    {t:'Keep the notice or message'},
+    {t:'Check your employment contract'},
+    {t:'Check whether any wages are still unpaid', link:{label:'What can I do if I have not been paid correctly?', to:'work.pay'}},
+    {t:'Check whether this affects your residence', d:'Losing a job can affect some residence or employment procedures.', link:{label:'Check work & residence administration', to:'work.administration'}},
+    {t:'Get official support if you’re unsure'}],
+  needs:['Employment contract','Dismissal or termination notice, if given','Messages from your employer','Payslips','Payment records','Employment or residence information, if requested'], needsNote:REQ,
+  where:[{...LAB,primary:true},MIG,{label:'Check residence and employment procedures',to:'work.administration'}],
+  tips:[{w:1,t:'Keep copies of notices and messages about your job ending.'},{t:'Check that all wages owed to you have been paid.'},{t:'If this may affect your residence status, check with an official immigration service.',d:'Call 1345 for help in your language.'}]},
+
+/* ---- Administration ---- */
+'work.administration':{type:'hub', cat:'work', title:'Work & residence admin', kicker:'Work & administration · Administration', q:'How do I handle work and residence administration?',
+  sub:'Official information for employment, residence and other procedures', h1:'How do I handle work and residence administration?',
+  lede:'Choose the procedure you need help with.',
+  items:['work.administration.can-i-work','work.administration.change-job','work.administration.change-information','work.administration.stay'],
+  tables:[{title:'Which official system do I need?', head:['I need to…','Main issue','Where to check'], rows:[
+    [{to:'work.administration.can-i-work',label:'Check whether I can work'},'Employment permission','Official immigration / employment service'],
+    [{to:'work.administration.change-job',label:'Change my workplace'},'Employment and residence procedures','Official immigration / employment service'],
+    [{to:'work.administration.change-information',label:'Change my address'},'Registered information','Official government / immigration service'],
+    [{to:'work.administration.stay',label:'Check my period of stay'},'Residence status','Official immigration service'],
+    [{to:'work.administration.stay',label:'Extend my period of stay'},'Immigration procedure','Official immigration service'],
+    [{to:'work.support',label:'Get help with a procedure'},'Not sure which process applies','Immigration or migrant support']]}]},
+
+'work.administration.can-i-work':{type:'guide', cat:'work', title:'How do I check whether I can work in Korea?', sub:'Official information about employment permissions and restrictions.',
+  lede:'Check official information about your own residence status and employment conditions.',
+  steps:[
+    {t:'Check your residence status', d:'What you can do depends on your own status and conditions.'},
+    {t:'Check whether work restrictions apply', d:'Not every residence status allows the same types of work.'},
+    {t:'Check before starting a new type of work', d:'If you’re unsure, check first.'},
+    {t:'Use an official immigration source', d:'IEUM can’t decide whether you are legally allowed to work.', link:HIKOREA}],
+  needs:['Passport','Residence card (외국인등록증), if you have one','Information about your residence status','Information about the job','Other documents requested by the official service'], needsNote:REQ,
+  where:[{...HIKOREA,primary:true},C1345,IMM],
+  tips:[{w:1,t:'Having a residence card doesn’t mean every type of work is allowed.'},{t:'Check official information before starting work if you’re unsure.'}]},
+
+'work.administration.change-job':{type:'guide', cat:'work', title:'What should I do if I change jobs?', sub:'Employment and residence procedures that may apply when changing workplaces.',
+  lede:'Check whether changing workplaces needs an employment or residence procedure.',
+  steps:[
+    {t:'Check whether the change affects your conditions', d:'Your employment or residence conditions may be affected.'},
+    {t:'Check whether you need to report or apply'},
+    {t:'Prepare details of your old and new workplace'},
+    {t:'Complete any required procedure', d:'Use the official service that handles it.', link:HIKOREA}],
+  needs:['Passport','Residence card','Employment information','New employment contract','Previous workplace information','Other documents requested by the official authority'],
+  needsTitle:'What you may need (depends on the procedure)', needsNote:REQ,
+  where:[{...HIKOREA,label:'Check Hi Korea',primary:true},C1345,MIG],
+  tips:[{w:1,t:'Changing jobs may need more than signing a new contract.',d:'Immigration or employment procedures may also apply.'},{t:'Check the official requirements for your own residence status.'}]},
+
+'work.administration.change-information':{type:'guide', cat:'work', title:'What should I do if my address or personal information changes?', sub:'Reporting changes to your registered information.',
+  lede:'Check whether the change must be reported through an official service.',
+  steps:[
+    {t:'Find what changed', checks:['Address','Passport information','Other registered information']},
+    {t:'Check whether it needs to be reported'},
+    {t:'Check the current deadline and documents', d:'Use an official source, not old information.', link:HIKOREA},
+    {t:'Complete the required procedure'}],
+  needs:['Passport','Residence card','Proof of the change','Other documents requested by the official service'], needsNote:REQ,
+  where:[{...HIKOREA,label:'Check Hi Korea',primary:true},C1345,IMM],
+  tips:[{w:1,t:'Some changes must be reported within a set period.',d:'Check the current deadline on Hi Korea or by calling 1345.'},{t:'Check the current official rule rather than relying on old information.'}]},
+
+'work.administration.stay':{type:'guide', cat:'work', title:'How do I check or extend my period of stay?', sub:'Your period of stay and related immigration procedures.',
+  lede:'Check your current period of stay and use official immigration information for any procedure.',
+  steps:[
+    {t:'Check your current period of stay'},
+    {t:'Check when it ends', d:'Put the date somewhere you will see it.'},
+    {t:'Check whether you need an extension or another procedure'},
+    {t:'Check the documents and application process'},
+    {t:'Use the official immigration service', d:'Many applications and visit bookings are on Hi Korea.', link:HIKOREA}],
+  needs:['Passport','Residence card','Current residence-status information','Employment information, if relevant','Other documents required for the procedure'], needsNote:REQ,
+  where:[{...HIKOREA,label:'Check Hi Korea',primary:true},C1345,IMM,MIG],
+  tips:[{w:1,t:'Check your period of stay well before it ends.'},{t:'Requirements differ by residence status and circumstances.'},{t:'IEUM can’t decide immigration eligibility.'}]},
+});
+
+Object.assign(SHORT,{
+'work.find-job':'Check you can do the job, use official job sites, and get the key conditions in a written contract.',
+'work.pay.unpaid':'Note what is missing, keep your work and payment records, ask in writing, then contact labour support.',
+'work.pay.less-than-expected':'Compare your contract, hours and payslip with what arrived, then ask about the difference.',
+'work.pay.deduction':'Find the deduction’s name on your payslip, don’t guess, and ask what it is for.',
+'work.pay.payslip':'Total pay minus deductions equals net pay (실수령액). Check it matches your bank account.',
+'work.pay.missing-hours':'Record the days and hours you worked, compare with your payslip, and ask about the gap.',
+'work.problem.conditions':'Compare your contract with your real conditions, keep records, and get support if it continues.',
+'work.problem.treatment':'Stay safe first. Note what happened when it’s safe, and talk to a support service.',
+'work.problem.safety':'Get away from danger, call 119 if someone is hurt, then report it to a safety service.',
+'work.problem.injury':'Get medical help first, tell the doctor it happened at work, then contact injury support.',
+'work.problem.job-ended':'Keep the notice, check for unpaid wages, and check whether your residence is affected.',
+'work.administration.can-i-work':'What work you can do depends on your residence status. Check on Hi Korea or call 1345.',
+'work.administration.change-job':'Changing jobs may need an immigration or employment procedure. Check before you switch.',
+'work.administration.change-information':'Some changes must be reported within a set time. Check the current rule on Hi Korea.',
+'work.administration.stay':'Know your stay end date and check extension requirements on Hi Korea in good time.',
+});
+
+Object.assign(MSGS,{
+'work.pay.unpaid':[['안녕하세요. [월] 급여가 아직 입금되지 않았습니다.\n언제 지급될 예정인지 알려주실 수 있을까요?','Hello. My wages for [month] have not been paid yet.\nCould you tell me when they will be paid?']],
+'work.pay.less-than-expected':[['안녕하세요. [월] 급여가 [금액]원 입금되었는데 예상한 금액과 다릅니다.\n어떻게 계산되었는지 급여명세서와 함께 알려주실 수 있을까요?','Hello. I received [amount] won for [month], which is different from what I expected.\nCould you explain how it was calculated, with my payslip?']],
+'work.pay.deduction':[['안녕하세요. 급여명세서에 있는 [항목] 공제가 어떤 내용인지\n설명해 주실 수 있을까요?','Hello. Could you explain what the [item] deduction\non my payslip is for?']],
+'work.pay.payslip':[['안녕하세요. [월] 급여명세서를 받을 수 있을까요?','Hello. Could I please receive my payslip for [month]?']],
+'work.pay.missing-hours':[['안녕하세요. [날짜]에 [시간]시간 일했는데 급여에 포함되지 않은 것 같습니다.\n확인해 주실 수 있을까요?','Hello. I worked [hours] hours on [date], but it doesn’t seem to be included in my pay.\nCould you check?']],
+'work.problem.conditions':[['안녕하세요. 근로계약서에는 [조건]이 [내용]으로 되어 있는데\n실제로는 다르게 일하고 있습니다. 확인해 주실 수 있을까요?','Hello. My contract says [condition] is [details],\nbut my actual work is different. Could you check this?']],
+'work.problem.job-ended':[['안녕하세요. 근무를 그만두라고 하신 이유와 마지막 근무일을\n문자나 서면으로 알려주실 수 있을까요?','Hello. Could you tell me in writing the reason I was asked to stop working,\nand my last working day?']],
+});
+
+Object.assign(ROM,{'근로계약서':'geul-lo-gye-yak-seo','임금':'im-geum','급여':'geu-byeo','급여명세서':'geu-byeo-myeong-se-seo','공제':'gong-je','실수령액':'sil-su-ryeong-aek','지급일':'ji-geu-bil','체불임금':'che-bu-rim-geum','근로시간':'geul-lo-si-gan','외국인등록증':'oe-gu-gin-deung-nok-jeung','국민연금':'gung-min-nyeon-geum','장기요양보험':'jang-gi-yo-yang-bo-heom','고용보험':'go-yong-bo-heom','소득세':'so-deuk-se','지방소득세':'ji-bang-so-deuk-se','기본급':'gi-bon-geup','연장근로수당':'yeon-jang-geul-lo-su-dang'});
+
 const SVC = [
- {name:'Danuri Helpline', num:'1577-1366', topics:['housing','health','work'], needs:['interpretation','contract','general','housing'], langs:['ko','en','zh','vi'], langText:'13 languages, including Korean, English, Chinese and Vietnamese',
+ {name:'Danuri Helpline', num:'1577-1366', topics:['housing','health','work'], needs:['interpretation','contract','general','housing','treatment'], langs:['ko','en','zh','vi'], langText:'13 languages, including Korean, English, Chinese and Vietnamese',
   can:'Interpretation and multilingual guidance', who:'People seeking multilingual guidance. Confirm service scope directly.', location:'Phone service (nationwide)', hours:'Confirm on the official website', verifiedOn:'September 2026', site:'https://www.liveinkorea.kr',
   how:'Call and ask for your language. They can also join a call as an interpreter.'},
- {name:'Korea Legal Aid Corporation — Jeju Branch', ko:'대한법률구조공단 제주지부', num:'064-753-9955', alt:'132 (national legal advice line, no area code)', topics:['housing','work'], needs:['contract','legal','housing','deposit'], langs:['ko'], langText:'Korean. Ask about interpretation, or use Danuri (1577-1366)',
+ {name:'Korea Legal Aid Corporation — Jeju Branch', ko:'대한법률구조공단 제주지부', num:'064-753-9955', alt:'132 (national legal advice line, no area code)', topics:['housing','work'], needs:['contract','legal','housing','deposit','wages','ended'], langs:['ko'], langText:'Korean. Ask about interpretation, or use Danuri (1577-1366)',
   can:'Free legal advice · Contract help · Deposit and lease problems · Legal representation', who:'People with limited income or legal knowledge. Eligibility depends on the type of help.', location:'Jeju City', address:'제주시 중앙로 298 이튼빌딩 2층', addrEn:'2F Eaton Building, 298 Jungang-ro, Jeju City',
   hours:'Weekdays, by appointment (closed at lunch)', verifiedOn:'October 2026', site:'https://www.klac.or.kr',
   how:'Book first: call 132 or the branch, then visit with your contract and records.'},
@@ -872,12 +1225,45 @@ const SVC = [
   can:'Jeonse deposit safety, jeonse fraud victim support, deposit return guarantee (전세보증금 반환보증)', who:'Jeonse tenants, including people worried about getting their deposit back.', location:'Phone / online (nationwide)',
   hours:'Weekdays 09:00–18:00 (closed 12:00–13:00)', verifiedOn:'October 2026', site:'https://www.khug.or.kr/jeonse/index.jsp',
   how:'Call before signing a Jeonse contract to ask about protecting your deposit, or after if it is not returned.'},
+ {name:'Immigration Contact Center', ko:'외국인종합안내센터', num:'1345', alt:'From abroad: +82-2-1345', topics:['work','housing','health'], needs:['immigration','interpretation','treatment','general'], langs:['ko','en','zh','vi'],
+  langText:'20 languages, including Korean, English, Chinese and Vietnamese. After 18:00, Korean, English and Chinese only',
+  can:'Immigration and residence questions · Daily-life guidance · Three-way interpretation with public offices · Referral for workplace human-rights problems', who:'Foreign residents in Korea.', location:'Phone service (nationwide)',
+  hours:'Weekdays 09:00–22:00', verifiedOn:'October 2026', site:'https://www.immigration.go.kr/immigration/1530/subview.do',
+  how:'Call 1345 (no area code), choose your language from the menu, then press *.'},
+ {name:'Jeju Immigration Office', ko:'제주출입국·외국인청', num:'1345', alt:'Call 1345 with questions before you visit', topics:['work'], needs:['immigration'], langs:[], langText:'For help in your language, call 1345 first',
+  can:'Residence card, extension of stay, change of workplace or status, changes to registered information', who:'Foreign residents in Jeju.', location:'Jeju City', address:'제주시 용담로 3', addrEn:'3 Yongdam-ro, Jeju City',
+  hours:'Book a visit on Hi Korea before going', verifiedOn:'October 2026', site:'https://www.hikorea.go.kr',
+  how:'Book a visit on Hi Korea first. Many applications can also be made online there.'},
+ {name:'Ministry of Employment and Labor helpline', ko:'고용노동부 고객상담센터', num:'1350', topics:['work'], needs:['wages','payslip','contract','treatment','ended','safety','general'], langs:['ko'], langText:'Korean. For interpretation, use 1345 or Danuri (1577-1366)',
+  can:'Wages and unpaid pay · Working conditions · Employment contracts · Workplace problems', who:'Workers and employers in Korea.', location:'Phone service (nationwide)',
+  hours:'Weekdays 09:00–18:00', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
+  how:'Call 1350 (no area code) to ask about wages, contracts or working conditions.'},
+ {name:'Jeju Labor Standards Inspection Center', ko:'광주지방고용노동청 제주노동기준조사센터', num:'064-728-7146', topics:['work'], needs:['wages','payslip','contract','treatment','ended'], langs:['ko'], langText:'Korean. Ask about interpretation, or call 1345 first',
+  can:'The local labour office for Jeju · Unpaid wages · Working-conditions complaints', who:'Workers at workplaces in Jeju.', location:'Jeju City', address:'제주시 청사로 59 정부제주지방합동청사', addrEn:'Jeju Government Complex, 59 Cheongsa-ro, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
+  how:'Call before visiting. Bring your contract, payslips and records of your work.'},
+ {name:'Jeju Industrial Accident Prevention Inspection Team', ko:'광주지방고용노동청 제주산재예방감독팀', num:'064-728-7140', topics:['work'], needs:['safety'], langs:['ko'], langText:'Korean. For interpretation, call 1345 first',
+  can:'Workplace safety and accident prevention in Jeju', who:'Workers and workplaces in Jeju.', location:'Jeju City', address:'제주시 청사로 59 정부제주지방합동청사', addrEn:'Jeju Government Complex, 59 Cheongsa-ro, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
+  how:'Describe the danger, where it is and when you noticed it.'},
+ {name:'Korea Workers’ Compensation & Welfare Service — Jeju Branch', ko:'근로복지공단 제주지사', num:'1588-0075', topics:['work'], needs:['injury'], langs:['ko'], langText:'Korean. For interpretation, call 1345 first',
+  can:'Workplace injury insurance (산재보험) · Employment insurance', who:'Workers injured or made ill by work, and employers.', location:'Jeju City', address:'제주시 연신로 14', addrEn:'14 Yeonsin-ro, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.comwel.or.kr',
+  how:'Call to ask how workplace-injury support works. Keep your medical documents.'},
+ {name:'Korea Occupational Safety & Health Agency (KOSHA)', ko:'안전보건공단', num:'1644-4544', topics:['work'], needs:['safety'], langs:['ko'], langText:'Korean',
+  can:'Workplace safety and health information', who:'Workers and workplaces in Korea.', location:'Phone / online (nationwide)',
+  hours:'Weekdays 09:00–18:00', verifiedOn:'October 2026', site:'https://www.kosha.or.kr',
+  how:'Call or visit the website for safety information about your type of work.'},
+ {name:'Work24 (고용24)', ko:'고용노동부 · 한국고용정보원', num:'1350', alt:'1577-7114 (website help)', topics:['work'], needs:['jobs'], langs:['ko'], langText:'Korean',
+  can:'Official job listings · Résumé registration · Job counselling · Unemployment benefit applications', who:'Job seekers and employers.', location:'Online (nationwide)',
+  hours:'Online any time. Phone weekdays 09:00–18:00', verifiedOn:'October 2026', site:'https://www.work24.go.kr',
+  how:'Search listings on the website or app. Ask the employment centre if you need counselling.'},
 ];
 const TOPICS={all:'All topics',housing:'Housing',health:'Healthcare',work:'Work & admin'};
 const NEEDSETS = {
-  all:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Housing problems', legal:'Legal help', welfare:'Financial / welfare', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General support'},
+  all:{all:'All support types', jobs:'Finding a job', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Housing problems', legal:'Legal help', welfare:'Financial / welfare', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General support'},
   health:{all:'All support types', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General healthcare support'},
-  work:{all:'All support types', legal:'Legal help', interpretation:'Interpretation', general:'General support'},
+  work:{all:'All support types', jobs:'Finding a job', contract:'Employment contract', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', interpretation:'Language support', general:'General worker support'},
   housing:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Disputes with a landlord', legal:'Legal help', welfare:'Financial / welfare', interpretation:'Interpretation'},
 };
 const LANGNAMES = {ko:'한국어', en:'English', zh:'中文', vi:'Tiếng Việt'};
@@ -904,7 +1290,8 @@ function sosTiles(){return `<a class="sostile" href="tel:112"><small>Police</sma
 function linkItem(l){
   if(l.call) return `<a class="lnk sosl" href="tel:${l.call}"><span class="t">${l.label}<small>Call ${l.call}</small></span><b class="num" style="font:700 1.4rem var(--f-mono)">${l.call}</b></a>`;
   if(l.to) return `<a class="lnk${l.primary?' primary':''}" href="#${l.to}"><span class="t">${l.label}</span>${I.arrow}</a>`;
-  return `<a class="lnk${l.primary?' primary':''}" href="${l.href}" target="_blank" rel="noopener"><span class="t">${l.label}${l.official?'<small>Official government source</small>':''}</span>${I.out}</a>`;
+  if(l.pending) return `<div class="lnk pend" aria-disabled="true"><span class="gico">${I.gov}</span><span class="t">${l.label}<small>Official link being verified</small></span></div>`;
+  return `<a class="lnk${l.primary?' primary':''}${l.official?' off':''}" href="${l.href}" target="_blank" rel="noopener">${l.official?`<span class="gico">${I.gov}</span>`:''}<span class="t">${l.label}${l.official?'<small>Official government source ↗</small>':''}</span>${I.out}</a>`;
 }
 function siblings(r){
   const par=parentOf(r); const hub=P[par]; if(!hub||!hub.items) return null;
@@ -928,6 +1315,28 @@ function aside(r, p){
 }
 
 /* ---------- renderers ---------- */
+function rcell(c){ if(c==null) return ''; if(typeof c==='string') return c;
+  if(c.to) return `<a class="tlink" href="#${c.to}">${c.label}<span aria-hidden="true">→</span></a>`;
+  if(c.ko) return `<span class="ko">${c.ko}</span>${c.ko.split(' / ').map(k=>rom(k)).join('')}`; return c.label||''; }
+function rtableInner(t){ return `<div class="rtable"><table><thead><tr>${t.head.map(h=>`<th scope="col">${h}</th>`).join('')}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map((c,i)=>`<td data-label="${t.head[i]}">${rcell(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`; }
+function chainHTML(items){ return `<ol class="chain">${items.map((x,i)=>`<li${i===items.length-1?' class="end"':''}>${x}</li>`).join('')}</ol>`; }
+function contractHTML(c){ return `<div class="contract"><div class="ch"><span class="ko">${c.ko}</span>${rom(c.ko)}<span class="mono">${c.en}</span></div><p>${c.d}</p><ul class="ticks">${c.items.map(x=>`<li>${x}</li>`).join('')}</ul></div>`; }
+function payslipHTML(){
+  const n=k=>`<i class="cn">${k}</i>`;
+  return `<div class="slip" role="img" aria-label="Example payslip with numbered labels">
+    <div class="sh"><b>급여명세서</b><span>Payslip · example</span></div>
+    <div class="srw top"><span>${n(4)}지급일 <em>Payment date</em></span><span class="v">2026. 11. 10</span></div>
+    <div class="srw top"><span>${n(5)}근로시간 <em>Working hours</em></span><span class="v">— h</span></div>
+    <div class="sg">지급 내역 <em>Pay items</em></div>
+    <div class="srw"><span>기본급 <em>Basic pay</em></span><span class="v">₩ ×,×××,×××</span></div>
+    <div class="srw"><span>연장근로수당 <em>Overtime pay</em></span><span class="v">₩ ×××,×××</span></div>
+    <div class="srw sum"><span>${n(1)}임금 / 급여 합계 <em>Total pay</em></span><span class="v">₩ ×,×××,×××</span></div>
+    <div class="sg">${n(2)}공제 내역 <em>Deductions</em></div>
+    <div class="srw"><span>국민연금 · 건강보험 · 고용보험 · 소득세 …</span><span class="v">− ₩ ×××,×××</span></div>
+    <div class="srw net"><span>${n(3)}실수령액 <em>Net pay</em></span><span class="v">₩ ×,×××,×××</span></div>
+  </div>
+  <ol class="legend">${[['임금 / 급여','Wage / salary','Your pay before anything is taken off.'],['공제','Deduction','Money taken from your total pay.'],['실수령액','Net pay','What you actually receive.'],['지급일','Payment date','When the wage is paid.'],['근로시간','Working hours','The hours counted for this pay.']].map(([k,e,d],i)=>`<li><i class="cn">${i+1}</i><div><b><span class="ko">${k}</span> · ${e}</b>${k.split(' / ').map(x=>rom(x)).join('')}<p>${d}</p></div></li>`).join('')}</ol>`;
+}
 function inShort(r){ return SHORT[r]?`<div class="inshort"><span class="mono">In short</span><p>${SHORT[r]}</p></div>`:''; }
 function msgBlock(r){
   const m=MSGS[r]; if(!m) return '';
@@ -936,13 +1345,22 @@ function msgBlock(r){
     ${m.map((x,i)=>`<div class="phrase"><span class="mono">Korean</span><p class="kr" id="msg-${i}">${x[0].replace(/\n/g,'<br>')}</p><p class="en">${x[1].replace(/\n/g,'<br>')}</p><button class="btn btn-ghost" data-copy="${i}" data-r="${r}">Copy Korean text</button></div>`).join('')}
   </section>`;
 }
+const LOGT={
+  landlord:{title:'Keep a simple record', lead:'Add a line each time something happens. A support organisation can understand your situation faster with this.',
+    cols:[['d','Date','date'],['w','What happened','e.g. Landlord entered while I was out'],['e','Evidence (photos, messages)','2 photos, text message'],['t','Who you told','Landlord, by text']]},
+  work:{title:'Keep a simple record', lead:'Only write things down when it is safe. A short record helps a support organisation understand what happened.',
+    cols:[['d','Date','date'],['w','What happened','e.g. Asked to work on my day off'],['e','Where / who was involved','Warehouse, shift manager'],['t','Records you already have','Message, schedule photo']]},
+  hours:{title:'Record your working time', lead:'Write down each day you work, then compare it with your payslip.',
+    cols:[['d','Date','date'],['s','Start','time'],['f','Finish','time'],['b','Break','e.g. 1 hour'],['n','Notes','e.g. Stayed late for a delivery']]}};
 function logBlock(r){
-  if(!LOGS.includes(r)) return '';
-  const rows=store.get('log:landlord')||[{d:'',w:'',e:'',t:''}];
-  return `<section class="block"><header><span class="mono lbl">Keep a simple record</span><span class="progress">Saved on this device</span></header>
-    <p style="margin:0 0 12px;color:var(--muted)">Add a line each time something happens. A support organisation can understand your situation faster with this.</p>
-    <div class="tablewrap"><table class="log"><thead><tr><th>Date</th><th>What happened</th><th>Evidence (photos, messages)</th><th>Who you told</th></tr></thead>
-    <tbody>${rows.map((x,i)=>`<tr><td><input type="date" id="log-d-${i}" data-row="${i}" data-f="d" value="${x.d||''}"></td><td><input id="log-w-${i}" data-row="${i}" data-f="w" value="${(x.w||'').replace(/"/g,'&quot;')}" placeholder="e.g. Landlord entered while I was out"></td><td><input id="log-e-${i}" data-row="${i}" data-f="e" value="${(x.e||'').replace(/"/g,'&quot;')}" placeholder="2 photos, text message"></td><td><input id="log-t-${i}" data-row="${i}" data-f="t" value="${(x.t||'').replace(/"/g,'&quot;')}" placeholder="Landlord, by text"></td></tr>`).join('')}</tbody></table></div>
+  const type=LOGS[r]; if(!type) return ''; const cfg=LOGT[type];
+  const rows=store.get('log:'+type)||[{}];
+  const cell=(c,x,i)=>{const v=(x[c[0]]||'').replace(/"/g,'&quot;'); const ty=(c[2]==='date'||c[2]==='time')?c[2]:'text';
+    return `<td data-label="${c[1]}"><input type="${ty}" id="log-${c[0]}-${i}" data-row="${i}" data-f="${c[0]}" value="${v}" ${ty==='text'?`placeholder="${c[2]}"`:''} aria-label="${c[1]}"></td>`;};
+  return `<section class="block"><header><span class="mono lbl">${cfg.title}</span><span class="progress">Saved on this device</span></header>
+    <p style="margin:0 0 12px;color:var(--muted)">${cfg.lead}</p>
+    <div class="tablewrap"><table class="log" data-type="${type}"><thead><tr>${cfg.cols.map(c=>`<th>${c[1]}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map((x,i)=>`<tr>${cfg.cols.map(c=>cell(c,x,i)).join('')}</tr>`).join('')}</tbody></table></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-ghost" data-logadd>+ Add a line</button><button class="btn btn-ghost" data-logcopy>Copy record as text</button></div>
     <p class="small" id="logmsg"></p></section>`;
 }
@@ -967,14 +1385,14 @@ R.home = () => `
     <div class="cats">
       ${catCard('housing', I.house, 'Finding a home, understanding your contract, or problems with a landlord.')}
       ${catCard('health', I.heart, 'Finding medical care, health insurance, costs and language support.')}
-      ${catCard('work', I.case, 'Wages, labour issues, immigration and paperwork.', true)}
+      ${catCard('work', I.case, 'Finding a job, wages, problems at work, and residence paperwork.')}
     </div>
   </section>
 
   <section class="section">
     <div class="sechead"><h2>Common questions</h2><p>Jump straight to a guide.</p></div>
     <div class="quick">
-      ${['housing.find','health.care','housing.contract.deposit','health.insurance','housing.contract.payments','health.language'].map(r=>`<a href="#${r}" class="c-${catOf(r)}"><span class="dot"></span><span class="q">${titleOf(r)}</span><span class="arr">${I.arrow}</span></a>`).join('')}
+      ${['housing.find','health.care','work.pay.unpaid','housing.contract.deposit','health.insurance','work.administration.stay','housing.contract.payments','health.language'].map(r=>`<a href="#${r}" class="c-${catOf(r)}"><span class="dot"></span><span class="q">${titleOf(r)}</span><span class="arr">${I.arrow}</span></a>`).join('')}
     </div>
   </section>
 
@@ -998,7 +1416,8 @@ R.hub = (r,p) => `<div class="wrap c-${p.cat}">${hero(r,p)}
   <div class="situations">${p.items.map(i=>{const q=P[i]; const soon=q.type==='soon';
     const count = q.items? `${q.items.length} guides` : soon? 'Coming soon' : q.type==='services'?'Directory':q.type==='find'?'3 options':'Guide';
     return `<a class="sit${soon?' is-soon':''}" href="#${i}"><span class="flag">${I.flag}</span><div><h3>${titleOf(i)}</h3>${q.sub?`<p>${q.sub}</p>`:''}</div><span class="meta">${count} →</span></a>`}).join('')}</div>
-  <a class="sit" href="#${p.cat==='health'?'health.support':p.cat==='housing'?'housing.support':'support'}" style="margin-top:12px;background:var(--sea-soft)"><span class="flag" style="background:var(--solid)">${I.phone}</span><div><h3>Where can I get more support?</h3><p>Phone numbers, offices and websites of verified organisations.</p></div><span class="meta">Find support →</span></a>
+  <a class="sit" href="#${p.cat==='health'?'health.support':p.cat==='housing'?'housing.support':p.cat==='work'?'work.support':'support'}" style="margin-top:12px;background:var(--sea-soft)"><span class="flag" style="background:var(--solid)">${I.phone}</span><div><h3>Where can I get more support?</h3><p>Phone numbers, offices and websites of verified organisations.</p></div><span class="meta">Find support →</span></a>
+  ${(p.tables||[]).map(t=>`<section class="htable"><h2>${t.title}</h2><div class="block">${rtableInner(t)}</div></section>`).join('')}
   ${p.note?`<p class="foot-note">${p.note}</p>`:''}
   <div style="height:40px"></div></div>`;
 
@@ -1010,13 +1429,18 @@ R.guide = (r,p) => {
     ${s.checks?`<ul class="extra bul">${s.checks.map(c=>`<li>${c}</li>`).join('')}</ul>`:''}
     ${s.cards?`<div class="extra minicards">${s.cards.map(c=>`<div class="mini"><b>${c[0]}</b>${c[1]?`<span class="ko">${c[1]}${rom(c[1])}</span>`:''}<p>${c[2]}</p></div>`).join('')}</div>`:''}
     ${s.dept?deptBlock():''}
+    ${s.table?`<div class="extra">${rtableInner(s.table)}</div>`:''}
+    ${s.contract?`<div class="extra">${contractHTML(s.contract)}</div>`:''}
+    ${s.chain?`<div class="extra">${chainHTML(s.chain)}</div>`:''}
+    ${s.payslip?`<div class="extra">${payslipHTML()}</div>`:''}
     ${s.phrases?`<div class="extra phrases">${s.phrases.map((ph,k)=>`<div class="phrase"><span class="mono">Show this to staff</span><p class="kr">${ph[0].replace('\n','<br>')}</p><p class="en">${ph[1].replace('\n','<br>')}</p><button class="btn btn-ghost" data-show="${k}" data-r="${r}" data-s="${i}">Show full screen</button></div>`).join('')}</div>`:''}
     ${s.link?`<div class="extra">${linkItem(s.link)}</div>`:''}</div></li>`).join('');
   return `<div class="wrap c-${p.cat}">${hero(r,p)}${inShort(r)}
   <div class="guide"><div>
-    <section class="block"><header><span class="mono lbl">What to do</span></header><ol class="trail">${steps}</ol></section>
+    <section class="block"><header><span class="mono lbl">${p.stepsLabel||'What to do'}</span></header><ol class="trail">${steps}</ol></section>
+    ${p.flow?`<section class="block"><header><span class="mono lbl">${p.flow.title}</span></header>${chainHTML(p.flow.items)}</section>`:''}
     <section class="block"><header><span class="mono lbl">${p.needsTitle||'What you may need'}</span><span class="progress" id="prog">${done.length}/${p.needs.length} ready</span></header>
-      ${p.needsLead?`<div class="key" style="margin:0 0 14px;background:var(--sea-soft)"><b>${p.needsLead}</b></div>`:''}<ul class="checks">${p.needs.map((n,i)=>`<li><label><input type="checkbox" id="chk-${r}-${i}" data-i="${i}" ${done.includes(i)?'checked':''}><span>${n}</span></label></li>`).join('')}</ul>
+      ${p.needsLead?`<div class="key" style="margin:0 0 14px;background:var(--sea-soft)"><b class="lead">${p.needsLead}</b></div>`:''}<ul class="checks">${p.needs.map((n,i)=>`<li><label><input type="checkbox" id="chk-${r}-${i}" data-i="${i}" ${done.includes(i)?'checked':''}><span>${n}</span></label></li>`).join('')}</ul>
       <p class="small">${p.needsNote||'Tick items off as you gather them. Your list is saved on this device.'}</p></section>
     <section class="block"><header><span class="mono lbl">Where to go</span></header><div class="links">${p.where.map(linkItem).join('')}</div>${p.whereNote?`<p class="small">${p.whereNote}</p>`:''}
       ${p.alert?`<div class="key" style="margin-top:16px"><b>${p.alert.t}</b><p><a href="#${p.alert.to}" style="color:var(--sea);font-weight:700">${p.alert.label} →</a></p></div>`:''}</section>
@@ -1133,6 +1557,7 @@ R.services = (r,p) => {
     <label for="f-loc">Location<select id="f-loc"><option value="all">All verified locations</option>${locs.map(k=>`<option>${k}</option>`).join('')}</select></label>
   </div>
   <div class="count" id="svc-count"></div><div id="svc-list"></div>
+  <div class="pending" id="svc-pend" hidden><b>More Jeju worker-support organisations are being verified.</b><p>Migrant-worker support centres in Jeju will be added here once their details are confirmed.</p></div>
   <div class="foot-note">In an emergency, call <b>119</b>. For police, call <b>112</b>.</div>
   ${feedback(r)}</div>`;
 };
@@ -1141,12 +1566,13 @@ function fillNeeds(keep){
   const sel=$('#f-need'); const set=NEEDSETS[curTopic()]||NEEDSETS.all; const want=keep||sel.dataset.pre||sel.value||'all';
   sel.innerHTML=Object.entries(set).map(([k,v])=>`<option value="${k}" ${k===want?'selected':''}>${v}</option>`).join(''); sel.dataset.pre='';
 }
-const EMPTY={health:{t:'No verified healthcare services listed yet.',d:'Jeju healthcare service details are awaiting verification. In an emergency, call 119.',link:{label:'Check your insurance status with NHIS',href:'https://www.nhis.or.kr/english/wbheaa02900m01.do',official:true}},
+const EMPTY={work:{t:'No verified services match these filters yet.',d:'Try “All support types”, or call 1345 for help in your language.'},health:{t:'No verified healthcare services listed yet.',d:'Jeju healthcare service details are awaiting verification. In an emergency, call 119.',link:{label:'Check your insurance status with NHIS',href:'https://www.nhis.or.kr/english/wbheaa02900m01.do',official:true}},
   work:{t:'No verified work or administration services listed yet.',d:'Details are awaiting verification. Danuri Helpline (1577-1366) can give multilingual guidance.'}};
 function drawServices(){
   if(!$('#f-lang')) return; if(!$('#f-need').options.length) fillNeeds();
   const l=$('#f-lang').value, n=$('#f-need').value, lo=$('#f-loc').value, tp=curTopic();
   const list=SVC.filter(s=>(tp==='all'||s.topics.includes(tp))&&(l==='all'||s.langs.includes(l))&&(n==='all'||s.needs.includes(n))&&(lo==='all'||s.location===lo));
+  const pend=document.getElementById('svc-pend'); if(pend) pend.hidden = tp!=='work';
   $('#svc-count').textContent=`${list.length} verified service${list.length===1?'':'s'} · only verified organisations are listed`;
   const em=(n==='all'&&EMPTY[tp])||(tp==='health'&&EMPTY.health)||{t:'No verified services match these filters yet.',d:'Try “All support types”, or call Danuri Helpline on 1577-1366 for multilingual guidance.'};
   $('#svc-list').innerHTML = list.length? list.map(s=>`<article class="svc"><header><h3>${s.name}${s.ko?`<small class="rom" style="font-style:normal;font-size:.85rem;margin-top:2px">${s.ko}</small>`:''}</h3><span class="ver">Verified ${s.verifiedOn}</span></header>
@@ -1206,7 +1632,9 @@ function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; 
 
 /* old per-topic support pages now open the one Find support page, pre-filtered */
 const ALIAS={'housing.support':{topic:'housing'},'health.support':{topic:'health'},'support.interpretation':{need:'interpretation'},'support.care':{topic:'health',need:'care'},
-  'support.cost':{topic:'health',need:'cost'},'support.legal':{topic:'housing',need:'legal'},'support.welfare':{topic:'housing',need:'welfare'},'housing.contract.help':{topic:'housing',need:'contract'}};
+  'support.cost':{topic:'health',need:'cost'},'support.legal':{topic:'housing',need:'legal'},'support.welfare':{topic:'housing',need:'welfare'},'housing.contract.help':{topic:'housing',need:'contract'},
+  'work.support':{topic:'work'},'support.labour':{topic:'work',need:'wages'},'support.migrant':{topic:'work',need:'general'},'support.immigration':{topic:'work',need:'immigration'},
+  'support.safety':{topic:'work',need:'safety'},'support.injury':{topic:'work',need:'injury'},'support.treatment':{topic:'work',need:'treatment'},'support.jobs':{topic:'work',need:'jobs'}};
 let PRESET=null;
 /* ---------- router: clean paths on the real site, # fallback in previews ---------- */
 const PATHMODE=!!document.querySelector('meta[name="ieum-mode"][content="path"]');
@@ -1263,8 +1691,8 @@ document.addEventListener('click',e=>{
   const cp=e.target.closest('[data-copy]'); if(cp){const t=MSGS[cp.dataset.r][cp.dataset.copy][0];
     const done=()=>{cp.textContent='Copied ✓'; setTimeout(()=>cp.textContent='Copy Korean text',1800)};
     try{navigator.clipboard.writeText(t).then(done,()=>selectEl($('#msg-'+cp.dataset.copy)))}catch(_){selectEl($('#msg-'+cp.dataset.copy))} return;}
-  if(e.target.closest('[data-logadd]')){const rows=readLog(); rows.push({d:'',w:'',e:'',t:''}); store.set('log:landlord',rows); render(); return;}
-  if(e.target.closest('[data-logcopy]')){const txt=readLog().filter(x=>x.d||x.w).map(x=>`${x.d||'(no date)'} — ${x.w}${x.e?` | Evidence: ${x.e}`:''}${x.t?` | Told: ${x.t}`:''}`).join('\n');
+  if(e.target.closest('[data-logadd]')){const ty=logType(); const rows=readLog(); rows.push({}); store.set('log:'+ty,rows); render(); return;}
+  if(e.target.closest('[data-logcopy]')){const cfg=LOGT[logType()]; const txt=readLog().filter(x=>Object.values(x).some(Boolean)).map(x=>cfg.cols.filter(c=>x[c[0]]).map((c,i)=>i===0&&c[0]==='d'?x.d:`${c[1]}: ${x[c[0]]}`).join(' | ')).join('\n');
     const m=$('#logmsg'); try{navigator.clipboard.writeText(txt).then(()=>m.textContent='Copied. Paste it into a message or document.',()=>m.textContent=txt)}catch(_){m.textContent=txt} return;}
   const fb=e.target.closest('[data-fb]'); if(fb){const box=fb.closest('.feedback');
     box.innerHTML = fb.dataset.fb==='yes' ? `<b>Thanks — glad it helped.</b>` : `<b>Thanks for telling us.</b><p class="msg">We’ll use this to improve the guide. If you still need help now, <a href="#support">talk to a support organisation</a>.</p>`;}
@@ -1276,8 +1704,9 @@ document.addEventListener('change',e=>{
   if(e.target.matches('#f-lang,#f-need,#f-loc')) drawServices();
 });
 function selectEl(el){const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r);}
-function readLog(){return [...document.querySelectorAll('table.log tbody tr')].map((tr,i)=>({d:$('#log-d-'+i).value,w:$('#log-w-'+i).value,e:$('#log-e-'+i).value,t:$('#log-t-'+i).value}));}
-document.addEventListener('input',e=>{if(e.target.closest('table.log')) store.set('log:landlord',readLog());});
+function logType(){ return document.querySelector('table.log')?.dataset.type||'landlord'; }
+function readLog(){return [...document.querySelectorAll('table.log tbody tr')].map(tr=>{const o={}; tr.querySelectorAll('input[data-f]').forEach(inp=>o[inp.dataset.f]=inp.value); return o;});}
+document.addEventListener('input',e=>{if(e.target.closest('table.log')) store.set('log:'+logType(),readLog());});
 addEventListener("keydown",e=>{if(e.key==="Escape"){document.querySelector(".full")?.remove();closeMenus();}});
 addEventListener("hashchange",()=>{ if(PATHMODE){ const h=location.hash.slice(1); if(P[h]||ALIAS[h]) go(h,true); return; } render(); scrollTo(0,0); $('#app').focus({preventScroll:true});});
 addEventListener("popstate",()=>{ if(PATHMODE){ render(); $('#app').focus({preventScroll:true}); } });
