@@ -14,15 +14,15 @@
 <title>Project IEUM</title>
 <script>try{var t=localStorage.getItem("ieum-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: airy sky-blue canvas with frosted-glass panels; situations read as a trail of numbered markers on a soft blue line. */
 :root{
   --paper:#E3F1FC; --paper2:#F2F8FD; --surface:rgb(255 255 255 / .72); --solid:#FFFFFF; --sunk:#EDF5FC; --ink:#0D1B2A; --muted:#566779; --line:rgb(13 60 100 / .10);
   --sea:#0284C7; --sea-2:#38BDF8; --sea-soft:#E0F2FE; --tan:#EA6A1A; --tan-soft:#FFEEDF; --leaf:#0F8A63; --leaf-soft:#DDF5EC; --violet:#6D5BD0; --violet-soft:#ECE9FB;
   --alert:#D2402C; --alert-soft:#FDECE8; --focus:#0284C7;
-  --f-display:"Plus Jakarta Sans","Noto Sans KR",system-ui,sans-serif;
-  --f-body:"Plus Jakarta Sans","Noto Sans KR","Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --f-display:"Plus Jakarta Sans","Noto Sans KR","Noto Sans Tamil","Noto Sans Thai",system-ui,sans-serif;
+  --f-body:"Plus Jakarta Sans","Noto Sans KR","Noto Sans SC","Noto Sans Tamil","Noto Sans Thai",system-ui,-apple-system,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   --r:22px; --r-sm:14px;
   --shadow:0 1px 1px rgb(2 60 110 / .04), 0 12px 32px -14px rgb(2 60 110 / .22);
@@ -361,7 +361,7 @@ main#app{flex:1 0 auto;outline:none}
 #langcur{font-weight:600;font-size:.82rem;letter-spacing:.02em}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .langbtn:hover{border-color:var(--sea)}
-.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:170px;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:70;display:grid}
+.langmenu{position:absolute;right:0;top:calc(100% + 8px);min-width:200px;max-height:min(70vh,460px);overflow-y:auto;background:var(--solid);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px -20px rgb(2 60 110 / .35);padding:6px;z-index:70;display:grid}
 .langmenu button{border:0;background:none;text-align:left;padding:10px 12px;border-radius:10px;cursor:pointer;font:500 .92rem var(--f-body);color:var(--ink);display:flex;justify-content:space-between;gap:12px}
 .langmenu button:hover{background:var(--sea-soft)}
 .langmenu button[aria-pressed="true"]{color:var(--sea);font-weight:700}
@@ -392,8 +392,8 @@ html.is-dark .themebtn .i-moon{display:none}
 .dsec .mono{font-size:.7rem;color:var(--muted);padding:0 4px 6px}
 .drow{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:15px 4px;border:0;border-bottom:1px solid var(--line);background:none;cursor:pointer;text-align:left;font:600 1.05rem var(--f-body);color:var(--ink);text-decoration:none}
 .dlist .drow{font:600 1.05rem var(--f-body);letter-spacing:0}
-.dseg{display:grid;grid-template-columns:1fr .8fr 1fr 1.4fr;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);border:1px solid var(--line)}
-.dseg button{border:0;background:none;border-radius:10px;padding:11px 4px;white-space:nowrap;font:600 .95rem var(--f-body);color:var(--muted);cursor:pointer}
+.dseg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);border:1px solid var(--line);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.dseg::-webkit-scrollbar{display:none}
+.dseg button{flex:none;border:0;background:none;border-radius:10px;padding:11px 14px;white-space:nowrap;font:600 .95rem var(--f-body);color:var(--muted);cursor:pointer}
 .dseg button[aria-pressed="true"]{background:var(--solid);color:var(--sea);box-shadow:0 1px 3px rgb(2 60 110 / .15)}
 .drow[aria-pressed="true"]{color:var(--sea)}
 .drow[aria-pressed="true"] .ck{visibility:visible}
@@ -573,7 +573,12 @@ table.log input[type=time]{min-width:96px}
           <button data-lang="ko" aria-pressed="false">한국어</button>
           <button data-lang="en" aria-pressed="true">English</button>
           <button data-lang="zh" aria-pressed="false">中文</button>
+          <button data-lang="ta" aria-pressed="false">தமிழ்</button>
+          <button data-lang="th" aria-pressed="false">ไทย</button>
           <button data-lang="vi" aria-pressed="false">Tiếng Việt</button>
+          <button data-lang="id" aria-pressed="false">Bahasa Indonesia</button>
+          <button data-lang="fil" aria-pressed="false">Filipino</button>
+          <button data-lang="mn" aria-pressed="false">Монгол</button>
         </div>
       </div>
       <button class="themebtn" id="themebtn" aria-label="Switch to dark mode" title="Switch theme">
@@ -905,7 +910,7 @@ housing:{...P.housing, items:['housing.find','housing.contract','housing.problem
 'health.support':{...P['health.support'], lede:'Find verified services that may be able to help with healthcare access, insurance, language support, or other difficulties.', needSet:'health', need:'all',
   empty:{t:'No verified healthcare services listed yet.',d:'Jeju service details are awaiting verification. Languages, eligibility, locations, hours and contact details will appear here once confirmed.',link:NHISchk('Check with NHIS')}},
 'support.interpretation':{...P['support.interpretation'], needSet:'health'},
-'support.care':{type:'services',cat:'health',title:'Find medical care in Jeju',sub:'Clinics, hospitals and emergency rooms',need:'care',needSet:'health',lede:'Verified medical providers in Jeju will be listed here.',
+'support.care':{type:'services',cat:'health',title:'Find medical care in Jeju',sub:'Clinics, hospitals and emergency rooms',need:'care',needSet:'health',lede:'Hospitals with emergency rooms, public health centres and other verified medical services in Jeju. In an emergency, call 119.',
   empty:{t:'No verified medical providers listed yet.',d:'Provider details for Jeju are awaiting verification. In an emergency, call 119.'}},
 'support.cost':{type:'services',cat:'health',title:'Help with a medical bill',sub:'Understanding charges and costs',need:'cost',needSet:'health',lede:'Services that may help you understand a medical bill or cost.',
   empty:{t:'No verified services for medical costs listed yet.',d:'Details are awaiting verification.',link:NHIS_B}},
@@ -1211,11 +1216,11 @@ Object.assign(MSGS,{
 Object.assign(ROM,{'근로계약서':'geul-lo-gye-yak-seo','임금':'im-geum','급여':'geu-byeo','급여명세서':'geu-byeo-myeong-se-seo','공제':'gong-je','실수령액':'sil-su-ryeong-aek','지급일':'ji-geu-bil','체불임금':'che-bu-rim-geum','근로시간':'geul-lo-si-gan','외국인등록증':'oe-gu-gin-deung-nok-jeung','국민연금':'gung-min-nyeon-geum','장기요양보험':'jang-gi-yo-yang-bo-heom','고용보험':'go-yong-bo-heom','소득세':'so-deuk-se','지방소득세':'ji-bang-so-deuk-se','기본급':'gi-bon-geup','연장근로수당':'yeon-jang-geul-lo-su-dang'});
 
 const SVC = [
- {name:'Danuri Helpline', num:'1577-1366', topics:['housing','health','work'], needs:['interpretation','contract','general','housing','treatment'], langs:['ko','en','zh','vi'], langText:'13 languages, including Korean, English, Chinese and Vietnamese',
+ {name:'Danuri Helpline', num:'1577-1366', topics:['general','housing','health','work'], needs:['interpretation','contract','general','housing','treatment','violence','mental'], langs:['ko','en','zh','vi'], langText:'13 languages, including Korean, English, Chinese and Vietnamese',
   can:'Interpretation and multilingual guidance', who:'People seeking multilingual guidance. Confirm service scope directly.', location:'Phone service (nationwide)', hours:'Confirm on the official website', verifiedOn:'September 2026', site:'https://www.liveinkorea.kr',
   how:'Call and ask for your language. They can also join a call as an interpreter.'},
  {name:'Korea Legal Aid Corporation — Jeju Branch', ko:'대한법률구조공단 제주지부', num:'064-753-9955', alt:'132 (national legal advice line, no area code)', topics:['housing','work'], needs:['contract','legal','housing','deposit','wages','ended'], langs:['ko'], langText:'Korean. Ask about interpretation, or use Danuri (1577-1366)',
-  can:'Free legal advice · Contract help · Deposit and lease problems · Legal representation', who:'People with limited income or legal knowledge. Eligibility depends on the type of help.', location:'Jeju City', address:'제주시 중앙로 298 이튼빌딩 2층', addrEn:'2F Eaton Building, 298 Jungang-ro, Jeju City',
+  can:'Free legal advice · Possible legal representation for eligible applicants · Housing, labour and other civil matters', who:'People with limited income or legal knowledge. Eligibility depends on the type of help.', location:'Jeju City', address:'제주시 중앙로 298 이튼빌딩 2층', addrEn:'2F Eaton Building, 298 Jungang-ro, Jeju City',
   hours:'Weekdays, by appointment (closed at lunch)', verifiedOn:'October 2026', site:'https://www.klac.or.kr',
   how:'Book first: call 132 or the branch, then visit with your contract and records.'},
  {name:'Lease Dispute Mediation Committee (Korea Real Estate Board · LH)', ko:'임대차분쟁조정위원회', num:'1644-5599', topics:['housing'], needs:['housing','deposit','legal'], langs:['ko'], langText:'Korean',
@@ -1226,12 +1231,80 @@ const SVC = [
   can:'Jeonse deposit safety, jeonse fraud victim support, deposit return guarantee (전세보증금 반환보증)', who:'Jeonse tenants, including people worried about getting their deposit back.', location:'Phone / online (nationwide)',
   hours:'Weekdays 09:00–18:00 (closed 12:00–13:00)', verifiedOn:'October 2026', site:'https://www.khug.or.kr/jeonse/index.jsp',
   how:'Call before signing a Jeonse contract to ask about protecting your deposit, or after if it is not returned.'},
- {name:'Immigration Contact Center', ko:'외국인종합안내센터', num:'1345', alt:'From abroad: +82-2-1345', topics:['work','housing','health'], needs:['immigration','interpretation','treatment','general'], langs:['ko','en','zh','vi'],
+ {name:'Jeju Housing Welfare Center', ko:'제주특별자치도 주거복지센터', num:'064-753-9500', alt:'Seogwipo office: 064-767-9500', topics:['housing'], needs:['housing','welfare','contract'], langs:['ko'], langText:'Korean. For interpretation, use Danuri (1577-1366)',
+  can:'Housing welfare counselling · Information on public rental housing and housing support programmes · Help with housing problems', who:'Anyone living in Jeju who is struggling with housing. Ask whether a specific programme is open to foreign residents.', location:'Jeju City', address:'제주시 임항로 77 1층', addrEn:'1F, 77 Imhang-ro, Jeju City (Seogwipo office: 1F, 8646 Iljudong-ro)',
+  hours:'Weekdays (call before visiting)', verifiedOn:'November 2026', site:'https://www.jejuhwc.co.kr',
+  how:'Call or visit the nearest office (Jeju City or Seogwipo). Counselling is also possible by phone or home visit.'},
+ {name:'Village Lawyers for Foreigners', ko:'외국인을 위한 마을변호사', num:'1345', topics:['housing','work'], needs:['legal','deposit','housing','injury','contract'], langs:['ko','en','zh','vi'], langText:'Request through 1345, which offers 20 languages',
+  can:'Free legal consultation for foreign residents, including lease disputes and workplace injuries', who:'Foreign residents in Korea.', location:'Phone service (nationwide)',
+  hours:'Call 1345 on weekdays 09:00–22:00 to request a consultation', verifiedOn:'November 2026', site:'https://www.immigration.go.kr/immigration/1530/subview.do',
+  how:'Call 1345, choose your language, and ask for a village-lawyer (마을변호사) consultation.'},
+ {name:'Seogwipo Migrant Center', ko:'서귀포이주민센터', num:'064-762-1141', topics:['general','housing','health','work'], needs:['general','treatment','housing'], langs:['ko'], langText:'Ask which languages are available when you call',
+  can:'Counselling · Education · Support services for foreign residents and multicultural families', who:'Foreign residents and multicultural families in Seogwipo.', location:'Seogwipo', address:'서귀포시 중앙로 81 3층', addrEn:'3F, 81 Jungang-ro, Seogwipo',
+  hours:'Call before visiting', verifiedOn:'November 2026',
+  how:'Call to explain your situation. They can help directly or refer you to the right service.'},
+ {name:'Naomi Center', ko:'나오미센터', num:'064-725-9199', topics:['general','health','work','housing'], needs:['general','care','interpretation','treatment','housing'], langs:['ko'], langText:'Ask which languages are available when you call',
+  can:'Migrant support · Referrals for healthcare and everyday difficulties', who:'Migrant workers and foreign residents in Jeju.', location:'Jeju City', address:'제주시 중앙로12길 18', addrEn:'18 Jungang-ro 12-gil, Jeju City',
+  hours:'Call before visiting', verifiedOn:'November 2026',
+  how:'Call to explain your situation. They can refer you to the right healthcare or support service.'},
+ {name:'Jeju City Public Health Center', ko:'제주시보건소', num:'064-728-4010', topics:['health'], needs:['care','general'], langs:['ko'], langText:'Korean. For interpretation, use Danuri (1577-1366) or 1345',
+  can:'Public healthcare · Vaccinations · Preventive services · Health consultations', who:'Residents of Jeju City.', location:'Jeju City', address:'제주시 연삼로 264', addrEn:'264 Yeonsam-ro, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'November 2026',
+  how:'Call to ask which services are available and what to bring, such as your residence card.'},
+ {name:'Jeju City West Public Health Center', ko:'제주시 서부보건소', num:'064-728-4111', topics:['health'], needs:['care','general'], langs:['ko'], langText:'Korean. For interpretation, use Danuri (1577-1366) or 1345',
+  can:'Public health services for western Jeju, including Hallim', who:'Residents of western Jeju City (Hallim, Aewol, Hangyeong and nearby areas).', location:'Jeju City', address:'제주시 한림읍 강구로 5', addrEn:'5 Ganggu-ro, Hallim-eup, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'November 2026',
+  how:'Call to ask which services are available and what to bring.'},
+ {name:'Jeju City East Public Health Center', ko:'제주시 동부보건소', num:'064-728-4180', topics:['health'], needs:['care','general'], langs:['ko'], langText:'Korean. For interpretation, use Danuri (1577-1366) or 1345',
+  can:'Public health services for eastern Jeju, including Gujwa', who:'Residents of eastern Jeju City (Gujwa, Jocheon, Udo and nearby areas).', location:'Jeju City', address:'제주시 구좌읍 김녕로14길 6', addrEn:'6 Gimnyeong-ro 14-gil, Gujwa-eup, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'November 2026',
+  how:'Call to ask which services are available and what to bring.'},
+ {name:'Korea Medical Institute (KMI) Jeju Health Checkup Center', ko:'KMI 한국의학연구소 제주검진센터', num:'064-729-6500', topics:['health'], needs:['care'], langs:['ko'], langText:'Korean. Ask about interpretation when booking',
+  can:'Comprehensive preventive health screening and medical examinations', who:'Anyone booking a health checkup. Ask whether your checkup is covered by national health insurance.', location:'Seogwipo', address:'61 Soloreum-ro, Seogwipo-si', addrEn:'Inside Jeju Healthcare Town, Seogwipo',
+  hours:'By appointment', verifiedOn:'November 2026', site:'https://www.kmi.or.kr',
+  how:'Call to book a checkup. Bring your residence card and health-insurance details.'},
+ {name:'National Health Insurance Service (NHIS)', ko:'국민건강보험공단', num:'1577-1000', alt:'033-811-2000 (multilingual line, also 1577-1000 then 6)', topics:['health'], needs:['insurance','cost','general'], langs:['ko','en','zh','vi'], langText:'Korean. Multilingual line in English, Chinese, Vietnamese and Uzbek',
+  can:'Health-insurance enrolment and status · Monthly premiums · Dependent registration · Insurance certificates', who:'Anyone living in Korea, including foreign residents and their employers.', location:'Phone service (nationwide)',
+  hours:'Weekdays 09:00–18:00', verifiedOn:'November 2026', site:'https://www.nhis.or.kr/english/',
+  how:'Call 1577-1000 and press 6 for the multilingual line. Have your residence card number ready.'},
+ {name:'Medical Support for Foreign Workers and Others', ko:'외국인근로자 등 의료지원사업 (보건복지부)', num:'129', alt:'Ask the billing desk (원무과) or medical social worker at the hospital', topics:['health'], needs:['cost'], langs:['ko'], langText:'Korean. For interpretation, use Danuri (1577-1366) or 1345',
+  can:'Covers 90% of hospital stay and surgery costs, up to ₩5 million per stay · Prenatal checkups · Outpatient care for children under 18', who:'People without health insurance or medical aid: foreign workers and their spouses and children under 18, marriage migrants without Korean citizenship, refugees.', location:'Designated hospitals (nationwide)',
+  hours:'Ask at a designated hospital, such as Seogwipo Medical Center', verifiedOn:'November 2026', site:'https://www.hira.or.kr/dummy.do?pgmid=HIRAA020020000003',
+  how:'Before or at admission, ask the hospital whether it takes part in 외국인근로자 등 의료지원사업. Regional public hospitals are included automatically.'},
+ {name:'Jeju Halla General Hospital', ko:'제주한라병원 (제주권역응급의료센터)', num:'064-740-5000', topics:['health'], needs:['care'], langs:['ko','en'], langText:'Korean. Some English-speaking staff',
+  can:'Regional emergency medical centre for Jeju (24-hour emergency room) · All specialities', who:'Anyone. In an emergency, call 119 first.', location:'Jeju City', address:'제주시 도령로 65', addrEn:'65 Doryeong-ro, Jeju City',
+  hours:'Emergency room 24 hours. Outpatient clinics weekdays', verifiedOn:'November 2026',
+  how:'For emergencies, go to the emergency room or call 119. For appointments, call the main number.'},
+ {name:'Jeju National University Hospital', ko:'제주대학교병원', num:'064-717-1114', topics:['health'], needs:['care'], langs:['ko','en'], langText:'Korean. Some English-speaking staff',
+  can:'University hospital with a 24-hour emergency room · All specialities', who:'Anyone. In an emergency, call 119 first.', location:'Jeju City', address:'제주시 아란13길 15', addrEn:'15 Aran 13-gil, Jeju City',
+  hours:'Emergency room 24 hours. Outpatient clinics weekdays', verifiedOn:'November 2026', site:'https://en.jejunuh.co.kr',
+  how:'For emergencies, go to the emergency room or call 119. Specialist outpatient visits usually need a referral letter (진료의뢰서) from a clinic.'},
+ {name:'Seogwipo Medical Center', ko:'서귀포의료원', num:'064-730-3000', topics:['health'], needs:['care','cost'], langs:['ko','en'], langText:'Korean. Some English-speaking staff',
+  can:'Public hospital for southern Jeju with an emergency medical centre · Takes part in the medical support programme for uninsured foreign workers', who:'Anyone. In an emergency, call 119 first.', location:'Seogwipo', address:'서귀포시 장수로 47', addrEn:'47 Jangsu-ro, Seogwipo',
+  hours:'Emergency room 24 hours. Outpatient clinics weekdays', verifiedOn:'November 2026', site:'https://www.jjsmc.or.kr',
+  how:'For emergencies, go to the emergency room or call 119. If you have no health insurance, ask the billing desk about medical support.'},
+ {name:'Women’s Emergency Line 1366 — Jeju', ko:'여성긴급전화 1366 제주센터', num:'1366', alt:'Jeju centre: 064-1366', topics:['housing','work','health'], needs:['violence'], langs:['ko'], langText:'Korean. For help in your language, call Danuri (1577-1366), which also handles emergencies for migrant women',
+  can:'Domestic violence · Sexual violence · Stalking · Dating violence · Emergency protection and shelter referral', who:'Anyone experiencing violence, especially women.', location:'Phone service (nationwide)',
+  hours:'24 hours, every day', verifiedOn:'November 2026', site:'https://www.mogef.go.kr/cc/wcc/cc_wcc_f001.do',
+  how:'Call 1366 (no area code). In immediate danger, call 112 first.'},
+ {name:'Suicide Prevention Line 109', ko:'자살예방상담전화 109', num:'109', topics:['health'], needs:['mental'], langs:['ko'], langText:'Korean. For help in your language, call Danuri (1577-1366)',
+  can:'Crisis counselling if you are thinking about suicide or worried about someone', who:'Anyone.', location:'Phone service (nationwide)',
+  hours:'24 hours, every day', verifiedOn:'November 2026',
+  how:'Call 109 (no area code). In immediate danger, call 119 or 112.'},
+ {name:'Mental Health Crisis Line', ko:'정신건강위기상담전화', num:'1577-0199', topics:['health'], needs:['mental'], langs:['ko'], langText:'Korean. For help in your language, call Danuri (1577-1366)',
+  can:'Mental-health crisis counselling · Connection to your local mental health welfare centre', who:'Anyone.', location:'Phone service (nationwide)',
+  hours:'24 hours, every day', verifiedOn:'November 2026',
+  how:'Call 1577-0199. They can connect you to mental-health support near you in Jeju.'},
+ {name:'HRD Korea — Jeju Branch', ko:'한국산업인력공단 제주지사', num:'064-729-0701', topics:['work'], needs:['immigration','jobs','general'], langs:['ko'], langText:'Korean. For interpretation, call 1345 first',
+  can:'Employment Permit System (EPS) services · Workforce skills and qualifications', who:'EPS workers and employers, and people taking skills or qualification tests.', location:'Jeju City', address:'제주시 복지로 19', addrEn:'19 Bokji-ro, Jeju City',
+  hours:'Weekdays (call before visiting)', verifiedOn:'November 2026', site:'https://www.eps.go.kr',
+  how:'Call with questions about your EPS process or a qualification test before you visit.'},
+ {name:'Immigration Contact Center', ko:'외국인종합안내센터', num:'1345', alt:'From abroad: +82-2-1345', topics:['general','work','housing','health'], needs:['immigration','interpretation','treatment','general'], langs:['ko','en','zh','vi'],
   langText:'20 languages, including Korean, English, Chinese and Vietnamese. After 18:00, Korean, English and Chinese only',
   can:'Immigration and residence questions · Daily-life guidance · Three-way interpretation with public offices · Referral for workplace human-rights problems', who:'Foreign residents in Korea.', location:'Phone service (nationwide)',
   hours:'Weekdays 09:00–22:00', verifiedOn:'October 2026', site:'https://www.immigration.go.kr/immigration/1530/subview.do',
   how:'Call 1345 (no area code), choose your language from the menu, then press *.'},
- {name:'Jeju Immigration Office', ko:'제주출입국·외국인청', num:'1345', alt:'Call 1345 with questions before you visit', topics:['work'], needs:['immigration'], langs:[], langText:'For help in your language, call 1345 first',
+ {name:'Jeju Immigration Office', ko:'제주출입국·외국인청', num:'1345', alt:'Call 1345 with questions before you visit', topics:['general','work'], needs:['immigration'], langs:[], langText:'For help in your language, call 1345 first',
   can:'Residence card, extension of stay, change of workplace or status, changes to registered information', who:'Foreign residents in Jeju.', location:'Jeju City', address:'제주시 용담로 3', addrEn:'3 Yongdam-ro, Jeju City',
   hours:'Book a visit on Hi Korea before going', verifiedOn:'October 2026', site:'https://www.hikorea.go.kr',
   how:'Book a visit on Hi Korea first. Many applications can also be made online there.'},
@@ -1239,8 +1312,8 @@ const SVC = [
   can:'Wages and unpaid pay · Working conditions · Employment contracts · Workplace problems', who:'Workers and employers in Korea.', location:'Phone service (nationwide)',
   hours:'Weekdays 09:00–18:00', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
   how:'Call 1350 (no area code) to ask about wages, contracts or working conditions.'},
- {name:'Jeju Labor Standards Inspection Center', ko:'광주지방고용노동청 제주노동기준조사센터', num:'064-728-7146', topics:['work'], needs:['wages','payslip','contract','treatment','ended'], langs:['ko'], langText:'Korean. Ask about interpretation, or call 1345 first',
-  can:'The local labour office for Jeju · Unpaid wages · Working-conditions complaints', who:'Workers at workplaces in Jeju.', location:'Jeju City', address:'제주시 청사로 59 정부제주지방합동청사', addrEn:'Jeju Government Complex, 59 Cheongsa-ro, Jeju City',
+ {name:'Jeju Labor Standards Inspection Center', ko:'광주지방고용노동청 제주노동기준조사센터 (formerly 제주근로개선지도센터)', num:'064-728-7100', alt:'064-728-7146 (labour standards team)', topics:['work'], needs:['wages','payslip','contract','treatment','ended'], langs:['ko'], langText:'Korean. Ask about interpretation, or call 1345 first',
+  can:'The local labour office for Jeju · Unpaid wages · Working conditions · Labour-standards complaints', who:'Workers at workplaces in Jeju.', location:'Jeju City', address:'제주시 청사로 59 정부제주지방합동청사', addrEn:'Jeju Government Complex, 59 Cheongsa-ro, Jeju City',
   hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
   how:'Call before visiting. Bring your contract, payslips and records of your work.'},
  {name:'Jeju Industrial Accident Prevention Inspection Team', ko:'광주지방고용노동청 제주산재예방감독팀', num:'064-728-7140', topics:['work'], needs:['safety'], langs:['ko'], langText:'Korean. For interpretation, call 1345 first',
@@ -1248,7 +1321,7 @@ const SVC = [
   hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.moel.go.kr',
   how:'Describe the danger, where it is and when you noticed it.'},
  {name:'Korea Workers’ Compensation & Welfare Service — Jeju Branch', ko:'근로복지공단 제주지사', num:'1588-0075', topics:['work'], needs:['injury'], langs:['ko'], langText:'Korean. For interpretation, call 1345 first',
-  can:'Workplace injury insurance (산재보험) · Employment insurance', who:'Workers injured or made ill by work, and employers.', location:'Jeju City', address:'제주시 연신로 14', addrEn:'14 Yeonsin-ro, Jeju City',
+  can:'Industrial accident insurance (산재보험) and compensation applications · Employment insurance', who:'Workers injured or made ill by work, and employers.', location:'Jeju City', address:'제주시 연신로 14', addrEn:'14 Yeonsin-ro, Jeju City',
   hours:'Weekdays (call before visiting)', verifiedOn:'October 2026', site:'https://www.comwel.or.kr',
   how:'Call to ask how workplace-injury support works. Keep your medical documents.'},
  {name:'Korea Occupational Safety & Health Agency (KOSHA)', ko:'안전보건공단', num:'1644-4544', topics:['work'], needs:['safety'], langs:['ko'], langText:'Korean',
@@ -1260,12 +1333,13 @@ const SVC = [
   hours:'Online any time. Phone weekdays 09:00–18:00', verifiedOn:'October 2026', site:'https://www.work24.go.kr',
   how:'Search listings on the website or app. Ask the employment centre if you need counselling.'},
 ];
-const TOPICS={all:'All topics',housing:'Housing',health:'Healthcare',work:'Work & admin'};
+const TOPICS={all:'All topics',general:'General',housing:'Housing',health:'Healthcare',work:'Work & admin'};
 const NEEDSETS = {
-  all:{all:'All support types', jobs:'Finding a job', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Housing problems', legal:'Legal help', welfare:'Financial / welfare', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General support'},
-  health:{all:'All support types', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', interpretation:'Interpretation', general:'General healthcare support'},
-  work:{all:'All support types', jobs:'Finding a job', contract:'Employment contract', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', interpretation:'Language support', general:'General worker support'},
-  housing:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Disputes with a landlord', legal:'Legal help', welfare:'Financial / welfare', interpretation:'Interpretation'},
+  all:{all:'All support types', jobs:'Finding a job', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Housing problems', legal:'Legal help', welfare:'Financial / welfare', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', mental:'Mental health', violence:'Violence or abuse', interpretation:'Interpretation', general:'General support'},
+  general:{all:'All support types', general:'General support', interpretation:'Interpretation', immigration:'Immigration / residence', violence:'Violence or abuse'},
+  health:{all:'All support types', care:'Finding medical care', insurance:'Health insurance', cost:'Medical costs', mental:'Mental health', violence:'Violence or abuse', interpretation:'Interpretation', general:'General healthcare support'},
+  work:{all:'All support types', jobs:'Finding a job', contract:'Employment contract', wages:'Unpaid wages', payslip:'Payslip / wage problem', treatment:'Workplace treatment', safety:'Workplace safety', injury:'Workplace injury', ended:'Job ended', immigration:'Immigration / residence', violence:'Violence or abuse', interpretation:'Language support', general:'General worker support'},
+  housing:{all:'All support types', deposit:'Deposit or Jeonse problems', contract:'Contract help', housing:'Disputes with a landlord', legal:'Legal help', welfare:'Financial / welfare', violence:'Violence or abuse', interpretation:'Interpretation'},
 };
 const LANGNAMES = {ko:'한국어', en:'English', zh:'中文', vi:'Tiếng Việt'};
 
@@ -1375,7 +1449,7 @@ R.home = () => `
       <h1>What do you need help with today?</h1>
       <p class="lede">Simple, verified information and support services in Jeju, in the language you read best.</p>
       <div class="langpick">Continue in
-        ${['ko','en','zh','vi'].map(l=>`<button class="chip" data-lang="${l}" aria-pressed="${l===state.lang}">${{ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[l]}</button>`).join('')}
+        ${UILANGS.map(([l,n])=>`<button class="chip" data-lang="${l}" aria-pressed="${l===state.lang}">${n}</button>`).join('')}
       </div>
     </div>
     ${sceneHTML()}
@@ -1573,7 +1647,7 @@ function drawServices(){
   if(!$('#f-lang')) return; if(!$('#f-need').options.length) fillNeeds();
   const l=$('#f-lang').value, n=$('#f-need').value, lo=$('#f-loc').value, tp=curTopic();
   const list=SVC.filter(s=>(tp==='all'||s.topics.includes(tp))&&(l==='all'||s.langs.includes(l))&&(n==='all'||s.needs.includes(n))&&(lo==='all'||s.location===lo));
-  const pend=document.getElementById('svc-pend'); if(pend) pend.hidden = tp!=='work';
+  const pend=document.getElementById('svc-pend'); if(pend) pend.hidden = true;
   $('#svc-count').textContent=`${list.length} verified service${list.length===1?'':'s'} · only verified organisations are listed`;
   const em=(n==='all'&&EMPTY[tp])||(tp==='health'&&EMPTY.health)||{t:'No verified services match these filters yet.',d:'Try “All support types”, or call Danuri Helpline on 1577-1366 for multilingual guidance.'};
   $('#svc-list').innerHTML = list.length? list.map(s=>`<article class="svc"><header><h3>${s.name}${s.ko?`<small class="rom" style="font-style:normal;font-size:.85rem;margin-top:2px">${s.ko}</small>`:''}</h3><span class="ver">Verified ${s.verifiedOn}</span></header>
@@ -1601,7 +1675,7 @@ R.about = (r,p) => `<div class="wrap">${crumbs(r)}
   <div class="split"><div><h2>The problem</h2><p>Information about housing, healthcare and administration exists, but it is spread across many institutions and hard to navigate.</p></div>
   <div><h2>Our approach</h2><p>IEUM gathers that information and turns it into simple, situation-based paths that end at verified support in Jeju.</p></div></div>
   <section class="section"><h2 style="margin-bottom:16px">What makes IEUM different</h2><div class="principles">
-    ${[['Jeju-specific','Local services, local numbers, local context.'],['Multilingual','Korean, English, Chinese and Vietnamese.'],['Situation-based','Start from what is happening to you, not from a government department.'],['Verified','Every service is checked and dated.'],['Connected to real help','Every guide ends with a person or service you can contact.']].map(x=>`<div><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div></section>
+    ${[['Jeju-specific','Local services, local numbers, local context.'],['Multilingual','Korean, English, Chinese, Tamil, Thai, Vietnamese, Indonesian, Filipino and Mongolian.'],['Situation-based','Start from what is happening to you, not from a government department.'],['Verified','Every service is checked and dated.'],['Connected to real help','Every guide ends with a person or service you can contact.']].map(x=>`<div><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div></section>
   <section class="section"><div class="band"><div><h2>Connecting information. Connecting people. Connecting Jeju.</h2></div><a class="btn btn-primary" href="#support">Find support ${I.arrow}</a></div></section></div>`;
 
 
@@ -1619,7 +1693,7 @@ function buildChrome(){
       <button class="pclose" data-closemenu aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </div>
     <div class="dlist">
-      <div class="dsec dtop"><span class="mono">Language</span><div class="dseg" role="group" aria-label="Language">${[['ko','한국어'],['en','EN'],['zh','中文'],['vi','Tiếng Việt']].map(([k,v])=>`<button data-lang="${k}" aria-pressed="false">${v}</button>`).join('')}</div></div>
+      <div class="dsec dtop"><span class="mono">Language</span><div class="dseg" role="group" aria-label="Language">${UILANGS.map(([k,v])=>`<button data-lang="${k}" aria-pressed="false">${v}</button>`).join('')}</div></div>
       <nav aria-label="Mobile">${[['home','Home'],['housing','Housing'],['health','Healthcare'],['work','Work & admin'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}" data-k="${k}">${l}${arrow}</a>`).join('')}</nav>
     </div>`;
   $('#fcols').innerHTML = `<h5>Explore</h5><nav class="flinks" aria-label="Footer">${[['housing','All housing situations'],['health','All healthcare situations'],['work','All work & admin situations'],['support','Find support'],['about','About IEUM']].map(([k,l])=>`<a href="#${k}">${l} <span aria-hidden="true">→</span></a>`).join('')}</nav>`;
@@ -1653,7 +1727,61 @@ function go(r,replace){ if(PATHMODE){ history[replace?'replaceState':'pushState'
 function fixLinks(root){ if(!PATHMODE) return; root.querySelectorAll('a[href^="#"]').forEach(a=>{const r=a.getAttribute('href').slice(1); if(P[r]||ALIAS[r]) a.setAttribute('href',href(r));}); }
 if(PATHMODE && location.hash.length>1 && (P[location.hash.slice(1)]||ALIAS[location.hash.slice(1)])) history.replaceState(null,'',href(location.hash.slice(1)));
 /* ---------- router ---------- */
-const state={lang: store.get('lang')||'en'};
+/* ---------- translation ---------- */
+const UILANGS=[['ko','한국어','KO'],['en','English','EN'],['zh','中文','ZH'],['ta','தமிழ்','TA'],['th','ไทย','TH'],['vi','Tiếng Việt','VI'],['id','Bahasa Indonesia','ID'],['fil','Filipino','FIL'],['mn','Монгол','MN']];
+const I18N={}; const I18N_WAIT={};
+window.IEUM_I18N=(l,d)=>{I18N[l]=d;};
+function loadLang(l){
+  if(l==='en'||I18N[l]) return Promise.resolve();
+  if(I18N_WAIT[l]) return I18N_WAIT[l];
+  return I18N_WAIT[l]=new Promise(res=>{const sc=document.createElement('script'); sc.src='assets/i18n/'+l+'.js?v=1'; sc.onload=sc.onerror=()=>res(); document.head.appendChild(sc);});
+}
+const I_PATS=[
+ [/^Call (\+?[\d\-*]+)$/, (m,t)=>t.call&&t.call.replace('{0}',m[1])],
+ [/^(\d+) verified services? · only verified organisations are listed$/, (m,t)=>t.count&&t.count.replace('{0}',m[1])],
+ [/^(\d+)\/(\d+) ready$/, (m,t)=>t.ready&&t.ready.replace('{0}',m[1]).replace('{1}',m[2])],
+ [/^(\d+) guides →$/, (m,t)=>t.guides&&t.guides.replace('{0}',m[1])],
+ [/^(\d+) options →$/, (m,t)=>t.options&&t.options.replace('{0}',m[1])],
+ [/^Also: (.+)$/, (m,t,d)=>t.also&&t.also.replace('{0}',d.m[m[1]]||m[1])],
+ [/^Verified (\w+) (\d{4})$/, (m,t)=>t.verified&&t.verified.replace('{0}',((t.months||{})[m[1]]||m[1])).replace('{1}',m[2])],
+ [/^Information last reviewed · (\w+) (\d{4})$/, (m,t)=>t.reviewed&&t.reviewed.replace('{0}',((t.months||{})[m[1]]||m[1])).replace('{1}',m[2])],
+ [/^Language: (.+)$/, (m,t)=>t.language&&t.language.replace('{0}',m[1])],
+ [/^(.+) · Project IEUM$/, (m,t,d)=>d.m[m[1]]?d.m[m[1]]+' · Project IEUM':null],
+];
+function trStr(s){
+  const d=I18N[state.lang]; if(!d) return null;
+  const k=s.replace(/\s+/g,' ').trim(); if(!k) return null;
+  const v=d.m[k]; if(v!=null) return v;
+  for(const [re,fn] of I_PATS){const m=k.match(re); if(m){const r=fn(m,d.t||{},d); if(r) return r;}}
+  return null;
+}
+const I_TXT=new WeakMap(), I_ATT=new WeakMap(); let I_ON=false;
+function trNode(n,en){
+  let rec=I_TXT.get(n); const cur=n.nodeValue;
+  if(!rec||(cur!==rec.out&&cur!==rec.src)){rec={src:cur,out:cur}; I_TXT.set(n,rec);}
+  let out=rec.src;
+  if(!en){const t=trStr(rec.src); if(t!=null){const lead=rec.src.match(/^\s*/)[0], tail=rec.src.match(/\s*$/)[0]; out=lead+t+tail;}}
+  rec.out=out; if(cur!==out) n.nodeValue=out;
+}
+function trAttr(el,a,en){
+  let m=I_ATT.get(el); if(!m){m={}; I_ATT.set(el,m);} let rec=m[a]; const cur=el.getAttribute(a);
+  if(!rec||(cur!==rec.out&&cur!==rec.src)){rec=m[a]={src:cur,out:cur};}
+  const out=en?rec.src:(trStr(rec.src)??rec.src); rec.out=out; if(cur!==out) el.setAttribute(a,out);
+}
+function applyLang(root){
+  root=root||document.body; const en=state.lang==='en'||!I18N[state.lang];
+  I_ON=true;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const p=n.parentElement; if(!p||p.closest('script,style,[data-lang],.notr')) return 2; return n.nodeValue.trim()?1:2;}});
+  let n; while(n=w.nextNode()) trNode(n,en);
+  root.querySelectorAll('[aria-label],[placeholder],[title],[alt]').forEach(el=>{ if(el.closest('[data-lang]')&&!el.matches('[data-lang]')) return; ['aria-label','placeholder','title','alt'].forEach(a=>{ if(el.hasAttribute(a)&&!el.matches('[data-lang]')) trAttr(el,a,en);});});
+  if(!document.__ttl||document.title!==document.__ttl.out){document.__ttl={src:document.title,out:document.title};}
+  const tt=en?document.__ttl.src:(trStr(document.__ttl.src)??document.__ttl.src); document.__ttl.out=tt; if(document.title!==tt) document.title=tt;
+  I_ON=false;
+}
+let I_RAF=0;
+new MutationObserver(()=>{ if(I_ON||state.lang==='en') return; cancelAnimationFrame(I_RAF); I_RAF=requestAnimationFrame(()=>applyLang()); }).observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+
+const state={lang: (s=>UILANGS.some(x=>x[0]===s)?s:'en')(store.get('lang'))};
 function render(){
   let r=curRoute();
   if(ALIAS[r]){PRESET=ALIAS[r]; go('support',true); return;}
@@ -1670,9 +1798,9 @@ function render(){
 }
 function syncLang(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
-  const lab={ko:'한국어',en:'English',zh:'中文',vi:'Tiếng Việt'}[state.lang]; const lc=$('#langcur'); if(lc) lc.textContent={ko:'KO',en:'EN',zh:'中文',vi:'VI'}[state.lang]; if(lc) lc.parentElement.setAttribute('aria-label','Language: '+lab); document.querySelectorAll('.dlcur').forEach(x=>x.textContent=lab);
-  const msg={ko:'한국어 번역을 준비하고 있습니다. 지금은 영어로 표시됩니다.',zh:'中文翻译正在准备中，目前以英文显示。',vi:'Bản tiếng Việt đang được chuẩn bị. Hiện đang hiển thị tiếng Anh.'}[state.lang];
-  $('#langnote').hidden=!msg; if(msg) $('#langnotetext').textContent=msg;
+  const L=UILANGS.find(x=>x[0]===state.lang)||UILANGS[1]; const lc=$('#langcur'); if(lc){ lc.textContent=L[2]; lc.parentElement.setAttribute('aria-label','Language: '+L[1]); } document.querySelectorAll('.dlcur').forEach(x=>x.textContent=L[1]);
+  document.documentElement.lang=state.lang; $('#langnote').hidden=true;
+  loadLang(state.lang).then(()=>applyLang());
 }
 document.addEventListener('click',e=>{
   if(e.target.closest('#burger')){ $('#mnav').hidden?openDrawer():closeDrawer(); return;}
