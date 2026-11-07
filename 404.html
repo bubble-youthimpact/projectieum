@@ -397,6 +397,9 @@ html.is-dark .themebtn .i-moon{display:none}
 .dlist .drow{font:600 1.05rem var(--f-body);letter-spacing:0}
 .dseg{display:flex;gap:4px;padding:4px;border-radius:14px;background:var(--sunk);border:1px solid var(--line);overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.dseg::-webkit-scrollbar{display:none}
 .dseg button{flex:none;border:0;background:none;border-radius:10px;padding:11px 14px;white-space:nowrap;font:600 .95rem var(--f-body);color:var(--muted);cursor:pointer}
+.dseg.fr{-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent);mask-image:linear-gradient(90deg,#000 82%,transparent)}
+.dseg.fl{-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
+.dseg.fl.fr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
 .dseg button[aria-pressed="true"]{background:var(--solid);color:var(--sea);box-shadow:0 1px 3px rgb(2 60 110 / .15)}
 .drow[aria-pressed="true"]{color:var(--sea)}
 .drow[aria-pressed="true"] .ck{visibility:visible}
@@ -559,6 +562,34 @@ table.log input[type=time]{min-width:96px}
   .block{padding:20px 18px}
   .hero{padding-block:16px 26px}
 }
+/* multilingual fit: keep translated text from squishing or spilling */
+.brand{flex:none;min-width:0}.brand b,.brand small{white-space:nowrap}
+html.navtight .bar .brand small{display:none}
+html.navcompact .menu{display:none}html.navcompact .burger{display:flex}html.navcompact .bar{grid-template-columns:1fr auto}
+h1,h2,h3,h4,p,li,dd,dt,td,th,label,.lede,.btn,.chip{overflow-wrap:break-word}
+.btn{text-align:center;line-height:1.3;max-width:100%;border-radius:22px}
+.phrase .btn{border-radius:18px}
+.aside .box .btn{width:100%;justify-content:center}
+.filters label{min-width:min(180px,100%);grid-template-columns:minmax(0,1fr)}
+.filters select{width:100%;min-width:0;max-width:100%}
+.term{flex-wrap:wrap;max-width:100%;border-radius:18px}
+@media (max-width:560px){
+  .svc .acts .btn{flex:1 1 auto;justify-content:center}
+  .band .btn{width:100%;justify-content:center}
+  .block>.btn{width:100%;justify-content:center}
+}
+/* Tamil & Thai: taller glyphs with marks above/below need looser lines and no negative tracking */
+:lang(ta) :is(h1,h2,h3),:lang(th) :is(h1,h2,h3){letter-spacing:0}
+:lang(ta) h1,:lang(th) h1{line-height:1.28}
+:lang(ta) h2,:lang(th) h2{line-height:1.38}
+:lang(ta) h3,:lang(th) h3{line-height:1.45}
+:lang(ta) h1{font-size:clamp(1.7rem,4.4vw,2.9rem)}
+:lang(ta) .home-hero h1{font-size:clamp(2rem,5vw,3.5rem)}
+:lang(ta) h2{font-size:1.3rem}
+:lang(ta) body,:lang(th) body{line-height:1.75}
+:lang(ta) .menu>.mi>a,:lang(ta) .menu>.mi>button{font-size:.86rem}
+:lang(mn) h1{letter-spacing:-.02em}
+@media (max-width:480px){:lang(ta) h1{font-size:1.6rem}:lang(th) h1{font-size:1.85rem}:lang(mn) h1{font-size:1.8rem}}
 </style>
 </head>
 <body>
@@ -1703,7 +1734,10 @@ function buildChrome(){
 }
 function closeMenus(){ document.querySelectorAll('.mi[data-open]').forEach(m=>{m.removeAttribute('data-open');m.querySelector('button')?.setAttribute('aria-expanded','false')});
   closeDrawer(); }
+function segFade(s){ s.classList.toggle('fl',s.scrollLeft>4); s.classList.toggle('fr',s.scrollLeft+s.clientWidth<s.scrollWidth-4); }
+document.addEventListener('scroll',e=>{ if(e.target.classList&&e.target.classList.contains('dseg')) segFade(e.target); },true);
 function openDrawer(){ const r=curRoute(); const m=$('#mnav'); m.hidden=false; document.documentElement.classList.add('locked'); $('#burger').setAttribute('aria-expanded','true');
+  requestAnimationFrame(()=>m.querySelectorAll('.dseg').forEach(s=>{ const on=s.querySelector('[aria-pressed="true"]'); if(on) s.scrollLeft=on.offsetLeft-(s.clientWidth-on.offsetWidth)/2; segFade(s); }));
   m.querySelectorAll('.dlist nav a').forEach(a=>a.toggleAttribute('aria-current', r===a.dataset.k || (r!=='home'&&(r.split('.')[0]===a.dataset.k || catOf(r)===a.dataset.k))));
   m.querySelector('.pclose').focus(); }
 function closeDrawer(){ const m=$('#mnav'); if(!m) return; const was=!m.hidden; m.hidden=true; document.documentElement.classList.remove('locked'); $('#burger').setAttribute('aria-expanded','false'); if(was&&document.activeElement&&m.contains(document.activeElement)) $('#burger').focus(); }
@@ -1803,8 +1837,20 @@ function syncLang(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
   const L=UILANGS.find(x=>x[0]===state.lang)||UILANGS[1]; const lc=$('#langcur'); if(lc){ lc.textContent=L[2]; lc.parentElement.setAttribute('aria-label','Language: '+L[1]); } document.querySelectorAll('.dlcur').forEach(x=>x.textContent=L[1]);
   document.documentElement.lang=state.lang; $('#langnote').hidden=true;
-  loadLang(state.lang).then(()=>applyLang());
+  loadLang(state.lang).then(()=>{applyLang(); fitNav();});
 }
+/* switch the header to the menu button when the translated menu would not fit */
+function fitNav(){
+  const H=document.documentElement, bar=document.querySelector('.bar'); if(!bar) return;
+  H.classList.remove('navtight','navcompact');
+  if(innerWidth<=1000) return;
+  const need=()=>{const kids=[...bar.children].filter(e=>e.offsetWidth&&!e.classList.contains('burger')); let w=0;
+    for(const k of kids){ if(k.classList.contains('menu')){ for(const c of k.children) w+=c.getBoundingClientRect().width+2; } else w+=k.scrollWidth; }
+    return w+20*(kids.length-1)+8 > bar.clientWidth;};
+  if(need()){ H.classList.add('navtight'); if(need()) H.classList.add('navcompact'); }
+}
+addEventListener('resize',()=>{clearTimeout(fitNav.t); fitNav.t=setTimeout(fitNav,80);});
+document.fonts&&document.fonts.ready.then(fitNav);
 document.addEventListener('click',e=>{
   if(e.target.closest('#burger')){ $('#mnav').hidden?openDrawer():closeDrawer(); return;}
   if(e.target.closest('[data-closemenu]')){closeDrawer(); return;}
