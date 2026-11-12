@@ -16,6 +16,7 @@ document.write('<base href="'+b+'">');})();</script>
 <meta property="og:image" content="assets/logo-mark.png">
 <title>Project IEUM</title>
 <script>try{var t=localStorage.getItem("ieum-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<script>window.__I18N={};window.IEUM_I18N=function(l,d){window.__I18N[l]=d};try{var L=JSON.parse(localStorage.getItem("lang"));if(/^(ko|zh|ta|th|vi|id|fil|mn)$/.test(L)){document.documentElement.lang=L;document.write('<script src="assets/i18n/'+L+'.js?v=2f2f0d80"><\/script>');}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
@@ -1768,12 +1769,13 @@ if(PATHMODE && location.hash.length>1 && (P[location.hash.slice(1)]||ALIAS[locat
 /* ---------- router ---------- */
 /* ---------- translation ---------- */
 const UILANGS=[['ko','한국어','KO'],['en','English','EN'],['zh','中文','ZH'],['ta','தமிழ்','TA'],['th','ไทย','TH'],['vi','Tiếng Việt','VI'],['id','Bahasa Indonesia','ID'],['fil','Filipino','FIL'],['mn','Монгол','MN']];
-const I18N={}; const I18N_WAIT={};
+const I18N=window.__I18N||{}; const I18N_WAIT={};
 window.IEUM_I18N=(l,d)=>{I18N[l]=d;};
+let I_SHOW='en'; /* language currently on screen; only changes once its dictionary is ready */
 function loadLang(l){
   if(l==='en'||I18N[l]) return Promise.resolve();
   if(I18N_WAIT[l]) return I18N_WAIT[l];
-  return I18N_WAIT[l]=new Promise(res=>{const sc=document.createElement('script'); sc.src='assets/i18n/'+l+'.js?v=1'; sc.onload=sc.onerror=()=>res(); document.head.appendChild(sc);});
+  return I18N_WAIT[l]=new Promise(res=>{const sc=document.createElement('script'); sc.src='assets/i18n/'+l+'.js?v=2f2f0d80'; sc.onload=sc.onerror=()=>res(); document.head.appendChild(sc);});
 }
 const I_PATS=[
  [/^Call (\+?[\d\-*]+)$/, (m,t)=>t.call&&t.call.replace('{0}',m[1])],
@@ -1788,7 +1790,7 @@ const I_PATS=[
  [/^(.+) · Project IEUM$/, (m,t,d)=>d.m[m[1]]?d.m[m[1]]+' · Project IEUM':null],
 ];
 function trStr(s){
-  const d=I18N[state.lang]; if(!d) return null;
+  const d=I18N[I_SHOW]; if(!d) return null;
   const k=s.replace(/\s+/g,' ').trim(); if(!k) return null;
   const v=d.m[k]; if(v!=null) return v;
   for(const [re,fn] of I_PATS){const m=k.match(re); if(m){const r=fn(m,d.t||{},d); if(r) return r;}}
@@ -1808,17 +1810,18 @@ function trAttr(el,a,en){
   const out=en?rec.src:(trStr(rec.src)??rec.src); rec.out=out; if(cur!==out) el.setAttribute(a,out);
 }
 function applyLang(root){
-  root=root||document.body; const en=state.lang==='en'||!I18N[state.lang];
+  root=root||document.body; const en=I_SHOW==='en'||!I18N[I_SHOW];
   I_ON=true;
   const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const p=n.parentElement; if(!p||p.closest('script,style,[data-lang],.notr')) return 2; return n.nodeValue.trim()?1:2;}});
   let n; while(n=w.nextNode()) trNode(n,en);
   root.querySelectorAll('[aria-label],[placeholder],[title],[alt]').forEach(el=>{ if(el.closest('[data-lang]')&&!el.matches('[data-lang]')) return; ['aria-label','placeholder','title','alt'].forEach(a=>{ if(el.hasAttribute(a)&&!el.matches('[data-lang]')) trAttr(el,a,en);});});
   if(!document.__ttl||document.title!==document.__ttl.out){document.__ttl={src:document.title,out:document.title};}
   const tt=en?document.__ttl.src:(trStr(document.__ttl.src)??document.__ttl.src); document.__ttl.out=tt; if(document.title!==tt) document.title=tt;
-  I_ON=false;
+  I_ON=false; I_MO.takeRecords();
 }
-let I_RAF=0;
-new MutationObserver(()=>{ if(I_ON||state.lang==='en') return; cancelAnimationFrame(I_RAF); I_RAF=requestAnimationFrame(()=>applyLang()); }).observe(document.documentElement,{subtree:true,childList:true,characterData:true});
+/* translate new content before the browser paints it (microtask, not next frame) */
+const I_MO=new MutationObserver(()=>{ if(I_ON||I_SHOW==='en') return; applyLang(); });
+I_MO.observe(document.documentElement,{subtree:true,childList:true,characterData:true});
 
 const state={lang: (s=>UILANGS.some(x=>x[0]===s)?s:'en')(store.get('lang'))};
 function render(){
@@ -1838,9 +1841,12 @@ function render(){
 function syncLang(){
   document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===state.lang)));
   const L=UILANGS.find(x=>x[0]===state.lang)||UILANGS[1]; const lc=$('#langcur'); if(lc){ lc.textContent=L[2]; lc.parentElement.setAttribute('aria-label','Language: '+L[1]); } document.querySelectorAll('.dlcur').forEach(x=>x.textContent=L[1]);
-  document.documentElement.lang=state.lang; $('#langnote').hidden=true;
-  loadLang(state.lang).then(()=>{applyLang(); fitNav();});
+  $('#langnote').hidden=true;
+  const want=state.lang; const show=()=>{ if(state.lang!==want) return; I_SHOW=(want==='en'||I18N[want])?want:'en'; document.documentElement.lang=I_SHOW; applyLang(); fitNav(); };
+  if(want==='en'||I18N[want]) show(); else loadLang(want).then(show);
 }
+/* start downloading a language as soon as someone points at or focuses it */
+['pointerover','focusin','touchstart'].forEach(ev=>document.addEventListener(ev,e=>{const b=e.target.closest&&e.target.closest('[data-lang]'); if(b&&b.dataset.lang) loadLang(b.dataset.lang);},{passive:true}));
 /* switch the header to the menu button when the translated menu would not fit */
 function fitNav(){
   const H=document.documentElement, bar=document.querySelector('.bar'); if(!bar) return;
